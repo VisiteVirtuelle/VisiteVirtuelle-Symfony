@@ -23,14 +23,20 @@ https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony
 
 -----
 
+## Installation
+1. S'assurer que PHP est bien installé/présent dans le PATH avec `php -V`
+2. Installer les dépendances :
+   * Téléchargement de composer `php -r "readfile('https://getcomposer.org/installer');" | php`
+   * Installation des dépendances `php composer.phar install`
+
+-----
+
 ## Équipe
 * Vincent CLAVEAU
 * Malko CARRERAS
 * Valentin PILLON
 * Guillaume VIDAL
 * Thomas DUDITLIEUX
-
------
 
 ## Organisation du projet
 **Trello:** https://trello.com/b/lRY92q0W/organisation
