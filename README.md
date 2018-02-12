@@ -28,6 +28,9 @@ https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony
 2. Installer les dépendances :
    * Téléchargement de composer `php -r "readfile('https://getcomposer.org/installer');" | php`
    * Installation des dépendances `php composer.phar install`
+3. Création de la base de données :
+   * Création de la base de données `php bin/console doctrine:database:create`
+   * Création des tables `php bin/console doctrine:schema:update --force`
 
 -----
 
