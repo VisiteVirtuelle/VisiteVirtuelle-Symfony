@@ -14,5 +14,12 @@
 /var/sessions/*
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
-/vendor/
 /web/bundles/
+
+#Copmposer
+/vendor/
+composer.phar
+
+#Eclipse
+.buildpath
+.project

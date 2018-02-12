@@ -9,6 +9,8 @@ parameters:
     locale: en
 
 framework:
+    templating:
+        engines: ['twig']
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
@@ -65,3 +67,11 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+    
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Votop\PlatformBundle\Entity\User
+    from_email:
+        address: "vincent.claveau@lycee-bourdelle.fr"
+        sender_name: "Visite Virtuelle Immobilière"
