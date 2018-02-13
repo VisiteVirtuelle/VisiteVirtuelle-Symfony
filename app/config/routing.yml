@@ -1,3 +1,7 @@
+votop_admin:
+    resource: "@VotopAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 votop_platform:
     resource: "@VotopPlatformBundle/Resources/config/routing.yml"
     prefix:   /

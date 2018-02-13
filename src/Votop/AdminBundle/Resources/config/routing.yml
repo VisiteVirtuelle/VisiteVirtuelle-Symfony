@@ -1,0 +1,7 @@
+votop_admin_dashboard:
+    path:     /dashboard
+    defaults: { _controller: VotopAdminBundle:Admin:dashboard }
+    
+votop_admin_redirect:
+    path:     /
+    defaults: { _controller: VotopAdminBundle:Admin:dashboard }

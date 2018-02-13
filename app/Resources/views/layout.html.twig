@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+        <title>{% block title %}Visite360{% endblock %}</title>
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+		
+		{% block stylesheets %}
+			{# On charge le CSS de bootstrap depuis le site directement #}
+			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		{% endblock %}
+    </head>
+	
+    <body>
+		<div class="container">
+			<div id="header" class="jumbotron">
+				<h1>Visite360</h1>
+				<p>
+					Application web de Visite Virtuelle Immobilière
+				</p>
+			</div>
+			
+			<div class="row">
+			
+			</div>
+		</div>
+		
+        {% block body %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,14 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Admin Dashboard{% endblock %}
+
+{% block body %}
+    <li>
+		<a href="#">Visites</a>
+	    <a href="#">Editeur</a>
+		<a href="#">Utilisateurs</a>
+	</li>
+	
+	{% block app %}{% endblock %}
+	
+{% endblock %}
