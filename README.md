@@ -26,6 +26,8 @@ https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony
 3. Création de la base de données :
    * Création de la base de données `php bin/console doctrine:database:create`
    * Création des tables `php bin/console doctrine:schema:update --force`
+#### Commandes utiles :
+* Promotion d'un utilisateur en administrateur `php bin/console fos:user:promote <nom_utilisateur> ROLE_ADMIN `
 
 -----
 
