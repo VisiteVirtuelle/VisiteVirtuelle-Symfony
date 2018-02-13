@@ -11,11 +11,6 @@ Documents pour le projet Visite Virtuelle Immobilière
 
 https://github.com/VisiteVirtuelle/Documents
 
-### VisiteVirtuelle-WebApp
-Application web PHP de Visite Virtuelle
-
-https://github.com/VisiteVirtuelle/VisiteVirtuelle-WebApp
-
 ### VisiteVirtuelle-Symfony
 Application web (avec framework Symfony) de Visite Virtuelle
 
