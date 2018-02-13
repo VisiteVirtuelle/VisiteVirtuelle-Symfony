@@ -11,22 +11,58 @@
 			{# On charge le CSS de bootstrap depuis le site directement #}
 			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		{% endblock %}
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     </head>
 	
     <body>
-		<div class="container">
-			<div id="header" class="jumbotron">
-				<h1>Visite360</h1>
-				<p>
-					Application web de Visite Virtuelle Immobilière
-				</p>
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="{{ path('votop_platform_homepage') }}">Visite360</a>
+				</div>
+				
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Page 1</a></li>
+					<li><a href="#">Page 2</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					{% if app.user %}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ app.user }} <span class="caret"/></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{ path('fos_user_profile_show') }}">My Profile</a></li>
+								{% if is_granted('ROLE_ADMIN') %}
+									<li><a href="{{ path('votop_admin_dashboard') }}"><span class="glyphicon glyphicon-briefcase"></span> Dashboard</a></li>
+								{%endif%}
+							</ul>
+						</li>
+						<li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+					{% else %}
+						<li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					{% endif %}
+				</ul>
 			</div>
-			
-			<div class="row">
-			
+		</nav>
+		
+		<div class="container-fluid text-center">
+			<div id="content">
+				{% block body %}{% endblock %}
 			</div>
 		</div>
 		
-        {% block body %}{% endblock %}
+		<footer class="container-fluid text-center">
+			<ul class ="nav">
+				<li><a href="https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony">Github</a></li>
+			</ul>
+			<p>
+				Developped with <span class ="glyphicon glyphicon-heart"></span> by Vincent, Pillon and Guillaume
+			</p>
+		</footer>
     </body>
 </html>
