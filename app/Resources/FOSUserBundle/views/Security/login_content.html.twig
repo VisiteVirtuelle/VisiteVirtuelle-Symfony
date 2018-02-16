@@ -4,19 +4,24 @@
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
+<center>
+<form action="{{ path("fos_user_security_check") }}" class="form-group w-25 card" method="post">
     {% if csrf_token %}
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="_csrf_token" class="form-control" value="{{ csrf_token }}" />
     {% endif %}
 
     <label for="username">{{ 'security.login.username'|trans }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+    <input type="text" id="username" name="_username" class="form-control w-75" value="{{ last_username }}" required="required" />
 
     <label for="password">{{ 'security.login.password'|trans }}</label>
-    <input type="password" id="password" name="_password" required="required" />
+    <input type="password" id="password" name="_password" class="form-control w-75" required="required" />
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+    
+    <label for="remember_me" class="form-check-label" >
+    <input type="checkbox" id="remember_me" name="_remember_me" class="form-check-input" value="on" />
+    {{ 'security.login.remember_me'|trans }}
+    </label>
 
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+    <input type="submit" id="_submit" name="_submit" class="btn btn-warning w-75 mt-2 mb-2" value="{{ 'security.login.submit'|trans }}" />
 </form>
+</center>

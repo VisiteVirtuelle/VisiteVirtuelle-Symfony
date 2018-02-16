@@ -7,11 +7,11 @@
     <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
     <div class="card-body">
       <h4 class="card-title">{{ user.username }}</h4>
-      <p class="card-text"> Your address mail : <em> {{ user.email }} </em></p>
-      <div class="progress">
+      <p class="card-text"> @mail : <em> {{ user.email }} </em></p>
+      <div class="progress mb-2">
   			<div class="progress-bar" style="width:70%">70%</div>
 	  </div>
-	  <a href="{{ path('fos_user_profile_edit') }}" class="nav-link button"><span class="fa fa-cog"></span> Edit profile</a>
+	  <a href="{{ path('fos_user_profile_edit') }}" class="nav-link btn btn-success"><span class="fa fa-cog"></span> Edit profile</a>
     </div>
   </div>
   </center>
