@@ -5,7 +5,36 @@
 {% endif %}
 
 <center>
+
 <form action="{{ path("fos_user_security_check") }}" class="form-group w-25 card" method="post">
+  <center>
+    <img class="rounded-circle w-50 mt-5 mb-5" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
+    
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" class="form-control mb-2" value="{{ csrf_token }}" />
+    {% endif %}
+
+    <input type="text" id="username" name="_username" class="form-control w-75 mt-3 mb-3" value="{{ last_username }}" placeholder="Username" required="required" />
+
+    <input type="password" id="password" name="_password" class="form-control w-75 mt-3 mb-3" placeholder="Password" required="required" />
+
+    
+    <label for="remember_me" class="form-check-label w-75 mt-1 mb-1" >
+    <input type="checkbox" id="remember_me" name="_remember_me" class="form-check-input " value="on" />
+    {{ 'Remember me'|trans }}
+    </label>
+
+    <input type="submit" id="_submit" name="_submit" class="btn btn-success w-75 mt-3 mb-3" value="{{ 'Connect'|trans }}" />
+    
+    <a href="{{ path('fos_user_resetting_request') }}" class="nav-link text-danger w-50 mt-3 mb-3"> Forgot the password?</a>
+</form>
+</center>
+
+
+<!--<form action="{{ path("fos_user_security_check") }}" class="form-group w-25 card" method="post">
+  <center>
+    <img class=""rounded-circle"" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
+    
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" class="form-control" value="{{ csrf_token }}" />
     {% endif %}
@@ -24,4 +53,4 @@
 
     <input type="submit" id="_submit" name="_submit" class="btn btn-warning w-75 mt-2 mb-2" value="{{ 'security.login.submit'|trans }}" />
 </form>
-</center>
+</center>-->
