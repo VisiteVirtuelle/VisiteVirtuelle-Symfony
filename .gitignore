@@ -15,6 +15,9 @@
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
 /web/bundles/
+##Assetic
+/web/css/
+/web/js/
 
 #Copmposer
 /vendor/

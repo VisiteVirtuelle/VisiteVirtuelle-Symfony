@@ -1,14 +1,37 @@
 {% extends "::layout.html.twig" %}
 
-{% block title %}{{ parent() }} - Admin Dashboard{% endblock %}
+{% block title %}{{ parent() }} - Dashboard{% endblock %}
 
 {% block body %}
-    <li>
-		<a href="#">Visites</a>
-	    <a href="#">Editeur</a>
-		<a href="#">Utilisateurs</a>
-	</li>
-	
-	{% block app %}{% endblock %}
-	
+    <div class="row">
+		<div class="col-2">
+			<div class="nav-side-menu">
+				<nav class="navbar navbar-dark bg-dark">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="#">Page 0</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Page 1</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Page 2</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Page 3</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Page 4</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		
+		<div class="col">
+			<div class="jumbotron jumbotron-fluid">
+				{% block app %}{% endblock %}
+			</div>
+		</div>
+	</div>
 {% endblock %}
