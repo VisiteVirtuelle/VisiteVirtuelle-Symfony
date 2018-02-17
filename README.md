@@ -26,8 +26,10 @@ https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony
 3. Création de la base de données :
    * Création de la base de données `php bin/console doctrine:database:create`
    * Création des tables `php bin/console doctrine:schema:update --force`
+4. Générer les assets pour le mode prod `php bin/console assetic:dump --env=prod --no-debug`
 #### Commandes utiles :
 * Promotion d'un utilisateur en administrateur `php bin/console fos:user:promote <nom_utilisateur> ROLE_ADMIN `
+* Re-générer les assets à chaque modification de ceux-ci pour le mode prod avec `php bin/console assetic:dump --env=prod`
 
 -----
 
