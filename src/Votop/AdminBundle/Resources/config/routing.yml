@@ -4,4 +4,7 @@ votop_admin_dashboard:
     
 votop_admin_redirect:
     path:     /
-    defaults: { _controller: VotopAdminBundle:Admin:dashboard }
+    defaults:  
+        _controller: FrameworkBundle:Redirect:redirect
+        route: votop_admin_dashboard
+        permanent: true
