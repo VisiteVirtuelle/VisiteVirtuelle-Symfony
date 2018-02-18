@@ -23,13 +23,12 @@ https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony
 2. Installer les dépendances :
    * Téléchargement de composer `php -r "readfile('https://getcomposer.org/installer');" | php`
    * Installation des dépendances `php composer.phar install`
-3. Création de la base de données :
+3. Création de la base de données **(optionnel si déjà existante)** :
    * Création de la base de données `php bin/console doctrine:database:create`
    * Création des tables `php bin/console doctrine:schema:update --force`
-4. Générer les assets pour le mode prod `php bin/console assetic:dump --env=prod --no-debug`
 #### Commandes utiles :
-* Promotion d'un utilisateur en administrateur `php bin/console fos:user:promote <nom_utilisateur> ROLE_ADMIN `
-* Re-générer les assets à chaque modification de ceux-ci pour le mode prod avec `php bin/console assetic:dump --env=prod`
+* Promotion d'un utilisateur en administrateur `php bin/console fos:user:promote <nom_utilisateur> ROLE_ADMIN`
+* Re-générer les assets après modification de ceux-ci avec `php bin/console assetic:dump --env=prod`
 
 -----
 
