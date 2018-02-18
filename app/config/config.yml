@@ -94,5 +94,5 @@ fos_user:
             from_email:
                 address: "g-vidal82@gmx.fr"
                 sender_name: "Visite Virtuelle Immobilière"
-            template: Emails\registration.email.twig
+            template: '%kernel.root_dir%/Resources/views/emails/registration.email.twig'
                 

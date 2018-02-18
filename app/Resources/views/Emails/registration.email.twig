@@ -1,11 +1,15 @@
-<h3>You did it! You registered!</h3>
+{% block subject %}Confirmation d'inscription{% endblock %}
 
-Hi {{ name }}! You're successfully registered.
-
-{# example, assuming you have a route named "login" #}
-To login, go to: <a href="{{ url('login') }}">...</a>.
-
-Thanks!
-
-{# Makes an absolute URL to the /images/logo.png file #}
-<img src="{{ absolute_url(asset('images/logo.png')) }}">
+{% block body_html %}
+	{% autoescape false %}
+		
+		<h1>Bonjour {{ user.username }} !</h1>
+		
+		<p>Ceci est un email de confirmation d'inscription.</p>
+		<p>Cliquez sur le lien suivant pour confirmer votre compte : <a href="{{ confirmationUrl }}">confirmation</a></p>
+		<br/>
+		<p>Cordialement,</p>
+		<p>L'équipe de développemnt SN IR.</p>
+		
+	{% endautoescape %}
+{% endblock %}
