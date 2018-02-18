@@ -1,21 +1,5 @@
-<body style="font-family:Segoe UI";line-height: 1.5;>
-    <div style="text-align:center;padding-left:15px;padding-right:15px;margin-left:auto;margin-right:auto;">
-        <h1 style="font-size: 2.5rem; font-weight: 500; line-height: 1.2;">Welcome {{ app.user }}</h1>
+{% extends "VotopVirtualVisitBundle::layout.html.twig" %}
 
-        <br />
-        <p style="margin-top: 0;">Before visiting on 360° Visits, please verify your email address.</p>
-        <p style="font-weight: 300!important;">If you did not create a 360°Visits account using this address, simply ignore this message.</p>
-        
-        <a style="display: inline-block; padding: .400rem .80rem; border-radius: .25rem; text-decoration: none; color: #fff; background-color: #007bff; margin-top: 1.5rem!important; margin-bottom: 1rem!important;" href="{{ path('votop_platform_homepage') }}" role="button">Verify your account</a>
-        
-        <p style="padding-bottom: 1.5rem!important;">
-            Or verify using this link:
-            <br />
-            <a style="text-decoration: none; color: #007bff;" href="{{ path('votop_platform_homepage') }}">{{ path('votop_platform_homepage') }}</a> 
-        </p>
-
-        <p style="font-weight: 300!important; padding-top: .5rem!important; border-top: 1px solid #dee2e6!important;">
-            Sent by 360°Visits - 3 Boulevard Edouard Herriot, 82000 Montauban
-        </p>
-    </div>
-</body>
+{% block app %}
+    Visit
+{% endblock %}
