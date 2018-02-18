@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
 			new Votop\PlatformBundle\VotopPlatformBundle(),
 			new Votop\AdminBundle\VotopAdminBundle(),
+            new Votop\VirtualVisitBundle\VotopVirtualVisitBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,15 +1,25 @@
-{% block subject %}Confirmation d'inscription{% endblock %}
+{% block subject %}Inscription confirmation{% endblock %}
 
 {% block body_html %}
-	{% autoescape false %}
-		
-		<h1>Bonjour {{ user.username }} !</h1>
-		
-		<p>Ceci est un email de confirmation d'inscription.</p>
-		<p>Cliquez sur le lien suivant pour confirmer votre compte : <a href="{{ confirmationUrl }}">confirmation</a></p>
-		<br/>
-		<p>Cordialement,</p>
-		<p>L'équipe de développemnt SN IR.</p>
-		
-	{% endautoescape %}
+    <body style="font-family:Segoe UI";line-height: 1.5;>
+        <div style="text-align:center;padding-left:15px;padding-right:15px;margin-left:auto;margin-right:auto;">
+            <h1 style="font-size: 2.5rem; font-weight: 500; line-height: 1.2;">Welcome {{ user.username }}!</h1>
+
+            <br />
+            <p style="margin-top: 0;">Before visiting on 360° Visits, please verify your email address.</p>
+            <p style="font-weight: 300!important;">If you did not create an account using this address, simply ignore this message.</p>
+            
+            <a style="display: inline-block; padding: .400rem .80rem; border-radius: .25rem; text-decoration: none; color: #fff; background-color: #007bff; margin-top: 1.5rem!important; margin-bottom: 1rem!important;" href="{{ confirmationUrl }}" role="button">Verify your account</a>
+            
+            <p style="padding-bottom: 1rem!important;">
+                Or verify using this link:
+                <br />
+                <a style="text-decoration: none; color: #007bff;" href="{{ confirmationUrl }}">{{ confirmationUrl }}</a> 
+            </p>
+
+            <p style="font-weight: 300!important;">
+                Sent by 360°Visits - 3 Boulevard Edouard Herriot, 82000 Montauban
+            </p>
+        </div>
+    </body>
 {% endblock %}

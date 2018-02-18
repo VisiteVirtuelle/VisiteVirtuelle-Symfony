@@ -6,6 +6,7 @@ security:
         
     role_hierarchy:
         ROLE_USER: ROLE_USER
+        ROLE_AGENT: ROLE_AGENT
         ROLE_ADMIN: ROLE_ADMIN
         
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
@@ -43,3 +44,4 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/visit/editor, role: [ROLE_AGENT, ROLE_ADMIN] }

@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-        <title>{% block title %}Visite360{% endblock %}</title>
+        <title>{% block title %}360°Visits{% endblock %}</title>
 		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 		
 		{% block stylesheets %}
@@ -36,7 +36,7 @@
 							<a class="nav-link" href="{{ path('votop_platform_homepage') }}"><i class="fa fa-home"></i> Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Page 1</a>
+							<a class="nav-link" href="{{ path('votop_virtual_visit_homepage') }}">Visits</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">Page 2</a>
