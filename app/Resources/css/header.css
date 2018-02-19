@@ -1,15 +1,8 @@
-/*
- * Header
- */
-
 body {
     padding-top: 55px; /* fixed navbar */
 }
 
-/* 
- * Navbar
- */
- @media (min-width: 768px) {
+@media (min-width: 768px) {
 	.navbar-center {
 		float:none;
 		margin:0 auto;
