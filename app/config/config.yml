@@ -84,7 +84,7 @@ fos_user:
     firewall_name: main
     user_class: Votop\PlatformBundle\Entity\User
     from_email:
-        address: "g-vidal82@gmx.fr"
+        address: "antoine.bourdelle@gmx.fr"
         sender_name: "Visite Virtuelle Immobilière"
     service:
         mailer: fos_user.mailer.twig_swift
@@ -92,7 +92,7 @@ fos_user:
         confirmation:
             enabled: true
             from_email:
-                address: "g-vidal82@gmx.fr"
+                address: "antoine.bourdelle@gmx.fr"
                 sender_name: "Visite Virtuelle Immobilière"
             template: '%kernel.root_dir%/Resources/views/emails/registration.email.twig'
                 

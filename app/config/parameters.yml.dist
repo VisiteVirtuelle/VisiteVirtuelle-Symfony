@@ -14,8 +14,8 @@ parameters:
     mailer_auth_mode: login
     mailer_host: mail.gmx.com
     mailer_port: 465
-    mailer_user: g-vidal82@gmx.fr
-    mailer_password: Vidalgui@82
+    mailer_user: antoine.bourdelle@gmx.fr
+    mailer_password: b0urdelle!
     mailer_encryption: ssl
     
     # A secret key that's used to generate certain security-related tokens
