@@ -1,0 +1,24 @@
+/*
+ * Header
+ */
+
+body {
+    padding-top: 55px; /* fixed navbar */
+}
+
+/* 
+ * Navbar
+ */
+ @media (min-width: 768px) {
+	.navbar-center {
+		float:none;
+		margin:0 auto;
+		display: block;
+		text-align: center;
+	}
+
+	.navbar-center > li {
+		display: inline-block;
+		float:none;
+	}
+}
