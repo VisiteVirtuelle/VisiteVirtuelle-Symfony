@@ -49,7 +49,7 @@
         ],
         "post-install-cmd": [
             "@symfony-scripts",
-			"php bin/console assetic:dump --env=prod --no-debug"
+            "php bin/console assetic:dump --env=prod --no-debug"
         ],
         "post-update-cmd": [
             "@symfony-scripts"

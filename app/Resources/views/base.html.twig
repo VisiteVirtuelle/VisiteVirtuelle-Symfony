@@ -2,88 +2,88 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <title>{% block title %}360°Visits{% endblock %}</title>
-		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-		
-		{% block stylesheets %}
-			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-			{% stylesheets filter='cssrewrite' 
-			'%kernel.root_dir%/Resources/css/*'
-			'@VotopAdminBundle/Resources/public/css/*' %}
-				<link rel="stylesheet" href="{{ asset_url }}" />
-			{% endstylesheets %}
-		{% endblock %}	
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            {% stylesheets filter='cssrewrite'
+            '%kernel.root_dir%/Resources/css/*'
+            '@VotopAdminBundle/Resources/public/css/*' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
     </head>
-	
+
     <body>
-		<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" >
-			<div class="container-fluid">
-				<a class="navbar-brand" href="{{ path('votop_platform_homepage') }}">
-					<img src="{{ asset('favicon.ico') }}" width="30" height="30" class="d-inline-block align-top" alt="">
-					360° Visits
-				</a>
-				
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				
-				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<ul class="navbar-nav navbar-center">
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('votop_platform_homepage') }}"><i class="fa fa-home"></i> Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('votop_virtual_visit_homepage') }}">Visits</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Page 2</a>
-						</li>	
-					</ul>
-					
-					<ul class="navbar-nav text-dark navbar-right">
-						{% if app.user %}    
-							<li class="nav-item dropdown ">
-								<a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user-circle"></i> {{ app.user }} <span class="caret"/></a>
-								<ul class="dropdown-menu nav-item" role="menu">
-									<li class="nav-item"><a href="{{ path('fos_user_profile_show') }}" class="nav-link text-dark"><i class="fa fa-address-book"></i> My Profile</a></li>
-									{% if is_granted('ROLE_ADMIN') %}
-										<li><a href="{{ path('votop_admin_dashboard') }}" class="nav-link text-dark"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-									{% endif %}
-									<hr />
-									<li class="nav-item" ><a href="{{ path('fos_user_security_logout') }}" class="nav-link text-dark"><i class="fa fa-sign-out"></i> Log out</a></li>
-								</ul>
-							</li>
-						{% else %}
-							<li class="nav-item"><a href="{{ path('fos_user_security_login') }}" class="nav-link"><i class="fa fa-sign-in"></i> Login</a></li>
-							<li class="nav-item"><a href="{{ path('fos_user_registration_register') }}" class="nav-link"><i class="fa fa-user-plus"></i> Sign Up</a></li>
-						{% endif %}
-					</ul>
-				</div>
-			</div>
-		</nav>
-		
-		<div class="container-fluid text-center">
-			{% block body %}{% endblock %}
-		</div>
-		
-		<footer class="bg-dark text-muted text-center pb-1">
-			<nav class="nav navbar-expand-sm justify-content-center navbar-dark bg-dark">
-				<ul class ="navbar-nav breadcrumb bg-dark">
-					<li class="nav-item navbar-brand breadcrumb-item"><a class="nav-link" href="https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony" target="_blank">Github</a></li>
-					<li class="nav-item navbar-brand"><a class="nav-link" href="https://trello.com/b/lRY92q0W/organisation" target="_blank">Trello</a></li>
-				</ul>
-			</nav>
-			<p>Developped with <i class ="fa fa-heart"></i> by Vincent, Pillon, Thomas, Malko and Guillaume</p>
-		</footer>
-		
-		<!-- JavaScript à la fin pour un chargement des pages plus rapide -->
-		{% block javascripts %}
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-		{% endblock %}
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" >
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ path('votop_platform_homepage') }}">
+                    <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+                    360° Visits
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav navbar-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('votop_platform_homepage') }}"><i class="fa fa-home"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('votop_virtual_visit_homepage') }}">Visits</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Page 2</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav text-dark navbar-right">
+                        {% if app.user %}
+                            <li class="nav-item dropdown ">
+                                <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user-circle"></i> {{ app.user }} <span class="caret"/></a>
+                                <ul class="dropdown-menu nav-item" role="menu">
+                                    <li class="nav-item"><a href="{{ path('fos_user_profile_show') }}" class="nav-link text-dark"><i class="fa fa-address-book"></i> My Profile</a></li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a href="{{ path('votop_admin_dashboard') }}" class="nav-link text-dark"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                                    {% endif %}
+                                    <hr />
+                                    <li class="nav-item" ><a href="{{ path('fos_user_security_logout') }}" class="nav-link text-dark"><i class="fa fa-sign-out"></i> Log out</a></li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="nav-item"><a href="{{ path('fos_user_security_login') }}" class="nav-link"><i class="fa fa-sign-in"></i> Login</a></li>
+                            <li class="nav-item"><a href="{{ path('fos_user_registration_register') }}" class="nav-link"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid text-center">
+            {% block body %}{% endblock %}
+        </div>
+
+        <footer class="bg-dark text-muted text-center pb-1">
+            <nav class="nav navbar-expand-sm justify-content-center navbar-dark bg-dark">
+                <ul class ="navbar-nav breadcrumb bg-dark">
+                    <li class="nav-item navbar-brand breadcrumb-item"><a class="nav-link" href="https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony" target="_blank">Github</a></li>
+                    <li class="nav-item navbar-brand"><a class="nav-link" href="https://trello.com/b/lRY92q0W/organisation" target="_blank">Trello</a></li>
+                </ul>
+            </nav>
+            <p>Developped with <i class ="fa fa-heart"></i> by Vincent, Pillon, Thomas, Malko and Guillaume</p>
+        </footer>
+
+        <!-- JavaScript à la fin pour un chargement des pages plus rapide -->
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        {% endblock %}
     </body>
 </html>
