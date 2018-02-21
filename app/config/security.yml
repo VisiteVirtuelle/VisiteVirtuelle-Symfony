@@ -10,8 +10,6 @@ security:
         
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
         user_db:
             entity: { class: Votop\PlatformBundle\Entity\User, property: username }
         fos_userbundle:
