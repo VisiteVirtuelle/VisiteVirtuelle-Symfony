@@ -5,9 +5,8 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
         
     role_hierarchy:
-        ROLE_USER: ROLE_USER
-        ROLE_AGENT: ROLE_AGENT
-        ROLE_ADMIN: ROLE_ADMIN
+        ROLE_AGENT: ROLE_USER
+        ROLE_ADMIN: [ROLE_USER, ROLE_AGENT, ROLE_ALLOWED_TO_SWITCH]
         
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
@@ -44,4 +43,4 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
-        - { path: ^/visit/editor, role: [ROLE_AGENT, ROLE_ADMIN] }
+        - { path: ^/visit/editor, role: ROLE_AGENT }
