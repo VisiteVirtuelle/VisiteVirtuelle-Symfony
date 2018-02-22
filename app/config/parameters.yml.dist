@@ -14,6 +14,7 @@ parameters:
     mailer_auth_mode: login
     mailer_host: mail.gmx.com
     mailer_port: 465
+    mailer_sendername: Visite Virtuelle Immobilière
     mailer_user: antoine.bourdelle@gmx.fr
     mailer_password: b0urdelle!
     mailer_encryption: ssl

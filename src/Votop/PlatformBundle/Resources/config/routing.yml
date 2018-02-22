@@ -1,3 +1,0 @@
-votop_platform_homepage:
-    path:     /
-    defaults: { _controller: VotopPlatformBundle:Default:index }

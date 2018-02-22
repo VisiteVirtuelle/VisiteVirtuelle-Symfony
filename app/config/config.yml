@@ -82,17 +82,17 @@ assetic:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Votop\PlatformBundle\Entity\User
+    user_class: 'Votop\UserBundle\Entity\User'
     from_email:
-        address: "antoine.bourdelle@gmx.fr"
-        sender_name: "Visite Virtuelle Immobilière"
+        address: '%mailer_user%'
+        sender_name: '%mailer_sendername%'
     service:
         mailer: fos_user.mailer.twig_swift
     registration:
         confirmation:
             enabled: true
             from_email:
-                address: "antoine.bourdelle@gmx.fr"
-                sender_name: "Visite Virtuelle Immobilière"
-            template: '%kernel.root_dir%/Resources/views/emails/registration.email.twig'
+                address: '%mailer_user%'
+                sender_name: '%mailer_sendername%'
+            template: '@VotopUserBundle/Resources/views/Registration/registration.email.twig'
                 

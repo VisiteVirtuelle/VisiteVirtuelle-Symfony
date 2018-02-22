@@ -10,9 +10,7 @@ security:
         
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        user_db:
-            entity: { class: Votop\PlatformBundle\Entity\User, property: username }
-        fos_userbundle:
+        main:
             id: fos_user.user_provider.username
 
     firewalls:
@@ -23,18 +21,13 @@ security:
 
         main:
             pattern: ^/
-            form_login:
-                provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
-            logout: true
             anonymous: true
-            # activate different ways to authenticate
-
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+            logout: true
+            form_login:
+                provider: main
+                csrf_token_generator: security.csrf.token_manager
+            remember_me:
+                secret: %secret%
             
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

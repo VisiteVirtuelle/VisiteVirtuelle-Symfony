@@ -1,5 +1,5 @@
-votop_platform:
-    resource: "@VotopPlatformBundle/Resources/config/routing.yml"
+votop_user:
+    resource: "@VotopUserBundle/Resources/config/routing.yml"
     prefix:   /
 
 votop_admin:
@@ -8,7 +8,7 @@ votop_admin:
     
 votop_virtual_visit:
     resource: "@VotopVirtualVisitBundle/Resources/config/routing.yml"
-    prefix:   /visit
+    prefix:   /
  
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

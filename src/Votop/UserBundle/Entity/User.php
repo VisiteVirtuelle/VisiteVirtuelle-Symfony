@@ -1,6 +1,6 @@
 <?php
 
-namespace Votop\PlatformBundle\Entity;
+namespace Votop\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as FosUser;
 use Doctrine\ORM\Mapping as ORM;
