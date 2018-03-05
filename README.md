@@ -27,17 +27,17 @@ https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony
    * Création de la base de données `php bin/console doctrine:database:create`
    * Création des tables `php bin/console doctrine:schema:update --force`
 #### Commandes utiles :
+* Chargement des données exemples/tests `php bin/console doctrine:fixtures:load`
 * Promotion d'un utilisateur en administrateur `php bin/console fos:user:promote <nom_utilisateur> ROLE_ADMIN`
-* Re-générer les assets après modification de ceux-ci avec `php bin/console assetic:dump --env=prod`
 
 -----
 
 ## Équipe
-* Vincent CLAVEAU
-* Malko CARRERAS
-* Valentin PILLON
-* Guillaume VIDAL
-* Thomas DUDITLIEUX
+* Vincent CLAVEAU *(Développeur Symfony)*
+* Guillaume VIDAL *(Développeur Symfony)*
+* Valentin PILLON *Développeur ThreeJS)*
+* Thomas DUDITLIEUX *Développeur ThreeJS)*
+* Malko CARRERAS *(Web Designer)*
 
 ## Organisation du projet
 **Trello:** https://trello.com/b/lRY92q0W/organisation
