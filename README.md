@@ -33,11 +33,11 @@ https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony
 -----
 
 ## Équipe
-* Vincent CLAVEAU *(Développeur Symfony)*
-* Guillaume VIDAL *(Développeur Symfony)*
-* Valentin PILLON *Développeur ThreeJS)*
-* Thomas DUDITLIEUX *Développeur ThreeJS)*
-* Malko CARRERAS *(Web Designer)*
+* Vincent CLAVEAU - *(Développeur Symfony)*
+* Guillaume VIDAL - *(Développeur Symfony)*
+* Valentin PILLON - *(Développeur ThreeJS)*
+* Thomas DUDITLIEUX - *Développeur ThreeJS)*
+* Malko CARRERAS - *(Web Designer)*
 
 ## Organisation du projet
 **Trello:** https://trello.com/b/lRY92q0W/organisation
