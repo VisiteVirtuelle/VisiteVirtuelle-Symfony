@@ -17,3 +17,7 @@ services:
     Votop\UserBundle\DataFixtures\:
         resource: '../../src/Votop/UserBundle/DataFixtures'
         tags: ['doctrine.fixture.orm']
+        
+    Votop\VirtualVisitBundle\DataFixtures\:
+        resource: '../../src/Votop/VirtualVisitBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']

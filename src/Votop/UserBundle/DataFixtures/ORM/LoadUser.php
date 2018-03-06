@@ -27,6 +27,36 @@ class LoadUser extends Fixture implements ContainerAwareInterface
         $userManager = $this->container->get('fos_user.user_manager');
         
         $users = array(
+			array(
+                "name" => "admin",
+                "password" => "admin",
+                "email" => "admin@admin.admin",
+                "role" => "ROLE_ADMIN"
+            ),
+			array(
+                "name" => "agent",
+                "password" => "agent",
+                "email" => "agent@agent.agent",
+                "role" => "ROLE_AGENT"
+            ),
+			array(
+                "name" => "agent1",
+                "password" => "agent1",
+                "email" => "agent1@agent1.agent1",
+                "role" => "ROLE_AGENT"
+            ),
+			array(
+                "name" => "agent2",
+                "password" => "agent2",
+                "email" => "agent2@agent2.agent2",
+                "role" => "ROLE_AGENT"
+            ),
+			array(
+                "name" => "agent3",
+                "password" => "agent3",
+                "email" => "agent3@agent3.agent3",
+                "role" => "ROLE_AGENT"
+            ),
             array(
                 "name" => "user",
                 "password" => "user",
@@ -44,18 +74,6 @@ class LoadUser extends Fixture implements ContainerAwareInterface
                 "password" => "guillaume",
                 "email" => "guillaume.vidal@lycee-bourdelle.fr",
                 "role" => "ROLE_USER"
-            ),
-            array(
-                "name" => "agent",
-                "password" => "agent",
-                "email" => "agent@agent.agent",
-                "role" => "ROLE_AGENT"
-            ),
-            array(
-                "name" => "admin",
-                "password" => "admin",
-                "email" => "admin@admin.admin",
-                "role" => "ROLE_ADMIN"
             )
         );
 
