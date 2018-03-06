@@ -5,3 +5,7 @@ votop_virtual_visit_homepage:
 votop_virtual_visit_editor:
     path:     /editor
     defaults: { _controller: VotopVirtualVisitBundle:Editor:index }
+
+votop_virtual_visite:
+    path:     /{id}
+    defaults: { _controller: VotopVirtualVisitBundle:Visit:view }

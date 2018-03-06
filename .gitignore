@@ -15,11 +15,12 @@
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
 /web/bundles/
-##Assetic
+
+#Assetic
 /web/css/
 /web/js/
 
-#Copmposer
+#Composer
 /vendor/
 composer.phar
 composer-temp.phar

@@ -10,8 +10,8 @@
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             {% stylesheets filter='cssrewrite'
-            '%kernel.root_dir%/Resources/css/*'
-            '@VotopAdminBundle/Resources/public/css/*' %}
+            '@VotopCoreBundle/Resources/css/*'
+            '@VotopAdminBundle/Resources/css/*' %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
@@ -23,7 +23,7 @@
     <body>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" >
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ path('votop_core_home') }}">
                     <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="d-inline-block align-top" alt="">
                     360° Visits
                 </a>
@@ -35,7 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav navbar-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-home"></i> Home</a>
+                            <a class="nav-link" href="{{ path('votop_core_home') }}"><i class="fa fa-home"></i> Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('votop_virtual_visit_homepage') }}">Visits</a>
