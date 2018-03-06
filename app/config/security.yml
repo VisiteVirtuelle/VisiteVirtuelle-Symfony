@@ -23,6 +23,7 @@ security:
             pattern: ^/
             anonymous: true
             logout: true
+            logout_on_user_change: true
             form_login:
                 provider: main
                 csrf_token_generator: security.csrf.token_manager
