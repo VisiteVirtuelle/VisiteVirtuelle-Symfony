@@ -1,11 +1,10 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <title>{% block title %}360°Visits{% endblock %}</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+		{% block meta_tags %}
+			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1" />
+		{% endblock %}
 
         {% block stylesheets %}
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -16,6 +15,9 @@
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
+		
+		<title>{% block title %}360°Visits{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
     <body>
@@ -66,7 +68,7 @@
         </nav>
 
         <div class="container-fluid text-center">
-            {% block body %}{% endblock %}
+            {% block content %}{% endblock %}
         </div>
 
         <footer class="bg-dark text-muted text-center pb-1">

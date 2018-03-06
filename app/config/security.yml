@@ -27,7 +27,7 @@ security:
                 provider: main
                 csrf_token_generator: security.csrf.token_manager
             remember_me:
-                secret: %secret%
+                secret: '%secret%'
             
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
