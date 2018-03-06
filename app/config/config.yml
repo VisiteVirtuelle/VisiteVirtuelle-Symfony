@@ -11,8 +11,7 @@ parameters:
 framework:
     templating:
         engines: ['twig']
-    #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -89,10 +88,19 @@ fos_user:
     service:
         mailer: fos_user.mailer.twig_swift
     registration:
+        form: 
+            type: Votop\UserBundle\Form\RegistrationType
         confirmation:
             enabled: true
             from_email:
                 address: '%mailer_user%'
                 sender_name: '%mailer_sender_name%'
             template: '@VotopUserBundle/Resources/views/Registration/registration.email.twig'
+            
+    resetting: 
+        email: 
+            from_email: 
+                address: '%mailer_user%' 
+                sender_name: '%mailer_sender_name%' 
+            template: '@VotopUserBundle/Resources/views/Resetting/resetting.email.twig'
                 

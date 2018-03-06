@@ -14,19 +14,19 @@
         <input type="hidden" name="_csrf_token" class="form-control mb-2" value="{{ csrf_token }}" />
     {% endif %}
 
-    <input type="text" id="username" name="_username" class="form-control w-75 mt-3 mb-3" value="{{ last_username }}" placeholder="Username" required="required" />
+    <input type="text" id="username" name="_username" class="form-control w-75 mt-3 mb-3" value="{{ last_username }}" placeholder="{{ 'security.login.username'|trans }}" required="required" />
 
-    <input type="password" id="password" name="_password" class="form-control w-75 mt-3 mb-3" placeholder="Password" required="required" />
+    <input type="password" id="password" name="_password" class="form-control w-75 mt-3 mb-3" placeholder="{{ 'security.login.password'|trans }}" required="required" />
 
     
     <label for="remember_me" class="form-check-label w-75 mt-1 mb-1" >
     <input type="checkbox" id="remember_me" name="_remember_me" class="form-check-input " value="on" />
-    {{ 'Remember me'|trans }}
+    {{ 'security.login.remember_me'|trans }}
     </label>
 
-    <input type="submit" id="_submit" name="_submit" class="btn btn-success w-75 mt-3 mb-3" value="{{ 'Connect'|trans }}" />
+    <input type="submit" id="_submit" name="_submit" class="btn btn-success w-75 mt-3 mb-3" value="{{ 'security.login.submit'|trans }}" />
     
-    <a href="{{ path('fos_user_resetting_request') }}" class="nav-link text-danger w-50 mt-3 mb-3"> Forgot the password?</a>
+    <a href="{{ path('fos_user_resetting_request') }}" class="nav-link text-danger w-50 mt-3 mb-3"> {{ 'security.login.forgot_password'|trans }}</a>
 </form>
 </center>
 

@@ -13,6 +13,11 @@ services:
         # this means you cannot fetch services directly from the container via $container->get()
         # if you need to do this, you can override this setting on individual services
         public: false
+        
+    app.form.registration: 
+        class: Votop\UserBundle\Form\RegistrationType 
+        tags: 
+            - { name: form.type, alias: app_user_registration }
 
     Votop\UserBundle\DataFixtures\:
         resource: '../../src/Votop/UserBundle/DataFixtures'
