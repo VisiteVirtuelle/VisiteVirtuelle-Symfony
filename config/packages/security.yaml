@@ -1,0 +1,33 @@
+security:
+    encoders:
+        App\Entity\User: bcrypt
+    
+    providers:
+        database_users:
+            entity: { class: App\Entity\User, property: username }
+            
+    role_hierarchy:
+        ROLE_AGENT: ROLE_USER
+        ROLE_ADMIN: [ROLE_USER, ROLE_AGENT]
+        
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            
+        main:
+            pattern: ^/
+            anonymous: true
+            form_login:
+                remember_me: true
+                check_path: security_login
+                login_path: security_login
+                default_target_path: homepage
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path: security_logout
+                target: homepage
+
+    access_control:
+        - { path: ^/(%app_locales%)/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(%app_locales%)/admin, roles: ROLE_ADMIN }

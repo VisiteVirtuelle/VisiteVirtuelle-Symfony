@@ -1,4 +1,0 @@
-services:
-#    votop_user.example:
-#        class: Votop\UserBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]

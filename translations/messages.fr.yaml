@@ -1,0 +1,28 @@
+# Navbar
+menu:
+    homepage: Accueil
+    visits: Visites
+    login: Connexion
+    signup: Inscription
+    user_menu:
+        profile: Profil
+        dashboard: Panneau de Contrôle
+        logout: Déconnexion
+        
+#Error pages
+http_error:
+    name: Erreur %status_code%
+    description: Il y a eu une erreur inconnue (HTTP %status_code%) qui a empêché l'aboutissement de votre requête.
+    suggestion: Essayez de recharger cette page dans quelques minutes ou <a href="%url%">retournez sur la page principale</a>.
+    
+http_error_403:
+    description: Vous n'avez pas les droits pour accéder à cette ressource.
+    suggestion: Demandez à votre manager ou à votre administrateur système de vous donner les droits pour accéder à ressource.
+    
+http_error_404:
+    description: Nous n'avons pas pu trouver la page demandée.
+    suggestion: Vérifiez si l'URL ne comporte pas d'erreurs ou <a href="%url%">retournez sur la page principale</a>.
+    
+http_error_500:
+    description: Il y a eu une erreur interne du serveur.
+    suggestion: Essayez de recharger cette page dans quelques minutes ou <a href="%url%">retournez sur la page principale</a>.

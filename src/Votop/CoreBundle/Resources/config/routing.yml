@@ -1,3 +1,0 @@
-votop_core_home:
-    path:     /
-    defaults: { _controller: VotopCoreBundle:Core:index }

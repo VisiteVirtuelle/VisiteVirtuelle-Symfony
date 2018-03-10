@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}Virtual Visit{% endblock %}</title>
+        
+        {% block stylesheets %}
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% endblock %}
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+    <body id="{% block body_id %}{% endblock %}">
+        {% block header %}
+            <header>
+                <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="{{ path('homepage') }}">
+                            Virtual Visit
+                        </a>
+
+                        <button class="navbar-toggler" type="button" 
+                                data-toggle="collapse"
+                                data-target="#navbarCollapse"
+                                aria-controls="navbarCollapse"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a class="nav-link" href="{{ path('homepage') }}">
+                                        <i class="fa fa-home"></i>{{ 'menu.homepage'|trans }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="#">
+                                        {{ 'menu.visits'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <ul class="navbar-nav text-dark navbar-right">
+                                {% if app.user %}
+                                    <li class="dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">
+                                            <i class="fa fa-user-circle"></i>{{ app.user.username }}<span class="caret"/>
+                                        </a>
+                                        <ul class="dropdown-menu nav-item" role="menu">
+                                            <li>
+                                                <a href="#" class="nav-link text-dark">
+                                                    <i class="fa fa-address-book"></i>{{ 'menu.user_menu.profile'|trans }}
+                                                </a>
+                                            </li>
+                                            {% if is_granted('ROLE_ADMIN') %}
+                                                <li>
+                                                    <a href="{{ path('admin_dashboard_index') }}" class="nav-link text-dark">
+                                                        <i class="fa fa-dashboard"></i>{{ 'menu.user_menu.dashboard'|trans }}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            <div class="dropdown-divider"></div>
+                                            <li>
+                                                <a href="{{ path('security_logout') }}" class="nav-link text-dark">
+                                                    <i class="fa fa-sign-out"></i>{{ 'menu.user_menu.logout'|trans }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{{ path('security_login') }}" class="nav-link">
+                                            <i class="fa fa-sign-in"></i>{{ 'menu.login'|trans }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="nav-link">
+                                            <i class="fa fa-user-plus"></i>{{ 'menu.signup'|trans }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+        {% endblock %}
+
+        <div class="container">
+            {% block body %}
+                {{ include('default/_flash_messages.html.twig') }}
+                
+                {% block main %}{% endblock %}
+            {% endblock %}
+        </div>
+
+        {% block footer %}
+            <footer class="bg-dark text-muted pt-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Developped with <i class="fa fa-heart"></i> by Vincent, Pillon, Thomas, Malko and Guillaume</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <a href="https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony" title="GitHub Repository">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://trello.com/b/lRY92q0W/organisation" title="Trello Orginization">
+                                    <i class="fa fa-trello" aria-hidden="true"></i>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        {% endblock %}
+    </body>
+</html>
