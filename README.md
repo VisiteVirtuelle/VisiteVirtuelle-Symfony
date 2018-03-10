@@ -28,7 +28,6 @@ https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony
    * Création des tables `php bin/console doctrine:schema:update --force`
 #### Commandes utiles :
 * Chargement des données exemples/tests `php bin/console doctrine:fixtures:load`
-* Promotion d'un utilisateur en administrateur `php bin/console fos:user:promote <nom_utilisateur> ROLE_ADMIN`
 
 -----
 
