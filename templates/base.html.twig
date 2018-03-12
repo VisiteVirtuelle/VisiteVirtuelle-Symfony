@@ -91,14 +91,14 @@
             </header>
         {% endblock %}
 
-        <div class="container">
-            {% block body %}
-                {{ include('default/_flash_messages.html.twig') }}
-                
+        {% block body %}
+            {{ include('default/_flash_messages.html.twig') }}
+            
+            <div class="container">
                 {% block main %}{% endblock %}
-            {% endblock %}
-        </div>
-
+            </div>
+        {% endblock %}
+        
         {% block footer %}
             <footer class="bg-dark text-muted pt-3">
                 <div class="container">

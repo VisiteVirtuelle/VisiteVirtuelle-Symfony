@@ -20,10 +20,10 @@ class Visit
     /**
      * @var int
      *
-	 * @ORM\Id
+     * @ORM\Id
      * @ORM\GeneratedValue
-	 * @ORM\Column(type="integer")
-	 */
+     * @ORM\Column(type="integer")
+     */
     protected $id;
 
     /**
@@ -33,11 +33,11 @@ class Visit
      */
     private $name;
 
-	/**
+    /**
      * @var int
      *
-	 * @ORM\ManyToOne(targetEntity="App\Entity\User")
-	 * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $owner;
 

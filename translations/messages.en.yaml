@@ -1,4 +1,3 @@
-# Navbar
 menu:
     homepage: Home
     visits: Visits
@@ -7,9 +6,18 @@ menu:
     user_menu:
         profile: Profile
         dashboard: Dashboard
-        logout: Log Out
+        logout: Log out
         
-#Error pages
+security:
+    login:
+        title: Sign in to continue
+        username: Username
+        password: Password
+        submit: Sign in
+        remember_me: Remember me
+        forgot_password: Forgot the password ?
+        register: Create an account
+        
 http_error:
     name: Error %status_code%
     description: There was an unknown error (HTTP %status_code%) that prevented to complete your request.

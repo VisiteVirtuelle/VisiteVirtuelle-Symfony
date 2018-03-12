@@ -72,7 +72,7 @@ class User implements UserInterface, \Serializable
         $this->fullName = $fullName;
     }
 
-    public function getFullName(): string
+    public function getFullName(): ?string
     {
         return $this->fullName;
     }
