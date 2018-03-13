@@ -3,6 +3,7 @@
 parameters:
     locale: 'en'
     app_locales: en|fr|de
+    app.notifications.email_sender: antoine.bourdelle@gmx.fr
     
 services:
     # default configuration for services in *this* file
@@ -29,3 +30,6 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    
+    App\EventSubscriber\RegistrationNotifySubscriber:
+        $sender: '%app.notifications.email_sender%'
