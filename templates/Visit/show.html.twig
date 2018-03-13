@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var visit =  {
+            name: '{{ visit.name }}',
+            path: '{{ visit_path }}'
+        };
+    </script>
+    <script src="{{ asset('test.js') }}"></script>
+{% endblock %}
+
 {% block main %}
-    {{ visit.name }}
+    <div id="visit_viewer"></div>
 {% endblock %}
