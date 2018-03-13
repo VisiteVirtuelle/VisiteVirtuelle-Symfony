@@ -15,7 +15,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 /**
- * Envoi un mail de bienvenue à chaque creation d'un utilisateur
+ * Envoi un mail de bienvenue Ã  chaque creation d'un utilisateur
  *
  */
 class RegistrationNotifySubscriber implements EventSubscriberInterface
@@ -33,7 +33,7 @@ class RegistrationNotifySubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            // le nom de l'event et le nom de la fonction qui sera déclenché
+            // le nom de l'event et le nom de la fonction qui sera dÃ©clenchÃ©
             Events::USER_REGISTERED => 'onUserRegistrated',
         ];
     }
