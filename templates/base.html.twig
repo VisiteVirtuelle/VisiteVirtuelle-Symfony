@@ -35,7 +35,7 @@
                             <ul class="nav navbar-nav">
                                 <li>
                                     <a class="nav-link" href="{{ path('homepage') }}">
-                                        <i class="fa fa-home"></i>{{ 'menu.homepage'|trans }}
+                                        <i class="fa fa-home pr-1"></i>{{ 'menu.homepage'|trans }}
                                     </a>
                                 </li>
                                 <li>
@@ -49,25 +49,25 @@
                                 {% if app.user %}
                                     <li class="dropdown">
                                         <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">
-                                            <i class="fa fa-user-circle"></i>{{ app.user.username }}<span class="caret"/>
+                                            <i class="fa fa-user-circle pr-1"></i>{{ app.user.username }}<span class="caret"/>
                                         </a>
                                         <ul class="dropdown-menu nav-item" role="menu">
                                             <li>
                                                 <a href="#" class="nav-link text-dark">
-                                                    <i class="fa fa-address-book"></i>{{ 'menu.user_menu.profile'|trans }}
+                                                    <i class="fa fa-address-book pr-1"></i>{{ 'menu.user_menu.profile'|trans }}
                                                 </a>
                                             </li>
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <li>
                                                     <a href="{{ path('admin_dashboard_index') }}" class="nav-link text-dark">
-                                                        <i class="fa fa-dashboard"></i>{{ 'menu.user_menu.dashboard'|trans }}
+                                                        <i class="fa fa-dashboard pr-1"></i>{{ 'menu.user_menu.dashboard'|trans }}
                                                     </a>
                                                 </li>
                                             {% endif %}
                                             <div class="dropdown-divider"></div>
                                             <li>
                                                 <a href="{{ path('security_logout') }}" class="nav-link text-dark">
-                                                    <i class="fa fa-sign-out"></i>{{ 'menu.user_menu.logout'|trans }}
+                                                    <i class="fa fa-sign-out pr-1"></i>{{ 'menu.user_menu.logout'|trans }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -75,12 +75,12 @@
                                 {% else %}
                                     <li>
                                         <a href="{{ path('security_login') }}" class="nav-link">
-                                            <i class="fa fa-sign-in"></i>{{ 'menu.login'|trans }}
+                                            <i class="fa fa-sign-in pr-1"></i>{{ 'menu.login'|trans }}
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ path('user_registration') }}" class="nav-link">
-                                            <i class="fa fa-user-plus"></i>{{ 'menu.signup'|trans }}
+                                            <i class="fa fa-user-plus pr-1"></i>{{ 'menu.signup'|trans }}
                                         </a>
                                     </li>
                                 {% endif %}
@@ -103,10 +103,10 @@
             <footer class="bg-dark text-muted pt-3">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 text-center">
                             <p>Developped with <i class="fa fa-heart"></i> by Vincent, Pillon, Thomas, Malko and Guillaume</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 text-center">
                             <p>
                                 <a href="https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony" title="GitHub Repository">
                                     <i class="fa fa-github" aria-hidden="true"></i>
