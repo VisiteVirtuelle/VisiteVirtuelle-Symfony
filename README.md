@@ -4,20 +4,6 @@ L'objectif du projet consiste créer une application Web destinée aux Agences I
 
 -----
 
-## Répertoires
-
-### Documents
-Documents pour le projet Visite Virtuelle Immobilière
-
-https://github.com/VisiteVirtuelle/Documents
-
-### VisiteVirtuelle-Symfony
-Application web (avec framework Symfony) de Visite Virtuelle
-
-https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony
-
------
-
 ## Installation
 1. S'assurer que PHP est bien installé/présent dans le PATH avec `php -V`
 2. Installer les dépendances :

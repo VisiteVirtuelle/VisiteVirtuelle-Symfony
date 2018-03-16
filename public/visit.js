@@ -1,12 +1,12 @@
 //Creation des variables
 var camera, 
-	scene, 
-	renderer, 
-	mesh,
-	sizeImage = 20, 
-	isUserInteracting = false,
+    scene, 
+    renderer, 
+    mesh,
+    sizeImage = 20, 
+    isUserInteracting = false,
     onMouseDownMouseX = 0, 
-	onMouseDownMouseY = 0,
+    onMouseDownMouseY = 0,
     lon = 0, onMouseDownLon = 0,
     lat = 0, onMouseDownLat = 0,
     phi = 0, theta = 0;
@@ -31,19 +31,19 @@ function init()
     // on initialise la scène
     scene = new THREE.Scene();
         
-	var geometry = new THREE.SphereBufferGeometry( 500, 60, 40 );
+    var geometry = new THREE.SphereBufferGeometry( 500, 60, 40 );
     geometry.scale( -1, 1, 1 );
 
     // on initialise le moteur de rendu
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth/2, window.innerHeight/2  );
+    renderer.setSize( window.innerWidth/2, window.innerHeight/2  );
     container.appendChild( renderer.domElement );
     
-	
+    
     //Creation de la vue 360
     var texture = new THREE.TextureLoader().load("http://localhost:8000/visit/" + visit.id + "/" + rooms.values().next().value);
-    var material = new THREE.MeshBasicMaterial( { map: texture,overdraw: 0.5 } );	
+    var material = new THREE.MeshBasicMaterial( { map: texture,overdraw: 0.5 } );   
     mesh = new THREE.Mesh( geometry, material );
     scene.add( mesh );
     
@@ -51,11 +51,11 @@ function init()
     initGui();
 
     //Evenement souris 
-    addEventListener( 'mousedown', 	MouseDown, 		false );
-    addEventListener( 'mousemove', 	MouseMove, 		false );
-    addEventListener( 'mouseup', 	MouseUp, 		false );
-    addEventListener( 'wheel', 		MouseWheel, 	false );
-	addEventListener( 'resize', 	onWindowResize, false );
+    addEventListener( 'mousedown',  MouseDown,      false );
+    addEventListener( 'mousemove',  MouseMove,      false );
+    addEventListener( 'mouseup',    MouseUp,        false );
+    addEventListener( 'wheel',      MouseWheel,     false );
+    addEventListener( 'resize',     onWindowResize, false );
 }
 
 
@@ -63,7 +63,7 @@ function init()
 //Fonction qui redimensionne l'affichage de la scene 
 function onWindowResize()
 {
-	 //alert("reSize");
+     //alert("reSize");
      renderer.setSize(window.innerWidth/2 - 20, window.innerHeight/2 - 20);
 }
 
@@ -111,7 +111,7 @@ function animate()
     requestAnimationFrame( animate );
     renderer.render( scene, camera );
     update();
-	onresize();
+    onresize();
 }
 
 //Fonction qui mets a jour les valeurs de la camera
@@ -134,13 +134,13 @@ function update()
 function loadImg(path)
 {
     mesh.material.map = THREE.ImageUtils.loadTexture( "http://localhost:8000/visit/" + visit.id + "/" + path );
-    mesh.material.needsUpdate = true;	
+    mesh.material.needsUpdate = true;   
 }
 
 function initGui()
 {
     var obj = {
-		Room: 0
+        Room: 0
     };
     
     var gui = new dat.gui.GUI();
@@ -154,7 +154,7 @@ function initGui()
 
 function getXHR()
 {
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp = new XMLHttpRequest();
 } else {// code for IE6, IE5
     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
@@ -169,9 +169,9 @@ var x = xmlDoc.getElementsByTagName("room");
 for ( i = 0; i < x.length; i++)
 {
     rooms.set(
-		x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
-		x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue
+        x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
+        x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue
     );
 }
-	
+    
 }

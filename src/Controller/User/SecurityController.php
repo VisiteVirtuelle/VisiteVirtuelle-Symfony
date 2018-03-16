@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,7 +10,7 @@ use Twig\Environment;
 class SecurityController
 {
     /**
-     * @Route("/login", name="security_login")
+     * @Route("/login", name="user_security_login")
      */
     public function login(AuthenticationUtils $helper, Environment $twig) : Response
     {
@@ -19,9 +19,9 @@ class SecurityController
             'error' => $helper->getLastAuthenticationError(),
         ]));
     }
-    
+
     /**
-     * @Route("/logout", name="security_logout")
+     * @Route("/logout", name="user_security_logout")
      */
     public function logout(): void
     {

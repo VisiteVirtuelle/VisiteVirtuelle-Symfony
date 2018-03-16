@@ -4,12 +4,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{% block title %}Virtual Visit{% endblock %}</title>
-        
+
         {% block stylesheets %}
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% endblock %}
-        
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
@@ -22,7 +22,7 @@
                             Virtual Visit
                         </a>
 
-                        <button class="navbar-toggler" type="button" 
+                        <button class="navbar-toggler" type="button"
                                 data-toggle="collapse"
                                 data-target="#navbarCollapse"
                                 aria-controls="navbarCollapse"
@@ -66,7 +66,7 @@
                                             {% endif %}
                                             <div class="dropdown-divider"></div>
                                             <li>
-                                                <a href="{{ path('security_logout') }}" class="nav-link text-dark">
+                                                <a href="{{ path('user_security_logout') }}" class="nav-link text-dark">
                                                     <i class="fa fa-sign-out pr-1"></i>{{ 'menu.user_menu.logout'|trans }}
                                                 </a>
                                             </li>
@@ -74,12 +74,12 @@
                                     </li>
                                 {% else %}
                                     <li>
-                                        <a href="{{ path('security_login') }}" class="nav-link">
+                                        <a href="{{ path('user_security_login') }}" class="nav-link">
                                             <i class="fa fa-sign-in pr-1"></i>{{ 'menu.login'|trans }}
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ path('user_registration') }}" class="nav-link">
+                                        <a href="{{ path('user_registration_register') }}" class="nav-link">
                                             <i class="fa fa-user-plus pr-1"></i>{{ 'menu.signup'|trans }}
                                         </a>
                                     </li>
@@ -93,12 +93,12 @@
 
         {% block body %}
             {{ include('default/_flash_messages.html.twig') }}
-            
+
             <div class="container">
                 {% block main %}{% endblock %}
             </div>
         {% endblock %}
-        
+
         {% block footer %}
             <footer class="bg-dark text-muted pt-3">
                 <div class="container">
