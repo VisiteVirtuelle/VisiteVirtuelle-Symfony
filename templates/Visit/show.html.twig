@@ -5,10 +5,12 @@
     <script>
         var visit =  {
             name: '{{ visit.name }}',
-            path: '{{ visit_path }}'
+            id: '{{ visit.id }}'
         };
     </script>
-    <script src="{{ asset('test.js') }}"></script>
+	<script src="{{ asset('three.js') }}"></script>
+	<script src="{{ asset('dat.gui.min.js') }}"></script>
+	<script src="{{ asset('visit.js') }}"></script>
 {% endblock %}
 
 {% block main %}

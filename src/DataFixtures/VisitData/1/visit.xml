@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visit>
+	<room>
+		<name>Salle EC</name>
+		<url>ec.jpg</url>
+	</room>
+	<room>
+		<name>Salle IR</name>
+		<url>ir.jpg</url>
+	</room>
+	<room>
+		<name>Salle IR2</name>
+		<url>ir2.jpg</url>
+	</room>
+</visit>

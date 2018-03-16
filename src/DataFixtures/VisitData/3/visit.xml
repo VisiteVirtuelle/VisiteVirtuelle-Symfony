@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visit>
+	<room>
+		<name>Louvre</name>
+		<url>louvre.jpg</url>
+	</room>
+	<room>
+		<name>Montagne</name>
+		<url>montagne.jpg</url>
+	</room>
+	<room>
+		<name>Plage</name>
+		<url>plage.jpg</url>
+	</room>
+</visit>

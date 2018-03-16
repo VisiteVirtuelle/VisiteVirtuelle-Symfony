@@ -7,6 +7,10 @@ composer-temp.phar
 .buildpath
 .project
 
+# Visit Repository
+public/visit/*
+!public/visit/.gitkeep
+
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/

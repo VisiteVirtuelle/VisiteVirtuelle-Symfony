@@ -43,15 +43,10 @@ class UserFixtures extends Fixture
     private function getData(): array
     {
         return [
-            // $userData = [$fullname, $username, $password, $email, $roles];
-            
+            // $userData = [$fullname, $username, $password, $email, $roles];    
             ['Admin', 'admin', 'admin', 'admin@admin.admin', ['ROLE_ADMIN']],
             ['Agent', 'agent', 'agent', 'agent@agent.agent', ['ROLE_AGENT']],
             ['User', 'user', 'user', 'user@user.user', ['ROLE_USER']],
-            
-            ['Agent 1', 'agent1', 'agent1', 'agent1@agent1.agent1', ['ROLE_AGENT']],
-            ['Agent 2', 'agent2', 'agent2', 'agent2@agent2.agent2', ['ROLE_AGENT']],
-            ['Agent 3', 'agent3', 'agent3', 'agent3@agent3.agent3', ['ROLE_AGENT']],
             
             ['Vincent Claveau', 'Votop', 'Votop', 'vincent.claveau@lycee-bourdelle.fr', ['ROLE_AGENT']],
             ['Guillaume Vidal', 'guiguiz', 'guiguiz', 'guillaume.vidal@lycee-bourdelle.fr', ['ROLE_AGENT']],

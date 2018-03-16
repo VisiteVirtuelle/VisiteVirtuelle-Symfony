@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visit>
+	<room>
+		<name>Chinois</name>
+		<url>vue360.jpg</url>
+	</room>
+	<room>
+		<name>Caravane</name>
+		<url>chalet.jpg</url>
+	</room>
+</visit>

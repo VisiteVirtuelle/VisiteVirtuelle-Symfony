@@ -28,7 +28,7 @@ class VisitController
     
      public function __construct(string $root_dir)
     {
-        $this->visit_dir = str_replace('\\', '/', $root_dir) . '/var/visit/';
+        $this->visit_dir = str_replace('\\', '/', $root_dir) . '/public/visit/';
     }
     
     /**
@@ -44,8 +44,7 @@ class VisitController
         }
     
         return new Response($twig->render('visit/show.html.twig', [
-            'visit' => $visit,
-            'visit_path' => $this->visit_dir
+            'visit' => $visit
         ]));
     }
 }
