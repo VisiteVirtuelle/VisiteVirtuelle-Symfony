@@ -19,11 +19,11 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class VisitFixtures extends Fixture implements DependentFixtureInterface
 {
-    private $root_dir;
+    private $project_dir;
 
-    public function __construct(string $root_dir)
+    public function __construct(string $project_dir)
     {
-        $this->root_dir = $root_dir;
+        $this->project_dir = $project_dir;
     }
 
     public function load(ObjectManager $manager)
@@ -40,7 +40,6 @@ class VisitFixtures extends Fixture implements DependentFixtureInterface
 
             $manager->persist($visit);
         }
-
         $manager->flush();
 
         //copying visits data (images, xml)
@@ -50,8 +49,8 @@ class VisitFixtures extends Fixture implements DependentFixtureInterface
             $visit = $visitRepository->findOneBy(['name' => $name]);
 
             $filesystem->mirror(
-                $this->root_dir.'/src/DataFixtures/VisitData/'.$name,
-                $this->root_dir.'/public/visit/'.$visit->getId()
+                $this->project_dir.'/src/DataFixtures/VisitData/'.$name,
+                $this->project_dir.'/public/visit/'.$visit->getId()
              );
         }
     }

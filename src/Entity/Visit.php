@@ -1,11 +1,11 @@
 <?php
 
-/* 
- * This file is part of the Virtual Visit application. 
- * 
- * Vincent Claveau <vinc.claveau@gmail.com> 
- * 
- */ 
+/*
+ * This file is part of the Virtual Visit application.
+ *
+ * Vincent Claveau <vinc.claveau@gmail.com>
+ *
+ */
 
 namespace App\Entity;
 
@@ -100,4 +100,3 @@ class Visit
         return $this->owner;
     }
 }
-
