@@ -4,14 +4,25 @@ L'objectif du projet consiste créer une application Web destinée aux Agences I
 
 -----
 
-## Installation
-1. S'assurer que PHP est bien installé/présent dans le PATH avec `php -V`
+## Installation détaillée
+
+Les commandes ci-dessous sont à exécuter à la racine du projet:
+1. Télécharger [PHP] 7.1 au moins et l'ajouter dans le PATH
 2. Installer les dépendances :
-   * Téléchargement de composer `php -r "readfile('https://getcomposer.org/installer');" | php`
-   * Installation des dépendances `php composer.phar install`
-3. Création de la base de données **(optionnel si déjà existante)** :
-   * Création de la base de données `php bin/console doctrine:database:create`
-   * Création des tables `php bin/console doctrine:schema:update --force`
+    * Installer [composer] *(gestionnaire de dépendances)*:
+        * Installation locale `php -r "readfile('https://getcomposer.org/installer');" | php`
+        * [Installation globale]
+    * Téléchargement des dépendances :
+        * Composer est installé localement: `php composer.phar install`
+        * Composer est installé gloabalement: `composer install`
+3. Création de la base de données :
+    * Création de la base de données `php bin/console doctrine:database:create`
+    * Création des tables `php bin/console doctrine:schema:update --force`
+4. Compilation des assets :
+    * Télécharger [yarn] et l'ajouter dans le PATH
+    * Exécuter `yarn install`
+    * Compilation des assets avec `yarn run encore <env>` en remplaçant `<env>` par `dev` ou `production`
+
 #### Commandes utiles :
 * Chargement des données exemples/tests `php bin/console doctrine:fixtures:load`
 
@@ -28,3 +39,7 @@ L'objectif du projet consiste créer une application Web destinée aux Agences I
 **Trello:** https://trello.com/b/lRY92q0W/organisation
 
 [lycée Antoine Bourdelle]: http://bourdelle.entmip.fr/
+[PHP]: http://php.net/downloads.php
+[composer]: https://getcomposer.org/
+[Installation globale]: https://getcomposer.org/download/
+[yarn]: https://yarnpkg.com/lang/en/docs/install/

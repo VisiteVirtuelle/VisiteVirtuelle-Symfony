@@ -2,6 +2,9 @@
 composer.phar
 composer-temp.phar
 
+# Yarn
+yarn-error.log
+
 # Gitkeep Repository
 public/visit/*
 !public/visit/.gitkeep
