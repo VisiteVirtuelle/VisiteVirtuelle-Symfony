@@ -36,4 +36,16 @@ class VisitController
             'visit' => $visit
         ]));
     }
+
+    /**
+     * @Route("/list", name="list")
+     */
+    public function list(Environment $twig, RegistryInterface $doctrine)
+    {
+        $visits = $doctrine->getRepository(Visit::class)->findAll();
+
+        return new Response($twig->render('visit/list.html.twig', [
+            'visits' => $visits
+        ]));
+    }
 }
