@@ -21,7 +21,7 @@ const scene = new THREE.Scene();
 const geometry = new THREE.SphereBufferGeometry(500, 60, 40);
 geometry.scale(-1, 1, 1);
 
-var texture = new THREE.TextureLoader().load('http://localhost:8000/visit/' + "66" + '/' + "ec.jpg");
+var texture = new THREE.TextureLoader().load('http://localhost:8000/visit/' + visit.id + "/" + rooms.values().next().value);
 const material = new THREE.MeshBasicMaterial({map: texture,overdraw: 0.5});
 
 const mesh = new THREE.Mesh(geometry, material);
