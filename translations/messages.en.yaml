@@ -7,30 +7,29 @@ menu:
         profile: Profile
         dashboard: Dashboard
         logout: Log out
-        
+
 security:
     login:
-        title: Sign in to continue
+        title: Log in
         username: Username
         password: Password
         submit: Sign in
         remember_me: Remember me
         forgot_password: Forgot the password ?
-        register: Create an account
-        
+
 http_error:
     name: Error %status_code%
     description: There was an unknown error (HTTP %status_code%) that prevented to complete your request.
     suggestion: Try loading this page again in some minutes or <a href="%url%">go back to the homepage</a>.
-    
+
 http_error_403:
     description: You don't have permission to access to this resource.
     suggestion: Ask your manager or system administrator to grant you access to this resource.
-    
+
 http_error_404:
     description: We couldn't find the page you requested.
     suggestion: Check out any misspelling in the URL or <a href="%url%">go back to the homepage</a>.
-    
+
 http_error_500:
     description: There was an internal server error.
     suggestion: Try loading this page again in some minutes or <a href="%url%">go back to the homepage</a>.

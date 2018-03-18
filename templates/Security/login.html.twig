@@ -1,50 +1,46 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/login_page.css') }}">
+{% endblock %}
+
+{# Hide header and footer #}
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
 {% block body_id 'security_login' %}
-
 {% block body %}
-    <h1 class="display-4 text-center py-2">{{ 'security.login.title'|trans }}</h1>
+    <form action="{{ path('user_security_login') }}" method="post">
+        <h2 class="sr-only">{{ 'security.login.title'|trans }}</h2>
 
-    <div class="row">
-        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-6 mx-auto">
-            <div class="card">
-                <div class="card-body">
-                    <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="rounded-circle img-fluid d-block mx-auto mb-4"/>
-
-                    {% if error %}
-                        <div class="alert alert-danger text-center">
-                            {{ error.messageKey|trans(error.messageData, 'security') }}
-                        </div>
-                    {% endif %}
-
-                    <form action="{{ path('user_security_login') }}" method="post">
-                        <fieldset>
-                            <div class="form-group">
-                                <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}" placeholder="{{ 'security.login.username'|trans }}" required="required"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" id="password" name="_password" class="form-control" placeholder="{{ 'security.login.password'|trans }}" required="required"/>
-                            </div>
-
-                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-
-                            <button type="submit" class="btn btn-primary btn-lg btn-block mx-auto my-3">
-                                {{ 'security.login.submit'|trans }}
-                            </button>
-
-                            <label for="remember_me" class="checkbox pull-left">
-                                <input type="checkbox"  id="remember_me" name="_remember_me" value="remember-me"/>
-                                {{ 'security.login.remember_me'|trans }}
-                            </label>
-                            <a href="#" class="pull-right">{{ 'security.login.forgot_password'|trans }}</a><span class="clearfix"></span>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <a href="{{ path('user_registration_register') }}">{{ 'security.login.register'|trans }}</a>
-            </div>
+        <div class="illustration">
+            <i class="fa fa-user-circle-o"></i>
         </div>
-    </div>
+
+        {% if error %}
+            <p class="lead text-center text-danger flash animated">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </p>
+        {% endif %}
+
+        <div class="form-group">
+            <input class="form-control" type="text" name="_username" value="{{ last_username }}" placeholder="{{ 'security.login.username'|trans }}" required="required">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required">
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">
+                {{ 'security.login.submit'|trans }}
+            </button>
+        </div>
+
+        <a href="#" class="forgot">
+            {{ 'security.login.forgot_password'|trans }}
+        </a>
+    </form>
 {% endblock %}

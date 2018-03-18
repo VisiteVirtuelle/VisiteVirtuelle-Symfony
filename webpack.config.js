@@ -11,10 +11,13 @@ Encore
     // .enableVersioning(Encore.isProduction())
 
     // assets of the project
-    .addEntry('js/three', './assets/js/three.js')
-    .addEntry('js/dat.gui', './assets/js/dat.gui.min.js')
-    .addEntry('js/visit', './assets/js/visit.js')
+    .createSharedEntry('js/visit', [
+        './assets/js/three.js',
+        './assets/js/dat.gui.min.js',
+        './assets/js/visit.js'
+    ])
     .addStyleEntry('css/footer', './assets/css/footer.css')
+    .addStyleEntry('css/login_page', './assets/css/login_page.css')
 
     // uncomment if you use Sass/SCSS files
     // .enableSassLoader()
