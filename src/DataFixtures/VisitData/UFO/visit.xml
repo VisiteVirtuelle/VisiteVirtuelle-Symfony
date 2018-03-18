@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visit>
+    <room>
+        <name>Sanctuary</name>
+        <url>img/sanctuary.jpg</url>
+    </room>
+    <room>
+		<name>Peace</name>
+		<url>img/we_want_peace.jpg</url>
+	</room>
+    <room>
+        <name>Decay</name>
+        <url>img/decay.jpg</url>
+    </room>
+    <room>
+        <name>Rubble</name>
+        <url>img/rubble.jpg</url>
+    </room>
+    <room>
+        <name>Broken</name>
+        <url>img/broken.jpg</url>
+    </room>
+    <room>
+        <name>Forgotten</name>
+        <url>img/forgotten.jpg</url>
+    </room>
+</visit>

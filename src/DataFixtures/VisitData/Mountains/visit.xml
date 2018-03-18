@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visit>
+    <room>
+        <name>Val Fiscalina</name>
+        <url>img/val_fiscalina.jpg</url>
+    </room>
+    <room>
+        <name>Croatia Korcula</name>
+        <url>img/croatia_korcula.jpg</url>
+    </room>
+    <room>
+        <name>Maïdo</name>
+        <url>img/maido.jpg</url>
+    </room>
+    <room>
+        <name>Maïdo</name>
+        <url>img/maido.jpg</url>
+    </room>
+    <room>
+        <name>Colorado</name>
+        <url>img/colorado.jpg</url>
+    </room>
+</visit>

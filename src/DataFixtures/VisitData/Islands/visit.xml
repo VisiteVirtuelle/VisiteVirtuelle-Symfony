@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visit>
+    <room>
+		<name>Ksamil</name>
+		<url>img/ksamil.jpg</url>
+	</room>
+    <room>
+        <name>Réunion</name>
+        <url>img/reunion.jpg</url>
+    </room>
+    <room>
+        <name>Cap Columnar</name>
+        <url>img/cap_columnar.jpg</url>
+    </room>
+    <room>
+        <name>Aitutaki</name>
+        <url>img/aitutaki.jpg</url>
+    </room>
+    <room>
+        <name>Motukokako</name>
+        <url>img/motukokako.jpg</url>
+    </room>
+    <room>
+        <name>Korcula</name>
+        <url>img/croatia_korcula.jpg</url>
+    </room>
+</visit>

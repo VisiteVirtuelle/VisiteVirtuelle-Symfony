@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visit>
+    <room>
+		<name>Louvre</name>
+		<url>img/louvre.jpg</url>
+	</room>
+    <room>
+        <name>Napoléon</name>
+        <url>img/napoleon.jpg</url>
+    </room>
+    <room>
+        <name>Opéra</name>
+        <url>img/opera.jpg</url>
+    </room>
+    <room>
+        <name>Seine</name>
+        <url>img/seine.jpg</url>
+    </room>
+    <room>
+        <name>Place</name>
+        <url>img/place.jpg</url>
+    </room>
+    <room>
+        <name>Statue de la Libertée</name>
+        <url>img/statue_liberte.jpg</url>
+    </room>
+	<room>
+		<name>Patinoire</name>
+		<url>img/patinoire.jpg</url>
+	</room>
+</visit>

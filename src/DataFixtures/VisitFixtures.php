@@ -60,10 +60,12 @@ class VisitFixtures extends Fixture implements DependentFixtureInterface
         return [
             // $visitData = [$name, $owner];
             ['Antoine Bourdelle', 'Pillon'],
-            ['Dance', 'Pillon'],
-            ['Villes', 'agent'],
-            ['Louvre', 'agent'],
-            ['Chalet', 'agent'],
+            ['Mountains', 'Votop'],
+            ['Canyons', 'Votop'],
+            ['Islands', 'Votop'],
+            ['Paris', 'agent'],
+            ['UFO', 'agent'],
+            ['Misc', 'Pillon']
         ];
     }
 

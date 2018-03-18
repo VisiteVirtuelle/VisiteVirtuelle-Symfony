@@ -1,16 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <ul>
+    <div class="row">
         {% for visit in visits %}
-            <li>
-                <a href="{{ path('visit_show', {'id': visit.id}) }}">
-                    {{ visit.name }}
-                </a>
-                - owned by: {{ visit.owner.username}}
-            </li>
+            <div class = "col-4">
+                <div class="card">
+                    <a href="{{ path('visit_show', {'id': visit.id}) }}">
+                        <img src="{{ asset("visit/" ~ visit.id ~ "/cover.jpg") }}" class="card-img-top">
+                    </a>
+                    <div class="card-body">
+                        <h5>{{ visit.name }}</h5>
+                        <p>{{ visit.owner.username}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small>
+                        <i class="fa fa-eye pr-1"></i>
+                        {{ 'visit.list.show'|trans }}
+                    </small>
+                </div>
+            </div>
         {% else %}
-            <li><em>no visit found</em></li>
+            <em>no visit found</em>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
