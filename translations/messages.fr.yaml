@@ -17,6 +17,14 @@ security:
         remember_me: Se souvenir de moi
         forgot_password: Mot de passe oublié ?
 
+visit:
+    list:
+        show: Visiter virtuellement
+        empty:
+            title: Il n'existe aucune visite !
+            message: Si vous êtes un agent vous pouvez en créer une en cliquant sur ce bouton
+            btn_editor: Editeur de visite
+
 http_error:
     name: Erreur %status_code%
     description: Il y a eu une erreur inconnue (HTTP %status_code%) qui a empêché l'aboutissement de votre requête.

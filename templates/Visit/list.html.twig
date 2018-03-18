@@ -18,16 +18,26 @@
                         <h5>{{ visit.name }}</h5>
                         <p>{{ visit.owner.username}}</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer text-center">
                         <small>
-                            <i class="fa fa-eye pr-1"></i>
-                            {{ 'visit.list.show'|trans }}
+                            <a href="{{ path('visit_show', {'id': visit.id}) }}">
+                                <i class="fa fa-eye pr-1"></i>
+                                {{ 'visit.list.show'|trans }}
+                            </a>
                         </small>
                     </div>
                 </div>
             </div>
         {% else %}
-            <em>no visit found</em>
+            <div class="jumbotron py-3">
+                <h1>{{ 'visit.list.empty.title'|trans }}</h1>
+                <p>{{ 'visit.list.empty.message'|trans }}</p>
+                <p>
+                    <a class="btn btn-primary" role="button" href="#">
+                        {{ 'visit.list.empty.btn_editor'|trans }}
+                    </a>
+                </p>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

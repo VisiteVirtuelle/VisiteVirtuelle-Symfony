@@ -17,6 +17,14 @@ security:
         remember_me: Remember me
         forgot_password: Forgot the password ?
 
+visit:
+    list:
+        show: Visit virtually
+        empty:
+            title: There's no visit yet !
+            message: If you're an agent you can create one by clicking on this button
+            btn_editor: Visit Editor
+
 http_error:
     name: Error %status_code%
     description: There was an unknown error (HTTP %status_code%) that prevented to complete your request.
