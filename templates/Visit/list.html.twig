@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/visit_list.css') }}">
+{% endblock %}
+
+{% block body_id 'visit_list' %}
 {% block main %}
     <div class="row">
         {% for visit in visits %}
-            <div class = "col-4">
+            <div class = "col-4 py-3">
                 <div class="card">
                     <a href="{{ path('visit_show', {'id': visit.id}) }}">
                         <img src="{{ asset("visit/" ~ visit.id ~ "/cover.jpg") }}" class="card-img-top">
@@ -12,12 +18,12 @@
                         <h5>{{ visit.name }}</h5>
                         <p>{{ visit.owner.username}}</p>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <small>
-                        <i class="fa fa-eye pr-1"></i>
-                        {{ 'visit.list.show'|trans }}
-                    </small>
+                    <div class="card-footer">
+                        <small>
+                            <i class="fa fa-eye pr-1"></i>
+                            {{ 'visit.list.show'|trans }}
+                        </small>
+                    </div>
                 </div>
             </div>
         {% else %}
