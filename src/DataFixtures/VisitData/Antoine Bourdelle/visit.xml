@@ -2,14 +2,14 @@
 <visit>
 	<room>
 		<name>Salle EC</name>
-		<url>ec.jpg</url>
+		<url>img/ec.jpg</url>
 	</room>
 	<room>
 		<name>Salle IR</name>
-		<url>ir.jpg</url>
+		<url>img/ir.jpg</url>
 	</room>
 	<room>
 		<name>Salle IR2</name>
-		<url>ir2.jpg</url>
+		<url>img/ir2.jpg</url>
 	</room>
 </visit>
