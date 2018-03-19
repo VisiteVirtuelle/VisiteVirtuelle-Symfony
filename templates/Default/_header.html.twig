@@ -1,69 +1,69 @@
-<header>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid">
+<header class="border-bottom bg-light">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+        <div class="container">
             <a class="navbar-brand" href="{{ path('homepage') }}">
                 Virtual Visit
             </a>
 
-            <button class="navbar-toggler" type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarCollapse"
-                    aria-controls="navbarCollapse"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a class="nav-link" href="{{ path('homepage') }}">
-                            <i class="fa fa-home pr-1"></i>{{ 'menu.homepage'|trans }}
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{{ path('visit_list') }}">
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link font-weight-bold" href="{{ path('visit_list') }}" data-bs-hover-animate="pulse">
                             {{ 'menu.visits'|trans }}
                         </a>
                     </li>
                 </ul>
 
-                <ul class="navbar-nav text-dark navbar-right">
+                <ul class="nav navbar-nav ml-auto">
                     {% if app.user %}
+                       {# menu user #}
                         <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">
-                                <i class="fa fa-user-circle pr-1"></i>{{ app.user.username }}<span class="caret"/>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">
+                                <i class="fa fa-user mr-1"></i>
+                                {{ app.user.username }}
                             </a>
-                            <ul class="dropdown-menu nav-item" role="menu">
-                                <li>
-                                    <a href="#" class="nav-link text-dark">
-                                        <i class="fa fa-address-book pr-1"></i>{{ 'menu.user_menu.profile'|trans }}
-                                    </a>
-                                </li>
+                            {# menu déroulant user #}
+                            <div class="dropdown-menu" role="menu">
+                                {# username #}
+                                <h6 class="dropdown-header bg-light" role="presentation">
+                                    {{ app.user.username }}
+                                </h6>
+                                {# lien profile #}
+                                <a class="dropdown-item" role="presentation" href="#">
+                                    <i class="fa fa-address-card pr-1"></i>
+                                    {{ 'menu.user_menu.profile'|trans }}
+                                </a>
+                                {# lien dashboard #}
                                 {% if is_granted('ROLE_ADMIN') %}
-                                    <li>
-                                        <a href="{{ path('admin_dashboard_index') }}" class="nav-link text-dark">
-                                            <i class="fa fa-dashboard pr-1"></i>{{ 'menu.user_menu.dashboard'|trans }}
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                <div class="dropdown-divider"></div>
-                                <li>
-                                    <a href="{{ path('user_security_logout') }}" class="nav-link text-dark">
-                                        <i class="fa fa-sign-out pr-1"></i>{{ 'menu.user_menu.logout'|trans }}
+                                    <a class="dropdown-item" role="presentation" href="{{ path('admin_dashboard_index') }}">
+                                        <i class="fa fa-dashboard pr-1"></i>
+                                        {{ 'menu.user_menu.dashboard'|trans }}
                                     </a>
-                                </li>
-                            </ul>
+                                {% endif %}
+                                {# lien déconnexion #}
+                                <a class="dropdown-item" role="presentation" href="{{ path('user_security_logout') }}">
+                                    <i class="fa fa-sign-out pr-1"></i>
+                                    {{ 'menu.user_menu.logout'|trans }}
+                                </a>
+                            </div>
                         </li>
                     {% else %}
+                        {# liens Connexion/Inscription si l'utilisateur est déconnecté #}
                         <li>
-                            <a href="{{ path('user_security_login') }}" class="nav-link">
-                                <i class="fa fa-sign-in pr-1"></i>{{ 'menu.login'|trans }}
+                            <a class="nav-link" href="{{ path('user_security_login') }}">
+                                <i class="fa fa-sign-in pr-1"></i>
+                                {{ 'menu.login'|trans }}
                             </a>
                         </li>
                         <li>
-                            <a href="{{ path('user_registration_register') }}" class="nav-link">
-                                <i class="fa fa-user-plus pr-1"></i>{{ 'menu.signup'|trans }}
+                            <a class="nav-link" href="{{ path('user_registration_register') }}">
+                                <i class="fa fa-user-plus pr-1"></i>
+                                {{ 'menu.signup'|trans }}
                             </a>
                         </li>
                     {% endif %}

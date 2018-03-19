@@ -1,5 +1,4 @@
 menu:
-    homepage: Accueil
     visits: Visites
     login: Connexion
     signup: Inscription
@@ -8,13 +7,21 @@ menu:
         dashboard: Panneau de Contrôle
         logout: Déconnexion
 
+footer:
+    virtualvisit:
+        demo: Démo
+        visits_list: Liste des visites
+        legal: Mentions légales
+    about:
+        title: About
+    copyright: Développé par Vincent et Guillaume
+
 security:
     login:
         title: Se connecter
         username: Nom d'utilisateur
         password: Mot de passe
         submit: Connexion
-        remember_me: Se souvenir de moi
         forgot_password: Mot de passe oublié ?
 
 visit:

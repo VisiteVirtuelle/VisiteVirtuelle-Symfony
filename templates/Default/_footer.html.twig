@@ -1,18 +1,79 @@
-<footer class="bg-dark text-muted pt-3">
+<footer class="footer-clean">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 text-center">
-                <p>Developped with <i class="fa fa-heart"></i> by Vincent, Pillon, Thomas, Malko and Guillaume</p>
+        <div class="row justify-content-center">
+            <div class="col-sm-4 col-md-3 item">
+                <h3>Virtual Visit</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            {{ 'footer.virtualvisit.demo'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            {{ 'footer.virtualvisit.visits_list'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            {{ 'footer.virtualvisit.legal'|trans }}
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-6 text-center">
-                <p>
-                    <a href="https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony" title="GitHub Repository">
-                        <i class="fa fa-github" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://trello.com/b/lRY92q0W/organisation" title="Trello Orginization">
-                        <i class="fa fa-trello" aria-hidden="true"></i>
-                    </a>
-                </p>
+
+            <div class="col-sm-4 col-md-3 item">
+                <h3>{{ 'footer.about.title'|trans }}</h3>
+                <ul>
+                    <li>
+                        <a href="http://www.onisep.fr/Ressources/Univers-Formation/Formations/Post-bac/BTS-Systemes-numeriques-option-A-informatique-et-reseaux" target="_blank">
+                            BTS Système Numérique
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=2YU6hZHwewM" target="_blank">
+                            Option Informatique et réseau
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://bourdelle.entmip.fr/" target="_blank">
+                            Lycée Antoine Bourdelle
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-4 col-md-3 item">
+                <h3>{{ 'footer.project.title'|trans }}</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            {{ 'footer.project.presentation'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            {{ 'footer.project.team'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            {{ 'footer.project.results'|trans }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 item social">
+                <a href="https://github.com/VisiteVirtuelle-Symfony" target="_blank">
+                    <i class="fa fa-github"></i>
+                </a>
+
+                <a href="https://trello.com/b/lRY92q0W/organisation" target="_blank">
+                    <i class="fa fa-trello"></i>
+                </a>
+
+                <p class="copyright">{{ 'footer.copyright'|trans }}</p>
             </div>
         </div>
     </div>

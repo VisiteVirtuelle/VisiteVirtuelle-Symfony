@@ -1,5 +1,4 @@
 menu:
-    homepage: Home
     visits: Visits
     login: Login
     signup: Sign Up
@@ -8,13 +7,21 @@ menu:
         dashboard: Dashboard
         logout: Log out
 
+footer:
+    virtualvisit:
+        demo: Demo
+        visits_list: Visits list
+        legal: Legal
+    about:
+        title: About
+    copyright: Developped by Vincent and Guillaume
+
 security:
     login:
         title: Log in
         username: Username
         password: Password
         submit: Sign in
-        remember_me: Remember me
         forgot_password: Forgot the password ?
 
 visit:
