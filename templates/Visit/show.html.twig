@@ -15,7 +15,22 @@
     <script src="{{ asset('visit.js') }}"></script>
 {% endblock %}
 
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('visit_list') }}">
+                <span>{{ 'visit.show.link.list'|trans }}</span>
+            </a>
+        </li>
+        <li class="breadcrumb-item active">
+            <span>{{ visit.name }}</span>
+        </li>
+    </ol>
+
+    {{ parent() }}
+{% endblock %}
+
 {% block main %}
-    <h1>{{ visit.name }}</h1>
+    <h2>{{ visit.name }}</h2>
     <canvas style="height:100%; width:100%;"></canvas>
 {% endblock %}

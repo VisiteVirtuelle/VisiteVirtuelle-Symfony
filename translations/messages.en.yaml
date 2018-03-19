@@ -18,6 +18,9 @@ security:
         forgot_password: Forgot the password ?
 
 visit:
+    show:
+        link:
+            list: Visits
     list:
         show: Visit virtually
         empty:

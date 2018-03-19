@@ -18,6 +18,9 @@ security:
         forgot_password: Mot de passe oublié ?
 
 visit:
+    show:
+        link:
+            list: Visites
     list:
         show: Visiter virtuellement
         empty:
