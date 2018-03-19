@@ -1,0 +1,36 @@
+menu:
+    homepage: Bienvenido
+    visits: Visitas
+    login: Conectarse
+    signup: Inscribirse
+    user_menu:
+        profile: Perfil
+        dashboard: Salpicadero
+        logout: Salir
+        
+security:
+    login:
+        title: Inicia sesion para continuar
+        username: Nombre del usuario
+        password: Contraseña
+        submit: Conectarse
+        remember_me: Se acuerda de mi
+        forgot_password: Contraseña olvidada ?
+        register: Crear una cuenta
+        
+http_error:
+    name: Error %status_code%
+    description: Hubo un error desconocido (HTTP %status_code%) lo que impidió el resultado de su solicitud.
+    suggestion: Intenta volver a cargar esta página en unos minutos o <a href="%url%">regresar a la página principal</a>.
+    
+http_error_403:
+    description: No tienes derechos para acceder a este recurso.
+    suggestion: Pídale a su administrador o administrador del sistema que le otorgue los derechos de acceso a los recursos.
+    
+http_error_404:
+    description: No pudimos encontrar la página solicitada.
+    suggestion: Verifica si la URL no tiene errores o <a href="%url%">regresar a la página principal</a>.
+    
+http_error_500:
+    description: Hubo un error interno del servidor.
+    suggestion: Intenta volver a cargar esta página en unos minutos o <a href="%url%">regresar a la página principal</a>.

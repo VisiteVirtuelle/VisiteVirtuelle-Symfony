@@ -1,0 +1,36 @@
+menu:
+    homepage: Willkommen
+    visits: Besuche
+    login: Einloggen
+    signup: Anmeldung
+    user_menu:
+        profile: Profil
+        dashboard: Armaturenbrett
+        logout: Austragen
+        
+security:
+    login:
+        title: Melden Sie sich an, um fortzufahren
+        username: Benutzername
+        password: Passwort
+        submit: Einloggen
+        remember_me: Denk an mich
+        forgot_password: Passwort vergessen?
+        register: Erstellen Sie ein Konto
+        
+http_error:
+    name: Fehler %status_code%
+    description: Es gab einen unbekannten Fehler (HTTP %status_code%) was das Ergebnis Ihrer Anfrage verhindert hat.
+    suggestion: Versuchen Sie, diese Seite in ein paar Minuten neu zu laden <a href="%url%">Zurück zur Hauptseite</a>.
+    
+http_error_403:
+    description: Sie haben keine Rechte für den Zugriff auf diese ressource.
+    suggestion: Bitten Sie Ihren Manager oder Systemadministrator, Ihnen die Berechtigung zum Zugriff auf die Ressource zu erteilen.
+    
+http_error_404:
+    description: Wir konnten die angeforderte Seite nicht finden.
+    suggestion: Überprüfen Sie, ob die URL fehlerfrei ist oder <a href="%url%">Zurück zur Hauptseite</a>.
+    
+http_error_500:
+    description: Es gab einen internen Serverfehler.
+    suggestion: Versuchen Sie, diese Seite in ein paar Minuten neu zu laden <a href="%url%">Zurück zur Hauptseite</a>.
