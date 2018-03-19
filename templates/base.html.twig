@@ -16,80 +16,7 @@
 
     <body id="{% block body_id %}{% endblock %}">
         {% block header %}
-            <header>
-                <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="{{ path('homepage') }}">
-                            Virtual Visit
-                        </a>
-
-                        <button class="navbar-toggler" type="button"
-                                data-toggle="collapse"
-                                data-target="#navbarCollapse"
-                                aria-controls="navbarCollapse"
-                                aria-expanded="false"
-                                aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div class="collapse navbar-collapse" id="navbarCollapse">
-                            <ul class="nav navbar-nav">
-                                <li>
-                                    <a class="nav-link" href="{{ path('homepage') }}">
-                                        <i class="fa fa-home pr-1"></i>{{ 'menu.homepage'|trans }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="{{ path('visit_list') }}">
-                                        {{ 'menu.visits'|trans }}
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <ul class="navbar-nav text-dark navbar-right">
-                                {% if app.user %}
-                                    <li class="dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">
-                                            <i class="fa fa-user-circle pr-1"></i>{{ app.user.username }}<span class="caret"/>
-                                        </a>
-                                        <ul class="dropdown-menu nav-item" role="menu">
-                                            <li>
-                                                <a href="#" class="nav-link text-dark">
-                                                    <i class="fa fa-address-book pr-1"></i>{{ 'menu.user_menu.profile'|trans }}
-                                                </a>
-                                            </li>
-                                            {% if is_granted('ROLE_ADMIN') %}
-                                                <li>
-                                                    <a href="{{ path('admin_dashboard_index') }}" class="nav-link text-dark">
-                                                        <i class="fa fa-dashboard pr-1"></i>{{ 'menu.user_menu.dashboard'|trans }}
-                                                    </a>
-                                                </li>
-                                            {% endif %}
-                                            <div class="dropdown-divider"></div>
-                                            <li>
-                                                <a href="{{ path('user_security_logout') }}" class="nav-link text-dark">
-                                                    <i class="fa fa-sign-out pr-1"></i>{{ 'menu.user_menu.logout'|trans }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                {% else %}
-                                    <li>
-                                        <a href="{{ path('user_security_login') }}" class="nav-link">
-                                            <i class="fa fa-sign-in pr-1"></i>{{ 'menu.login'|trans }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('user_registration_register') }}" class="nav-link">
-                                            <i class="fa fa-user-plus pr-1"></i>{{ 'menu.signup'|trans }}
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </header>
+            {% include 'default/_header.html.twig' %}
         {% endblock %}
 
         {% block body %}
@@ -101,25 +28,7 @@
         {% endblock %}
 
         {% block footer %}
-            <footer class="bg-dark text-muted pt-3">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 text-center">
-                            <p>Developped with <i class="fa fa-heart"></i> by Vincent, Pillon, Thomas, Malko and Guillaume</p>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <p>
-                                <a href="https://github.com/VisiteVirtuelle/VisiteVirtuelle-Symfony" title="GitHub Repository">
-                                    <i class="fa fa-github" aria-hidden="true"></i>
-                                </a>
-                                <a href="https://trello.com/b/lRY92q0W/organisation" title="Trello Orginization">
-                                    <i class="fa fa-trello" aria-hidden="true"></i>
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            {% include 'default/_footer.html.twig' %}
         {% endblock %}
 
         {% block javascripts %}
