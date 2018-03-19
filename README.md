@@ -19,6 +19,7 @@ Les commandes ci-dessous sont à exécuter à la racine du projet:
     * Création de la base de données `php bin/console doctrine:database:create`
     * Création des tables `php bin/console doctrine:schema:update --force`
 4. Compilation des assets :
+    * Installer [nodejs]
     * Télécharger [yarn] et l'ajouter dans le PATH
     * Exécuter `yarn install`
     * Compilation des assets avec `yarn run encore <env>` en remplaçant `<env>` par `dev` ou `production`
@@ -42,4 +43,5 @@ Les commandes ci-dessous sont à exécuter à la racine du projet:
 [PHP]: http://php.net/downloads.php
 [composer]: https://getcomposer.org/
 [Installation globale]: https://getcomposer.org/download/
-[yarn]: https://yarnpkg.com/lang/en/docs/install/
+[nodejs]: https://nodejs.org/en/download/
+[yarn]: https://yarnpkg.com/en/docs/install
