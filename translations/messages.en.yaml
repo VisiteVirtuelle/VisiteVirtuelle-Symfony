@@ -23,6 +23,8 @@ security:
         password: Password
         submit: Sign in
         forgot_password: Forgot the password ?
+    register:
+        submit: Register
 
 visit:
     show:

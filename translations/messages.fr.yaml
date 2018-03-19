@@ -23,6 +23,8 @@ security:
         password: Mot de passe
         submit: Connexion
         forgot_password: Mot de passe oublié ?
+    register:
+        submit: S'inscrire
 
 visit:
     show:

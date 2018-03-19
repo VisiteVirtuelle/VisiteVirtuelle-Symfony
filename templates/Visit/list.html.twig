@@ -1,10 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('build/css/visit_list.css') }}">
-{% endblock %}
-
 {% block body_id 'visit_list' %}
 {% block main %}
     <div class="row">
@@ -12,7 +7,7 @@
             <div class = "col-4 py-3">
                 <div class="card">
                     <a href="{{ path('visit_show', {'id': visit.id}) }}">
-                        <img src="{{ asset("visit/" ~ visit.id ~ "/cover.jpg") }}" class="card-img-top">
+                        <img src="{{ asset("visit/" ~ visit.id ~ "/cover.jpg") }}" class="card-img-top" style="height: 10vw;">
                     </a>
                     <div class="card-body">
                         <h5>{{ visit.name }}</h5>
