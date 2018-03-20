@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'visit_editor' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('admin_dashboard', {'template' : 'dashboard'}) }}">
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('visit_list') }}">
+                <span>Visit</span>
+            </a>
+        </li>
+        <li class="breadcrumb-item active">
+            <span>Editor</span>
+        </li>
+    </ol>
+
+    {{ parent() }}
+{% endblock %}
+
+{% block main %}
+    <h2>
+        <i class="fa fa-cog pr-1"></i>
+        Visit editor
+    </h2>
+
+    <div class="row">
+        <div class="col">
+            <h5 class="text-center">Properties</h5>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td class="float-right"><strong>Name</strong></td>
+                            <td>Antoine Bourdelle</td>
+                        </tr>
+                        <tr>
+                            <td class="float-right"><strong>Owner</strong></td>
+                            <td>Pillon</td>
+                        </tr>
+                        <tr>
+                            <td class="float-right"><strong>Location</strong></td>
+                            <td>Montauban</td>
+                        </tr>
+                        <tr>
+                            <td class="float-right"><strong>Surface</strong></td>
+                            <td>6 000 m²</td>
+                        </tr>
+                        <tr>
+                            <td class="float-right"><strong>Price</strong></td>
+                            <td>795 000 €</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col">
+            <h5 class="text-center">Cover</h5><img src="../assets/img/visit/cover/bourdelle.jpg" width="100%">
+        </div>
+    </div>
+
+    <hr>
+
+    <h4 class="text-center">Rooms</h4>
+    <div class="row">
+        <div class="col">
+            <h5 class="text-center">Salle EC</h5>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td class="float-right"><strong>Cell 1</strong></td>
+                            <td>Cell 2</td>
+                        </tr>
+                        <tr>
+                            <td class="float-right"><strong>Cell 3</strong></td>
+                            <td>Cell 4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col"><img src="../assets/img/visit/room/ec.jpg" width="100%"></div>
+    </div>
+{% endblock %}

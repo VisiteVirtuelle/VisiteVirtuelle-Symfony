@@ -53,6 +53,13 @@ class Visit
      *
      * @ORM\Column(type="integer")
      */
+    private $sqft;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
     private $price;
 
 
@@ -136,6 +143,28 @@ class Visit
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set sqft
+     *
+     * @return Visit
+     */
+    public function setSqft($sqft)
+    {
+        $this->sqft = $sqft;
+
+        return $this;
+    }
+
+    /**
+     * Get sqft
+     *
+     * @return int
+     */
+    public function getSqft()
+    {
+        return $this->sqft;
     }
 
     /**

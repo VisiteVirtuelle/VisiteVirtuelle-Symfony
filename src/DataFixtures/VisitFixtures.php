@@ -38,6 +38,7 @@ class VisitFixtures extends Fixture implements DependentFixtureInterface
             $visit->setName($name);
             $visit->setOwner($userRepository->findOneBy(['username' => $owner]));
             $visit->setLocation($location);
+            $visit->setSqft(mt_rand(50, 2000));
             $visit->setPrice(mt_rand(50000, 5000000));
 
             $manager->persist($visit);

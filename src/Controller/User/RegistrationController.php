@@ -26,7 +26,6 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, EventDispatcherInterface $eventDispatcher)
     {
-
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 

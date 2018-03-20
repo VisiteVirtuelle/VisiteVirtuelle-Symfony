@@ -3,6 +3,7 @@
 /*
  * This file is part of the Virtual Visit application.
  *
+ * Vincent Claveau <vinc.claveau@gmail.com>
  * Guillaume Vidal <guillaume.vidal@gmail.com>
  *
  */
@@ -12,6 +13,8 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,15 +29,26 @@ class UserType extends AbstractType
     {
         $builder
             ->add('fullname', TextType::class)
-            ->add('username', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('password', RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
-            ))
-            ->add('headshot', FileType::class);
-        ;
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvents $event)
+            {
+                $user = $event->getData();
+                $form = $event->getForm();
+
+                // Test pour vérifier si c'est un nouveau utilisateur (inscription en cours)
+                if(!$user || $user->getId())
+                {
+                    $form
+                        ->add('username', TextType::class)
+                        ->add('email', EmailType::class)
+                        ->add('password', RepeatedType::class, array(
+                            'type' => PasswordType::class,
+                            'first_options'  => array('label' => 'Password'),
+                            'second_options' => array('label' => 'Repeat Password')
+                        ));
+                } else {
+                    $form->add('headshot', FileType::class);
+                }
+            });
     }
 
     public function configureOptions(OptionsResolver $resolver)
