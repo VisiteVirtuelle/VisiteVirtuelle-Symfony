@@ -40,7 +40,7 @@
                                 </a>
                                 {# lien dashboard #}
                                 {% if is_granted('ROLE_ADMIN') %}
-                                    <a class="dropdown-item" role="presentation" href="{{ path('admin_dashboard_index') }}">
+                                    <a class="dropdown-item" role="presentation" href="{{ path('admin_dashboard') }}">
                                         <i class="fa fa-dashboard pr-1"></i>
                                         {{ 'menu.user_menu.dashboard'|trans }}
                                     </a>
