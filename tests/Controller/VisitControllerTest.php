@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Controller;
 
 use App\Entity\User;
 use App\Entity\Visit;

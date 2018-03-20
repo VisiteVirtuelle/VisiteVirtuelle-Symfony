@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-{{ form_start(form) }}
-    {{ form_row(form.fullname, { 'label': 'security.register.fullname'|trans }) }}
-    {{ form_row(form.username, { 'label': 'security.register.username'|trans }) }}
-    {{ form_row(form.email, { 'label': 'security.register.email'|trans }) }}
-    {{ form_row(form.password.first, { 'label': 'security.register.password_1'|trans }) }}
-    {{ form_row(form.password.second, { 'label': 'security.register.password_2'|trans }) }}
+    {{ form_start(form) }}
+        {{ form_row(form.fullname, { 'label': 'security.register.fullname'|trans }) }}
+        {{ form_row(form.username, { 'label': 'security.register.username'|trans }) }}
+        {{ form_row(form.email, { 'label': 'security.register.email'|trans }) }}
+        {{ form_row(form.password.first, { 'label': 'security.register.password_1'|trans }) }}
+        {{ form_row(form.password.second, { 'label': 'security.register.password_2'|trans }) }}
 
-    <button type="submit">
-        {{ 'security.register.submit'|trans }}
-    </button>
-{{ form_end(form) }}
+        <button type="submit">
+            {{ 'security.register.submit'|trans }}
+        </button>
+    {{ form_end(form) }}
 {% endblock %}

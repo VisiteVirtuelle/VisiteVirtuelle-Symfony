@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -18,7 +18,7 @@ class SecurityControllerTest extends WebTestCase
 
         $form['user[email]'] = 'toto@email.com';
         $form['user[username]'] = 'usernametest';
-        $form['user[fullName]'] = 'John Doe';
+        $form['user[fullname]'] = 'John Doe';
         $form['user[password][first]'] = 'pass1';
         $form['user[password][second]'] = 'pass2';
 
