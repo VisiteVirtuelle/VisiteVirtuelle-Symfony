@@ -1,5 +1,4 @@
 menu:
-    homepage: Willkommen
     visits: Besuche
     login: Einloggen
     signup: Anmeldung
@@ -7,6 +6,21 @@ menu:
         profile: Profil
         dashboard: Armaturenbrett
         logout: Austragen
+
+admin:
+    dashboard:
+        title: Armaturenbrett
+        overview_word: Überblick
+        visit_word: Besuche
+        
+footer:
+    virtualvisit:
+        demo: Demo
+        visits_list: Liste der Besuche
+        legal: Rechtliche Hinweise
+    about:
+        title: Über
+    copyright: Entwickelt von Vincent und Guillaume ( MDR )
         
 security:
     login:
@@ -16,21 +30,46 @@ security:
         submit: Einloggen
         remember_me: Denk an mich
         forgot_password: Passwort vergessen?
-        register: Erstellen Sie ein Konto
+    register:
+        title: Registrieren
+        fullname: Vollständiger Name
+        username: Benutzername
+        email: Email
+        password_1: Passwort
+        password_2: Passwort wiederholen
+        headshot: Profilbild
+        submit: Registrieren
+        password_not_egal: Passwörter müssen identisch sein
+
+visit:
+    show:
+        link:
+            list: Besuche
+    list:
+        show: Um virtuell zu besuchen
+        empty:
+            title: Es gibt keinen Besuch!
+            message: Wenn Sie ein Agent sind, können Sie einen erstellen, indem Sie auf diese Schaltfläche klicken
+            btn_editor: Herausgeber des Besuchs
         
 http_error:
     name: Fehler %status_code%
     description: Es gab einen unbekannten Fehler (HTTP %status_code%) was das Ergebnis Ihrer Anfrage verhindert hat.
     suggestion: Versuchen Sie, diese Seite in ein paar Minuten neu zu laden <a href="%url%">ZurÃ¼ck zur Hauptseite</a>.
-    
+
 http_error_403:
     description: Sie haben keine Rechte fÃ¼r den Zugriff auf diese ressource.
     suggestion: Bitten Sie Ihren Manager oder Systemadministrator, Ihnen die Berechtigung zum Zugriff auf die Ressource zu erteilen.
-    
+
+
 http_error_404:
+    description: Nous n'avons pas pu trouver la page demandÃ©e.
+    suggestion: VÃ©rifiez si l'URL ne comporte pas d'erreurs ou <a href="%url%">retournez sur la page principale</a>.
+	
     description: Wir konnten die angeforderte Seite nicht finden.
     suggestion: ÃœberprÃ¼fen Sie, ob die URL fehlerfrei ist oder <a href="%url%">ZurÃ¼ck zur Hauptseite</a>.
-    
+
 http_error_500:
+    
     description: Es gab einen internen Serverfehler.
     suggestion: Versuchen Sie, diese Seite in ein paar Minuten neu zu laden <a href="%url%">ZurÃ¼ck zur Hauptseite</a>.

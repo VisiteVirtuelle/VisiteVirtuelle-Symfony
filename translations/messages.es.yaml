@@ -1,5 +1,4 @@
 menu:
-    homepage: Bienvenido
     visits: Visitas
     login: Conectarse
     signup: Inscribirse
@@ -8,6 +7,22 @@ menu:
         dashboard: Salpicadero
         logout: Salir
         
+admin:
+    dashboard:
+        title: Tabla de administrador
+        overview_word: Visión de conjunto
+        visit_word: Visitas
+        
+footer:
+    virtualvisit:
+        demo: Manifestación
+        visits_list: Lista de visitas
+        legal: Avisos legales
+    about:
+        title: Acerca
+    copyright: Desarrollado por Vincent y Guillaume ( MDR )
+
+
 security:
     login:
         title: Inicia sesion para continuar
@@ -16,8 +31,29 @@ security:
         submit: Conectarse
         remember_me: Se acuerda de mi
         forgot_password: ContraseÃ±a olvidada ?
-        register: Crear una cuenta
-        
+    register:
+        title: Registro
+        fullname: Nombre Completo
+        username: Nombre del usuario
+        email: E-mail
+        password_1: Contraseña
+        password_2: Repita la contraseña
+        headshot: Imagen del perfil
+        submit: Registarse
+        password_not_egal: Las contraseñas deben ser las mismas
+      
+visit:
+    show:
+        link:
+            list: Besuche
+    list:
+        show: Para visitar virtualmente
+        empty:
+            title: No hay visita!
+            message: Si usted es un agente, puede crear uno haciendo clic en este botón
+            btn_editor: Editor de visita
+
+  
 http_error:
     name: Error %status_code%
     description: Hubo un error desconocido (HTTP %status_code%) lo que impidiÃ³ el resultado de su solicitud.
