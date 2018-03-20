@@ -10,17 +10,18 @@ menu:
 admin:
     dashboard:
         title: Armaturenbrett
-        overview_word: �berblic        visit_word: Besuche
-        
+        overview_word: Überblic
+        visit_word: Besuche
+
 footer:
     virtualvisit:
         demo: Demo
         visits_list: Liste der Besuche
         legal: Rechtliche Hinweise
     about:
-        title: �be    copyright: Entwickelt von Vincent und Guillaume ( MDR )
-        
-    copyright: Entwickelt von Vincent und Guillaume
+        title: Über
+        copyright: Entwickelt von Vincent und Guillaume
+
 security:
     login:
         title: Melden Sie sich an, um fortzufahren
@@ -31,14 +32,14 @@ security:
         forgot_password: Passwort vergessen?
     register:
         title: Registrieren
-        fullname: Vollst�ndiger Name
+        fullname: Vollständiger Name
         username: Benutzername
         email: Email
         password_1: Passwort
         password_2: Passwort wiederholen
         headshot: Profilbild
         submit: Registrieren
-        password_not_egal: Passw�rter m�ssen identisch sein
+        password_not_egal: Passwörter müssen identisch sein
 
 visit:
     show:
@@ -48,9 +49,9 @@ visit:
         show: Um virtuell zu besuchen
         empty:
             title: Es gibt keinen Besuch!
-            message: Wenn Sie ein Agent sind, k�nnen Sie einen erstellen, indem Sie auf diese Schaltfl�che klicken
+            message: Wenn Sie ein Agent sind, können Sie einen erstellen, indem Sie auf diese Schaltfläche klicken
             btn_editor: Herausgeber des Besuchs
-        
+
 http_error:
     name: Fehler %status_code%
     description: Es gab einen unbekannten Fehler (HTTP %status_code%) was das Ergebnis Ihrer Anfrage verhindert hat.

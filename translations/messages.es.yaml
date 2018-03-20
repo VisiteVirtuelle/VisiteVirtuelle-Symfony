@@ -6,19 +6,20 @@ menu:
         profile: Perfil
         dashboard: Salpicadero
         logout: Salir
-        
+
 admin:
     dashboard:
         title: Tabla de administrador
-        overview_word: Visi�n de conjunt        visit_word: Visitas
-        
+        overview_word: Visión de conjunt
+        visit_word: Visitas
+
 footer:
     virtualvisit:
-        demo: Manifestaci�        visits_list: Lista de visitas
+        demo: Manifestación
+        visits_list: Lista de visitas
         legal: Avisos legales
     about:
         title: Acerca
-    copyright: Desarrollado por Vincent y Guillaume ( MDR )
     copyright: Desarrollado por Vincent y Guillaume
 
 
@@ -35,12 +36,12 @@ security:
         fullname: Nombre Completo
         username: Nombre del usuario
         email: E-mail
-        password_1: Contrase�a
-        password_2: Repita la contrase�a
+        password_1: Contraseña
+        password_2: Repita la contraseña
         headshot: Imagen del perfil
         submit: Registarse
-        password_not_egal: Las contrase�as deben ser las mismas
-      
+        password_not_egal: Las contraseñas deben ser las mismas
+
 visit:
     show:
         link:
@@ -52,20 +53,20 @@ visit:
             message: Si usted es un agente, puede crear uno haciendo clic en este bot�n
             btn_editor: Editor de visita
 
-  
+
 http_error:
     name: Error %status_code%
     description: Hubo un error desconocido (HTTP %status_code%) lo que impidió el resultado de su solicitud.
     suggestion: Intenta volver a cargar esta página en unos minutos o <a href="%url%">regresar a la página principal</a>.
-    
+
 http_error_403:
     description: No tienes derechos para acceder a este recurso.
     suggestion: Pídale a su administrador o administrador del sistema que le otorgue los derechos de acceso a los recursos.
-    
+
 http_error_404:
     description: No pudimos encontrar la página solicitada.
     suggestion: Verifica si la URL no tiene errores o <a href="%url%">regresar a la página principal</a>.
-    
+
 http_error_500:
     description: Hubo un error interno del servidor.
     suggestion: Intenta volver a cargar esta página en unos minutos o <a href="%url%">regresar a la página principal</a>.
