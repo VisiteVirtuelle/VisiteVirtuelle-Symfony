@@ -32,11 +32,13 @@ class VisitFixtures extends Fixture implements DependentFixtureInterface
         $filesystem = new Filesystem();
 
         //creating visits in the database
-        foreach ($this->getData() as [$name, $owner])
+        foreach ($this->getData() as [$name, $owner, $location])
         {
             $visit = new Visit();
             $visit->setName($name);
             $visit->setOwner($userRepository->findOneBy(['username' => $owner]));
+            $visit->setLocation($location);
+            $visit->setPrice(mt_rand(50000, 5000000));
 
             $manager->persist($visit);
         }
@@ -58,14 +60,14 @@ class VisitFixtures extends Fixture implements DependentFixtureInterface
     private function getData(): array
     {
         return [
-            // $visitData = [$name, $owner];
-            ['Antoine Bourdelle', 'Pillon'],
-            ['Mountains', 'Votop'],
-            ['Canyons', 'Votop'],
-            ['Islands', 'Votop'],
-            ['Paris', 'agent'],
-            ['UFO', 'agent'],
-            ['Misc', 'Pillon']
+            // $visitData = [$name, $owner, $location];
+            ['Antoine Bourdelle', 'Pillon', 'Montauban'],
+            ['Mountains', 'Votop', 'World'],
+            ['Canyons', 'Votop', 'USA'],
+            ['Islands', 'Votop', 'World'],
+            ['Paris', 'agent', 'Paris'],
+            ['UFO', 'agent', 'Taïwan'],
+            ['Misc', 'Pillon', 'Somewhere']
         ];
     }
 

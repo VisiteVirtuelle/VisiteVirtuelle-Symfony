@@ -41,6 +41,20 @@ class Visit
      */
     private $owner;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $location;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
 
     /**
      * Get id
@@ -98,5 +112,51 @@ class Visit
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return Visit
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set price
+     *
+     * @return Visit
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return int
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }
