@@ -4,7 +4,7 @@
 {% block main %}
     <div class="row">
         {% for visit in visits %}
-            <div class="col-4 py-3 mx-auto" style="min-width: 300px;min-height: 300px;">
+            <div class="col-4 py-3 mx-auto col-lg-4 col-md-6 col-sm-12" >
                 <div class="card" style="width:100%;height:100%;">
                     <a href="{{ path('visit_show', {'id': visit.id}) }}">
                         <img src="{{ asset("visit/" ~ visit.id ~ "/cover.jpg") }}" class="card-img-top" style="height:200px;">
