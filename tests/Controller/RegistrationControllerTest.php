@@ -4,15 +4,16 @@ namespace App\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class SecurityControllerTest extends WebTestCase
+class RegistrationControllerTest extends WebTestCase
 {
-    public function testCheckPassword(){
+    public function testCheckPassword()
+    {
         $client = static::createClient();
 
         $crawler = $client->request(
             'GET',
             '/en/register'
-            );
+        );
 
         $form = $crawler->selectButton('Register')->form();
 
@@ -26,6 +27,6 @@ class SecurityControllerTest extends WebTestCase
 
         $this->assertEquals(1,
             $crawler->filter('li:contains("This value is not valid.")')->count()
-            );
+        );
     }
 }

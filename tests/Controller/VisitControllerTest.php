@@ -6,18 +6,29 @@ use App\Entity\User;
 use App\Entity\Visit;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class VisittControllerTest extends WebTestCase
+class VisitControllerTest extends WebTestCase
 {
-    public function testCheckPassword(){
+    public function testVisitList()
+    {
         $user = new User();
-        $user->setFullName("John Doe");
-        $user->setUsername("john");
-        $user->setPassword($this->passwordEncoder->encodePassword($user, "password"));
-        $user->setEmail("john@test.com");
-        $user->setRoles(["ROLE_USER"]);
 
-        $vist = new Visit();
+        $visit = new Visit();
         $visit->setName("Test visit");
         $visit->setOwner($user);
+
+        $client = static::createClient();
+        $crawler = $client->request(
+            'GET',
+            '/en/visit/list'
+        );
+
+        $this->assertEquals(1,
+            $crawler->filter('.card:contains('.$visit->getName().')')->count()
+        );
     }
+
+    /*public function testVisitListEmpty()
+    {
+
+    }*/
 }

@@ -31,8 +31,8 @@ class RegistrationController extends Controller
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
 
@@ -54,6 +54,6 @@ class RegistrationController extends Controller
         return $this->render(
             'Security/register.html.twig',
             array('form' => $form->createView())
-            );
+        );
     }
 }
