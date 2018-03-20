@@ -5,8 +5,8 @@
  *
  * Guillaume Vidal <guillaume.vidal@gmail.com>
  *
- */ 
- 
+ */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -39,7 +39,7 @@ class User implements UserInterface, \Serializable
      * @Assert\NotBlank()
      */
     private $fullName;
-    
+
     /**
      * @var string
      *
@@ -47,7 +47,7 @@ class User implements UserInterface, \Serializable
      * @Assert\NotBlank()
      */
     private $username;
-    
+
     /**
      * @var string
      *
@@ -63,7 +63,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="json")
      */
     private $password;
-    
+
     /**
      * @var array
      *
@@ -77,7 +77,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="json")
      */
     private $roles = [];
-    
+
     /**
      * @Assert\Image(
      *     minWidth = 200,
@@ -89,8 +89,8 @@ class User implements UserInterface, \Serializable
      * )
      */
     protected $headshot;
-    
-    public function getId(): int
+
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -134,24 +134,24 @@ class User implements UserInterface, \Serializable
     {
         $this->password = $password;
     }
-    
+
     public function getLastLogin()
     {
         return $this->lastLogin;
     }
-    
+
     public function setLastLogin(\DateTime $time = null)
     {
         $this->lastLogin = $time;
 
         return $this;
     }
-    
+
     public function setHeadshot(File $file = null)
     {
         $this->headshot = $file;
     }
-    
+
     public function getHeadshot()
     {
         return $this->headshot;
@@ -176,12 +176,12 @@ class User implements UserInterface, \Serializable
     {
         $this->roles = $roles;
     }
-    
+
     public function hasRole($role)
     {
         return in_array(strtoupper($role), $this->getRoles(), true);
     }
-    
+
     public function removeRole($role)
     {
         if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {

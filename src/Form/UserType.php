@@ -27,28 +27,28 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('fullname', TextType::class)
-            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvents $event)
-            {
-                $user = $event->getData();
-                $form = $event->getForm();
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event)
+        {
+            $user = $event->getData();
+            $form = $event->getForm();
 
-                // Test pour vérifier si c'est un nouveau utilisateur (inscription en cours)
-                if(!$user || $user->getId())
-                {
-                    $form
-                        ->add('username', TextType::class)
-                        ->add('email', EmailType::class)
-                        ->add('password', RepeatedType::class, array(
-                            'type' => PasswordType::class,
-                            'first_options'  => array('label' => 'Password'),
-                            'second_options' => array('label' => 'Repeat Password')
-                        ));
-                } else {
-                    $form->add('headshot', FileType::class);
-                }
-            });
+            // Test pour vérifier si c'est un nouveau utilisateur (inscription en cours)
+            if(!$user || null === $user->getId())
+            {
+                $form
+                    ->add('username', TextType::class)
+                    ->add('email', EmailType::class)
+                    ->add('password', RepeatedType::class, array(
+                        'type' => PasswordType::class,
+                        'first_options'  => array('label' => 'Password'),
+                        'second_options' => array('label' => 'Repeat Password')
+                    ));
+            } else {
+                $form
+                    ->add('fullname', TextType::class)
+                    ->add('headshot', FileType::class);
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver)

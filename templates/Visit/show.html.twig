@@ -31,6 +31,9 @@
 {% endblock %}
 
 {% block main %}
-    <h2>{{ visit.name }}</h2>
-    <canvas style="height:100%; width:100%;"></canvas>
+    <div class="text-center py-3">
+        <h4>{{ visit.name }}</h2>
+        <canvas style="height:100%; width:100%;"></canvas>
+        <small class="font-weight-light">{{ 'visit.show.copyright'|trans }}</small>
+    </div>
 {% endblock %}

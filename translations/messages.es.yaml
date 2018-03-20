@@ -10,17 +10,16 @@ menu:
 admin:
     dashboard:
         title: Tabla de administrador
-        overview_word: Visión de conjunto
-        visit_word: Visitas
+        overview_word: Visiï¿½n de conjunt        visit_word: Visitas
         
 footer:
     virtualvisit:
-        demo: Manifestación
-        visits_list: Lista de visitas
+        demo: Manifestaciï¿½        visits_list: Lista de visitas
         legal: Avisos legales
     about:
         title: Acerca
     copyright: Desarrollado por Vincent y Guillaume ( MDR )
+    copyright: Desarrollado por Vincent y Guillaume
 
 
 security:
@@ -36,11 +35,11 @@ security:
         fullname: Nombre Completo
         username: Nombre del usuario
         email: E-mail
-        password_1: Contraseña
-        password_2: Repita la contraseña
+        password_1: Contraseï¿½a
+        password_2: Repita la contraseï¿½a
         headshot: Imagen del perfil
         submit: Registarse
-        password_not_egal: Las contraseñas deben ser las mismas
+        password_not_egal: Las contraseï¿½as deben ser las mismas
       
 visit:
     show:
@@ -50,7 +49,7 @@ visit:
         show: Para visitar virtualmente
         empty:
             title: No hay visita!
-            message: Si usted es un agente, puede crear uno haciendo clic en este botón
+            message: Si usted es un agente, puede crear uno haciendo clic en este botï¿½n
             btn_editor: Editor de visita
 
   

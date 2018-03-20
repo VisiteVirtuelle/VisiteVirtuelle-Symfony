@@ -10,8 +10,7 @@ menu:
 admin:
     dashboard:
         title: Armaturenbrett
-        overview_word: Überblick
-        visit_word: Besuche
+        overview_word: ï¿½berblic        visit_word: Besuche
         
 footer:
     virtualvisit:
@@ -19,9 +18,9 @@ footer:
         visits_list: Liste der Besuche
         legal: Rechtliche Hinweise
     about:
-        title: Über
-    copyright: Entwickelt von Vincent und Guillaume ( MDR )
+        title: ï¿½be    copyright: Entwickelt von Vincent und Guillaume ( MDR )
         
+    copyright: Entwickelt von Vincent und Guillaume
 security:
     login:
         title: Melden Sie sich an, um fortzufahren
@@ -32,14 +31,14 @@ security:
         forgot_password: Passwort vergessen?
     register:
         title: Registrieren
-        fullname: Vollständiger Name
+        fullname: Vollstï¿½ndiger Name
         username: Benutzername
         email: Email
         password_1: Passwort
         password_2: Passwort wiederholen
         headshot: Profilbild
         submit: Registrieren
-        password_not_egal: Passwörter müssen identisch sein
+        password_not_egal: Passwï¿½rter mï¿½ssen identisch sein
 
 visit:
     show:
@@ -49,7 +48,7 @@ visit:
         show: Um virtuell zu besuchen
         empty:
             title: Es gibt keinen Besuch!
-            message: Wenn Sie ein Agent sind, können Sie einen erstellen, indem Sie auf diese Schaltfläche klicken
+            message: Wenn Sie ein Agent sind, kï¿½nnen Sie einen erstellen, indem Sie auf diese Schaltflï¿½che klicken
             btn_editor: Herausgeber des Besuchs
         
 http_error:
@@ -63,13 +62,9 @@ http_error_403:
 
 
 http_error_404:
-    description: Nous n'avons pas pu trouver la page demandÃ©e.
-    suggestion: VÃ©rifiez si l'URL ne comporte pas d'erreurs ou <a href="%url%">retournez sur la page principale</a>.
-	
     description: Wir konnten die angeforderte Seite nicht finden.
     suggestion: ÃœberprÃ¼fen Sie, ob die URL fehlerfrei ist oder <a href="%url%">ZurÃ¼ck zur Hauptseite</a>.
 
 http_error_500:
-    
     description: Es gab einen internen Serverfehler.
     suggestion: Versuchen Sie, diese Seite in ein paar Minuten neu zu laden <a href="%url%">ZurÃ¼ck zur Hauptseite</a>.

@@ -30,6 +30,7 @@ class DashboardController
     
     /**
      * @Route("/{template}", name="dashboard")
+     * @Route("/{template}", defaults={"template"=""}), name="dashboard")
      */
     public function dashboard($template, Environment $twig)
     {
