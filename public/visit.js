@@ -27,6 +27,18 @@ const material = new THREE.MeshBasicMaterial({map: texture,overdraw: 0.5});
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
+const canvas = renderer.domElement;
+
+var text2 = document.createElement('div');
+text2.style.position = 'absolute';
+text2.style.width = 100;
+text2.style.height = 100;
+text2.style.backgroundColor = "white";
+text2.innerHTML = rooms.keys().next().value;
+text2.style.top = (canvas.clientHeight/2 - 100) + 'px';
+text2.style.left =  window.innerWidth/2  + 'px';
+document.body.appendChild(text2);
+
 //Initialisation du menu
 initGui();
 
@@ -43,6 +55,7 @@ function initGui()
 
     gui.add(obj, 'Room', Array.from(rooms.keys())).onChange(
         function(){
+			text2.innerHTML = obj.Room;
             loadImg(rooms.get(obj.Room));
         }
     );
@@ -116,7 +129,6 @@ function getXHR()
 
 function resizeCanvasToDisplaySize(force)
 {
-    const canvas = renderer.domElement;
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
     if (force || canvas.width !== width ||canvas.height !== height)
