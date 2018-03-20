@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sidebar>
+    <group>
+        <name>name 1</name>
+        <url>url 1</url>
+    </group>
+    <group>
+        <name>name 2</name>
+        <url>url 2</url>
+    </group>
+    <group>
+        <name>name 3</name>
+        <url>url 3</url>
+    </group>
+</sidebar>

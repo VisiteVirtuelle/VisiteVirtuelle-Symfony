@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -76,7 +77,19 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="json")
      */
     private $roles = [];
-
+    
+    /**
+     * @Assert\Image(
+     *     minWidth = 200,
+     *     maxWidth = 400,
+     *     minHeight = 200,
+     *     maxHeight = 400,
+     *     allowLandscape = false,
+     *     allowPortrait = false
+     * )
+     */
+    protected $headshot;
+    
     public function getId(): int
     {
         return $this->id;
@@ -132,6 +145,16 @@ class User implements UserInterface, \Serializable
         $this->lastLogin = $time;
 
         return $this;
+    }
+    
+    public function setHeadshot(File $file = null)
+    {
+        $this->headshot = $file;
+    }
+    
+    public function getHeadshot()
+    {
+        return $this->headshot;
     }
 
     /**

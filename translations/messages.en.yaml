@@ -7,6 +7,12 @@ menu:
         dashboard: Dashboard
         logout: Log out
 
+admin:
+    dashboard:
+        title: Admin Dashboard
+        overview_word: Overview
+        visit_word: Visits
+        
 footer:
     virtualvisit:
         demo: Demo
@@ -24,8 +30,16 @@ security:
         submit: Sign in
         forgot_password: Forgot the password ?
     register:
+        title: Register
+        fullname: Full name
+        username: User name
+        email: Email
+        password_1: Password
+        password_2: Repeat password
+        headshot: Profile picture
         submit: Register
-
+        password_not_egal: Passwords must be the same !
+        
 visit:
     show:
         link:
@@ -36,7 +50,7 @@ visit:
             title: There's no visit yet !
             message: If you're an agent you can create one by clicking on this button
             btn_editor: Visit Editor
-
+        
 http_error:
     name: Error %status_code%
     description: There was an unknown error (HTTP %status_code%) that prevented to complete your request.
