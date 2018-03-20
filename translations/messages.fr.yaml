@@ -36,7 +36,7 @@ security:
         email: Email
         password_1: Mot de passe
         password_2: Répeter le mot de passe
-        headshot: Image de profile
+        headshot: Image de profil
         submit: S'inscrire
         password_not_egal: Les mots de passe doivent être identique
 
