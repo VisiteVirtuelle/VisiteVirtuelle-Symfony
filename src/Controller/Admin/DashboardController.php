@@ -29,32 +29,40 @@ class DashboardController
     }
     
     /**
-     * @Route("/", name="dashboard")
+     * @Route("/{template}", name="dashboard")
      */
-    public function dashboard(Environment $twig)
+    public function dashboard($template, Environment $twig)
     {
-        $xmlFile = $this->project_dir.'/templates/Admin/dashboard_sidebar.xml';
+        $xmlFile = $this->project_dir.'/config/dashboard_sidebar.xml';
         if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }
-        
         $xml = simplexml_load_file($xmlFile);
         
         $groups = [];
-        foreach($xml->children() as $group)
+        foreach ($xml->children() as $group)
         {
             array_push($groups, $group);
         }
         
-        $urls = [];
-        foreach($xml->children() as $url)
+        $links = [];
+        foreach ($xml->children() as $link)
         {
-            array_push($urls, $url);
+            array_push($links, $link);
         }
-        echo "url: ".$url;
+        
+        $path = 'Admin/_overview.html.twig';
+        foreach ($xml->links->children() as $link)
+        {
+            if ($template == strtolower($group->link->name))
+            {
+                $path = $group->link->url;
+                break;
+            }
+        }
         
         return new Response($twig->render('Admin/dashboard.html.twig', [
-            'template' => 'Admin/_overview.html.twig',
+            'template' => $path,
             'groups' => $groups,
-            'urls' => $urls
+            'links' => $links
         ]));
     }
 }

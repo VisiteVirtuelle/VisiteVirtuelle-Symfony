@@ -7,13 +7,13 @@
         <div class="col-2">
             <ul class="navbar-nav">
                 {% for group in groups %}
-                    <li>
-                        <a href=urls>
-                            {{ group.name }}
-                        </a>
-                    </li>
-                {% else %}
-                    <li>C'est vide</li>
+                    {% for link in links %}
+                        <li>
+                            <a href="{{ path('admin_dashboard', {'template' : group.link.name|lower}) }}">
+                                {{ group.link.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
                 {% endfor %}
             </ul>
         </div>
