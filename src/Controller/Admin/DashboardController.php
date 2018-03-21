@@ -39,38 +39,31 @@ class DashboardController
         $xml = simplexml_load_file($xmlFile);
         
         $path = 'Admin/_overview.html.twig';
-        $groups = [];
+        
+        $xmlStruct = [];
+        $groupName = [];
+        $linkName = [];
+        
         foreach ($xml->children() as $group)
         {
-            $links = [];
-            $groupName = $group['name'];
+            array_push($groupName, $group['name']);
             
             foreach ($group->children() as $link)
             {
-                array_push($links, $link['name']);
+                array_push($linkName, $link['name']);
                 
                 if ($template == strtolower($link['name']))
                 {
                     $path = $link;
-                    break;
                 }
             }
-            
-            array_push($groups, [$groupName, $links]);
         }
         
-        
-        foreach ($group as $groups)
-        {
-            echo $group;
-            foreach ($link as $group->$link)
-            {
-                echo '\n   -link: '.$link;
-            }
-        }
+        array_push($xmlStruct, $groupName);
+        array_push($xmlStruct, $linkName);
         
         return new Response($twig->render('Admin/dashboard.html.twig', [
-            'groups' => $groups,
+            'xmlStruct' => $xmlStruct,
             'path' => $path
         ]));
     }
