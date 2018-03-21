@@ -38,32 +38,101 @@ class DashboardController
         if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }
         $xml = simplexml_load_file($xmlFile);
         
+        $path = 'Admin/_overview.html.twig';
         $groups = [];
         foreach ($xml->children() as $group)
         {
-            array_push($groups, $group);
-        }
-        
-        $links = [];
-        foreach ($xml->children() as $link)
-        {
-            array_push($links, $link);
-        }
-        
-        $path = 'Admin/_overview.html.twig';
-        foreach ($xml->links->children() as $link)
-        {
-            if ($template == strtolower($group->link->name))
+            $links = [];
+            $groupName = $group['name'];
+            
+            foreach ($group->children() as $link)
             {
-                $path = $group->link->url;
-                break;
+                array_push($links, $link['name']);
+                
+                if ($template == strtolower($link['name']))
+                {
+                    $path = $link;
+                    break;
+                }
+            }
+            
+            array_push($groups, [$groupName, $links]);
+        }
+        
+        
+        foreach ($group as $groups)
+        {
+            echo $group;
+            foreach ($link as $group->$link)
+            {
+                echo '\n   -link: '.$link;
             }
         }
         
         return new Response($twig->render('Admin/dashboard.html.twig', [
-            'template' => $path,
             'groups' => $groups,
-            'links' => $links
+            'path' => $path
         ]));
     }
 }
+
+/*
+
+$xmlFile = $this->project_dir.'/config/dashboard_sidebar.xml';
+        if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }
+        $xml = simplexml_load_file($xmlFile);
+        
+        $path = 'Admin/_overview.html.twig';
+        
+        $groups = [];
+        $names = [];
+        foreach ($xml->children() as $group)
+        {
+            array_push($groups, $group['id']);
+            
+            foreach ($group->children() as $link)
+            {
+                array_push($names, $link['name']);
+                
+                if ($template == strtolower($link['name']))
+                {
+                    $path = $link;
+                    break;
+                }
+            }
+        }
+        
+        $struct = [$groups, $names];
+        
+        return new Response($twig->render('Admin/dashboard.html.twig', [
+            'struct' => $struct,
+            'path' => $path
+        ]));
+
+
+$xmlFile = $this->project_dir.'/config/dashboard_sidebar.xml';
+if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }
+$xml = simplexml_load_file($xmlFile);
+
+$path = 'Admin/_overview.html.twig';
+
+$names = [];
+foreach ($xml->children() as $group)
+{
+    foreach ($group->children() as $link)
+    {
+        array_push($names, $link['name']);
+        
+        if ($template == strtolower($link['name']))
+        {
+            $path = $link;
+        }
+    }
+}
+
+return new Response($twig->render('Admin/dashboard.html.twig', [
+    'names' => $names,
+    'path' => $path
+]));
+
+*/

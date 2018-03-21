@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sidebar>
     <group>
-        <link>
-            <name>Overview</name>
-            <url>Admin/overviewtest.html.twig</url>
-        </link>
-        <link>
-            <name>Visits</name>
-            <url>Admin/visitstest.html.twig</url>
-        </link>
+        <link name="Overview">/Admin/overviewtest.html.twig</link>
+        <link name="Users">/Admin/userstest.html.twig</link>
     </group>
-    <group>
-        <link>
-            <name>Users</name>
-            <url>Admin/userstest.html.twig</url>
-        </link>
+    <group name="Visit">
+        <link name="Visits">/Admin/visitstest.html.twig</link>
     </group>
 </sidebar>

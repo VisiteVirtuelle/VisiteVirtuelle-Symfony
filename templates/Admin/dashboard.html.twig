@@ -5,21 +5,22 @@
 {% block body %}
     <div class="row">
         <div class="col-2">
-            <ul class="navbar-nav">
-                {% for group in groups %}
-                    {% for link in links %}
+            {% for group in groups %}
+                <ul class="navbar-nav">
+                    <h4>group.name</h4>
+                    {% for link in group.links %}
                         <li>
-                            <a href="{{ path('admin_dashboard', {'template' : group.link.name|lower}) }}">
-                                {{ group.link.name }}
+                            <a href="{{ path('admin_dashboard', {'template' : link|lower}) }}">
+                                {{ link }}
                             </a>
                         </li>
                     {% endfor %}
-                {% endfor %}
-            </ul>
+                </ul>
+            {% endfor %}
         </div>
 
         <div class="col">
-            {% include template  %}
+            {% include path  %}
         </div>
     </div>
 {% endblock %}
