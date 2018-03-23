@@ -31,7 +31,11 @@
                             <div class="dropdown-menu" role="menu">
                                 {# username #}
                                 <h6 class="dropdown-header bg-light" role="presentation">
-                                    {{ app.user.fullName }}
+                                    {% if app.user.fullname %}
+                                        {{ app.user.fullname }}
+                                    {% else %}
+                                        {{ app.user.username }}
+                                    {% endif %}
                                 </h6>
                                 {# lien profile #}
                                 <a class="dropdown-item" role="presentation" href="{{ path('user_profile_show') }}">
