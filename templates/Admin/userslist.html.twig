@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    {% for user in users %}
+        {{ user.id }}
+        {{ user.email }}
+    {% endfor %}
+{% endblock %}
