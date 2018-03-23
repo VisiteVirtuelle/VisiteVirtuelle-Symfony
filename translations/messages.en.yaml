@@ -20,7 +20,7 @@ footer:
         legal: Legal
     about:
         title: About
-    copyright: Developped by Vincent and Guillaume
+    copyright: App developped by Vincent and Guillaume Designed by Malko
 
 security:
     login:
@@ -42,7 +42,7 @@ security:
 
 visit:
     show:
-        copyright: 360°Viewer developped by Valentin and Thomas
+        copyright: 360° Viewer developped by Valentin and Thomas
         link:
             list: Visits
     list:

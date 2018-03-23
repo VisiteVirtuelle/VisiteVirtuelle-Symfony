@@ -5,24 +5,18 @@
 {% block body %}
     <div class="row">
         <div class="col-2">
-            <h4>{{ xmlStruct[0][1] }}</h4>
-            <ul class="navbar-nav">
-                <li>
-                    <a href="{{ path('admin_dashboard', {'template' : xmlStruct[1][0]|lower}) }}">
-                        {{ xmlStruct[1][0] }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('admin_dashboard', {'template' : xmlStruct[1][1]|lower}) }}">
-                        {{ xmlStruct[1][1] }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('admin_dashboard', {'template' : xmlStruct[1][2]|lower}) }}">
-                        {{ xmlStruct[1][2] }}
-                    </a>
-                </li>
-            </ul>
+            {% for group in groups %}
+                <h4>{{ group.name }}</h4>
+                <ul class="navbar-nav">
+                    {% for link in group.links %}
+                        <li>
+                            <a href="{{ path('admin_dashboard', {'template' : link|lower}) }}">
+                                {{ link }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
         </div>
 
         <div class="col">

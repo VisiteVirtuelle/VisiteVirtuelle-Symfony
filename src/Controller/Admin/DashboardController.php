@@ -38,35 +38,40 @@ class DashboardController
         if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }
         $xml = simplexml_load_file($xmlFile);
         
-        $path = 'Admin/_overview.html.twig';
+        $path = 'Admin/_overview.html.twig';     
         
-        $xmlStruct = [];
-        $groupName = [];
-        $linkName = [];
-        
+        $groups = [];
         foreach ($xml->children() as $group)
         {
-            array_push($groupName, $group['name']);
+            $groupObj = new GroupStruct();
+            $groupObj->name = $group['name'];
             
+            $links = [];
             foreach ($group->children() as $link)
             {
-                array_push($linkName, $link['name']);
+                array_push($links, $link['name']);
                 
                 if ($template == strtolower($link['name']))
                 {
                     $path = $link;
                 }
             }
+            
+            $groupObj->links = $links;
+            array_push($groups, $groupObj);
         }
         
-        array_push($xmlStruct, $groupName);
-        array_push($xmlStruct, $linkName);
-        
         return new Response($twig->render('Admin/dashboard.html.twig', [
-            'xmlStruct' => $xmlStruct,
+            'groups' => $groups,
             'path' => $path
         ]));
     }
+}
+
+class GroupStruct
+{
+    public $name;
+    public $links;
 }
 
 /*
