@@ -3,10 +3,11 @@
 /*
  * This file is part of the Virtual Visit application.
  *
+ * Vincent Claveau <vinc.claveau@gmail.com>
  * Guillaume Vidal <guillaume.vidal@gmail.com>
  *
  */
- 
+
 namespace App;
 
 /**
@@ -26,4 +27,5 @@ final class Events
      * @var string
      */
     const USER_REGISTERED = 'user.registered';
+    const USER_PROFILE_EDIT = 'user.profile.edit';
 }

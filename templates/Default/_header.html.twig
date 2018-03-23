@@ -34,7 +34,7 @@
                                     {{ app.user.fullName }}
                                 </h6>
                                 {# lien profile #}
-                                <a class="dropdown-item" role="presentation" href="#">
+                                <a class="dropdown-item" role="presentation" href="{{ path('user_profile_show') }}">
                                     <i class="fa fa-address-card pr-1"></i>
                                     {{ 'menu.user_menu.profile'|trans }}
                                 </a>

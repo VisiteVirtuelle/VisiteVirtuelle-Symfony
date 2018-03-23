@@ -9,20 +9,23 @@
 
 namespace App\Controller\User;
 
-use App\Form\UserType;
 use App\Entity\User;
 use App\Events;
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\EventDispatcher\GenericEvent;
 
+/**
+ * @Route("/", name="user_")
+ */
 class RegistrationController extends Controller
 {
     /**
-     * @Route("/register", name="user_registration_register")
+     * @Route("/register", name="registration_register")
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, EventDispatcherInterface $eventDispatcher)
     {
@@ -47,11 +50,11 @@ class RegistrationController extends Controller
             $event = new GenericEvent($user);
             $eventDispatcher->dispatch(Events::USER_REGISTERED, $event);
 
-            return $this->redirectToRoute('security_login');
+            return $this->redirectToRoute('user_security_login');
         }
 
         return $this->render(
-            'Security/register.html.twig',
+            'User/Registration/register.html.twig',
             array('form' => $form->createView())
         );
     }

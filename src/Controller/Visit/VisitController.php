@@ -28,7 +28,8 @@ class VisitController
     {
         $visit = $doctrine->getRepository(Visit::class)->find($id);
 
-        if (null === $visit) {
+        if (null === $visit)
+        {
             throw new NotFoundHttpException("This visit doesn't exist!");
         }
 
