@@ -36,7 +36,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank()
      */
     private $fullName;
 
