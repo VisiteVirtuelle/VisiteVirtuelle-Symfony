@@ -10,7 +10,9 @@
  
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,15 +32,16 @@ class DashboardController
     
     /**
      * @Route("/{template}", name="dashboard")
-     * @Route("/{template}", defaults={"template"=""}), name="dashboard")
+     * @Route("/{template}", defaults={"template"=""}, name="dashboard")
      */
-    public function dashboard($template, Environment $twig)
+    public function dashboard($template, Environment $twig, RegistryInterface $doctrine)
     {
         $xmlFile = $this->project_dir.'/config/dashboard_sidebar.xml';
         if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }
         $xml = simplexml_load_file($xmlFile);
         
         $path = 'Admin/_overview.html.twig';     
+        $users = $doctrine->getRepository(User::class)->findAll();
         
         $groups = [];
         foreach ($xml->children() as $group)
@@ -63,7 +66,8 @@ class DashboardController
         
         return new Response($twig->render('Admin/dashboard.html.twig', [
             'groups' => $groups,
-            'path' => $path
+            'path' => $path,
+            'users' => $users
         ]));
     }
 }
@@ -73,64 +77,3 @@ class GroupStruct
     public $name;
     public $links;
 }
-
-/*
-
-$xmlFile = $this->project_dir.'/config/dashboard_sidebar.xml';
-        if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }
-        $xml = simplexml_load_file($xmlFile);
-        
-        $path = 'Admin/_overview.html.twig';
-        
-        $groups = [];
-        $names = [];
-        foreach ($xml->children() as $group)
-        {
-            array_push($groups, $group['id']);
-            
-            foreach ($group->children() as $link)
-            {
-                array_push($names, $link['name']);
-                
-                if ($template == strtolower($link['name']))
-                {
-                    $path = $link;
-                    break;
-                }
-            }
-        }
-        
-        $struct = [$groups, $names];
-        
-        return new Response($twig->render('Admin/dashboard.html.twig', [
-            'struct' => $struct,
-            'path' => $path
-        ]));
-
-
-$xmlFile = $this->project_dir.'/config/dashboard_sidebar.xml';
-if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }
-$xml = simplexml_load_file($xmlFile);
-
-$path = 'Admin/_overview.html.twig';
-
-$names = [];
-foreach ($xml->children() as $group)
-{
-    foreach ($group->children() as $link)
-    {
-        array_push($names, $link['name']);
-        
-        if ($template == strtolower($link['name']))
-        {
-            $path = $link;
-        }
-    }
-}
-
-return new Response($twig->render('Admin/dashboard.html.twig', [
-    'names' => $names,
-    'path' => $path
-]));
-
-*/
