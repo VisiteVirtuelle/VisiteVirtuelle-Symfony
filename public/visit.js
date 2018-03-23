@@ -21,7 +21,7 @@ const scene = new THREE.Scene();
 const geometry = new THREE.SphereBufferGeometry(500, 60, 40);
 geometry.scale(-1, 1, 1);
 
-var texture = new THREE.TextureLoader().load('http://localhost:8000/visit/' + visit.id + "/" + rooms.values().next().value);
+var texture = rooms.values().next().value;
 const material = new THREE.MeshBasicMaterial({map: texture,overdraw: 0.5});
 
 const mesh = new THREE.Mesh(geometry, material);
@@ -36,7 +36,7 @@ text2.style.height = 100;
 text2.style.backgroundColor = "white";
 text2.innerHTML = rooms.keys().next().value;
 text2.style.top = (canvas.clientHeight/2 - 100) + 'px';
-text2.style.left =  window.innerWidth/2  + 'px';
+text2.style.left =  canvas.clientWidth/2  + 'px';
 document.body.appendChild(text2);
 
 //Initialisation du menu
@@ -93,15 +93,15 @@ function MouseUp( event )
 //Fonction qui gere le controle molette et permet de zoomer ou dezoumer sur une image
 function MouseWheel( event )
 {
-    var fov = camera.fov + event.deltaY * 0.05;
+    /*var fov = camera.fov + event.deltaY * 0.05;
     camera.fov = THREE.Math.clamp( fov, 10, 75 );
-    camera.updateProjectionMatrix();
+    camera.updateProjectionMatrix();*/
+	
 }
 
 function loadImg(path)
 {
-    mesh.material.map = THREE.ImageUtils.loadTexture( "http://localhost:8000/visit/" + visit.id + "/" + path );
-    mesh.material.needsUpdate = true;
+	mesh.material.map = path;
 }
 
 function getXHR()
@@ -122,13 +122,15 @@ function getXHR()
     {
         rooms.set(
             x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
-            x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue
+			 new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
         );
+		
     }
 }
 
 function resizeCanvasToDisplaySize(force)
 {
+   
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
     if (force || canvas.width !== width ||canvas.height !== height)
@@ -140,6 +142,8 @@ function resizeCanvasToDisplaySize(force)
 
         // set render target sizes here
     }
+	//text2.style.top = (canvas.clientHeight/2 - 100) + 'px';
+	//text2.style.left =  canvas.clientWidth/2  + 'px';
 }
 
 //Fonction qui mets a jour les valeurs de la camera
