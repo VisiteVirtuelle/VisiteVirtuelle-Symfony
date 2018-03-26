@@ -28,4 +28,6 @@ final class Events
      */
     const USER_REGISTERED = 'user.registered';
     const USER_PROFILE_EDIT_SUCCESS = 'user.profile.edit.success';
+    const VISIT_EDITOR_EDIT_SUCCESS = 'visit.editor.edit.success';
+    const VISIT_EDITOR_NEW_SUCCESS = 'visit.editor.new.success';
 }

@@ -9,21 +9,69 @@
 
 namespace App\Controller\Visit;
 
+use App\Events;
+use App\Entity\User;
 use App\Entity\Visit;
+use App\Form\VisitType;
+use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Environment;
 
 /**
  * @Route("/editor", name="visit_editor_")
  */
-class EditorController
+class EditorController extends Controller
 {
     /**
-     * @Route("/test", name="test")
+     * @Route("/{id}", defaults={"id" = "new"}, requirements={"id": "\d+"}, name="edit")
      */
-    public function test(Environment $twig)
+    public function edit($id, Request $request, Environment $twig, TokenStorageInterface $tokenStorage, RegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
     {
-        return new Response($twig->render('visit/editor/template.html.twig'));
+        if($id === "new")
+        {
+            $visit = new Visit();
+            $visit->setOwner($tokenStorage->getToken()->getUser());
+        } else {
+            $visit = $doctrine->getRepository(Visit::class)->find($id);
+
+            if (null === $visit)
+            {
+                throw new NotFoundHttpException("This visit doesn't exist!");
+            }
+        }
+
+        $form = $this->createForm(VisitType::class, $visit);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            // On enregistre l'utilisateur dans la base
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($visit);
+            $em->flush();
+
+            //On déclenche l'event
+            $event = new GenericEvent($visit);
+            if($id === "new")
+            {
+                $eventDispatcher->dispatch(Events::VISIT_EDITOR_EDIT_SUCCESS, $event);
+            } else {
+                $eventDispatcher->dispatch(Events::VISIT_EDITOR_NEW_SUCCESS, $event);
+            }
+
+            return $this->redirectToRoute('visit_list');
+        }
+
+        return new Response($twig->render('visit/editor/template.html.twig', [
+            'form' => $form->createView(),
+            'visit' => $visit
+        ]));
     }
 }

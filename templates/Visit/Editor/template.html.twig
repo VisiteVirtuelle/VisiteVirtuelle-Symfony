@@ -28,42 +28,40 @@
         Visit editor
     </h2>
 
-    {{ form_start(form) }}
-
-
-        <button type="submit">
-            {{ 'security.register.submit'|trans }}
-        </button>
-    {{ form_end(form) }}
-
     <div class="row">
         <div class="col">
             <h5 class="text-center">Properties</h5>
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                            <td class="float-right"><strong>Name</strong></td>
-                            <td>{{ form_row(form.name) }}</td>
-                        </tr>
-                        <tr>
-                            <td class="float-right"><strong>Owner</strong></td>
-                            <td>Pillon</td>
-                        </tr>
-                        <tr>
-                            <td class="float-right"><strong>Location</strong></td>
-                            <td>{{ form_row(form.location) }}</td>
-                        </tr>
-                        <tr>
-                            <td class="float-right"><strong>Surface</strong></td>
-                            <td>{{ form_row(form.sqft) }}</td>
-                        </tr>
-                        <tr>
-                            <td class="float-right"><strong>Price</strong></td>
-                            <td>{{ form_row(form.price) }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                {{ form_start(form) }}
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td class="float-right"><strong>Name</strong></td>
+                                <td>{{ form_row(form.name, { 'label': '' }) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="float-right"><strong>Owner</strong></td>
+                                <td>Pillon</td>
+                            </tr>
+                            <tr>
+                                <td class="float-right"><strong>Location</strong></td>
+                                <td>{{ form_row(form.location) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="float-right"><strong>Surface</strong></td>
+                                <td>{{ form_row(form.sqft) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="float-right"><strong>Price</strong></td>
+                                <td>{{ form_row(form.price) }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <button type="submit">
+                        {{ 'security.register.submit'|trans }}
+                    </button>
+                {{ form_end(form) }}
             </div>
         </div>
 

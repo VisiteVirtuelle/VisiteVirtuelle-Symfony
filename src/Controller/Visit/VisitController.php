@@ -10,10 +10,10 @@
 namespace App\Controller\Visit;
 
 use App\Entity\Visit;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 use Twig\Environment;
 
 /**

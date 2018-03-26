@@ -9,8 +9,8 @@
 
 namespace App\Controller\User;
 
-use App\Entity\User;
 use App\Events;
+use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
