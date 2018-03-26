@@ -44,7 +44,7 @@
                     <tbody>
                         <tr>
                             <td class="float-right"><strong>Name</strong></td>
-                            <td>{{ form_row(form.name) }}</td>
+                            <td><input type="text" value="{{ form_row(form.name) }}"/></td>
                         </tr>
                         <tr>
                             <td class="float-right"><strong>Owner</strong></td>
@@ -52,15 +52,15 @@
                         </tr>
                         <tr>
                             <td class="float-right"><strong>Location</strong></td>
-                            <td>{{ form_row(form.location) }}</td>
+                            <td><input type="text" value)"{{ form_row(form.location) }}"/></td>
                         </tr>
                         <tr>
                             <td class="float-right"><strong>Surface</strong></td>
-                            <td>{{ form_row(form.sqft) }}</td>
+                            <td><input type="number" min="1" step="1" value ="{{ form_row(form.sqft) }}"/></td>
                         </tr>
                         <tr>
                             <td class="float-right"><strong>Price</strong></td>
-                            <td>{{ form_row(form.price) }}</td>
+                            <td><input type="number" min="1" step="10" value="{{ form_row(form.price) }}"/></td>
                         </tr>
                     </tbody>
                 </table>
