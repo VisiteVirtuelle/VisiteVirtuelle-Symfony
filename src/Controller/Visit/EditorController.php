@@ -29,6 +29,13 @@ use Twig\Environment;
  */
 class EditorController extends Controller
 {
+    private $project_dir;
+
+    public function __construct(string $project_dir)
+    {
+        $this->project_dir = $project_dir.'/public/visit/';
+    }
+
     /**
      * @Route("/{id}", defaults={"id" = "new"}, requirements={"id": "\d+"}, name="edit")
      */
@@ -49,10 +56,14 @@ class EditorController extends Controller
 
         $form = $this->createForm(VisitType::class, $visit);
         $form->handleRequest($request);
+        if($id != "new")
+        {
+            $form->get('cover')->setData($this->project_dir.$id.'/cover.jpg');
+        }
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            // On enregistre l'utilisateur dans la base
+            // On enregistre la visite dans la base
             $em = $this->getDoctrine()->getManager();
             $em->persist($visit);
             $em->flush();
@@ -69,7 +80,7 @@ class EditorController extends Controller
             return $this->redirectToRoute('visit_list');
         }
 
-        return new Response($twig->render('visit/editor/template.html.twig', [
+        return new Response($twig->render('visit/editor/edit.html.twig', [
             'form' => $form->createView(),
             'visit' => $visit
         ]));

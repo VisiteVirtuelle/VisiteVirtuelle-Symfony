@@ -28,20 +28,20 @@
         Visit editor
     </h2>
 
-    <div class="row">
-        <div class="col">
-            <h5 class="text-center">Properties</h5>
-            <div class="table-responsive">
-                {{ form_start(form) }}
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col">
+                <h5 class="text-center">Properties</h5>
+                <div class="table-responsive">
                     <table class="table table-striped">
                         <tbody>
                             <tr>
                                 <td class="float-right"><strong>Name</strong></td>
-                                <td>{{ form_row(form.name, { 'label': '' }) }}</td>
+                                <td>{{ form_row(form.name) }}</td>
                             </tr>
                             <tr>
                                 <td class="float-right"><strong>Owner</strong></td>
-                                <td>Pillon</td>
+                                <td>{{ visit.owner.username }}</td>
                             </tr>
                             <tr>
                                 <td class="float-right"><strong>Location</strong></td>
@@ -57,18 +57,20 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
 
-                    <button type="submit">
-                        {{ 'security.register.submit'|trans }}
-                    </button>
-                {{ form_end(form) }}
+            <div class="col">
+                <h5 class="text-center">Cover</h5>
+                <img src="../assets/img/visit/cover/bourdelle.jpg" width="100%">
+                {{ form_row(form.cover) }}
             </div>
         </div>
 
-        <div class="col">
-            <h5 class="text-center">Cover</h5><img src="../assets/img/visit/cover/bourdelle.jpg" width="100%">
-        </div>
-    </div>
+        <button type="submit">
+            {{ 'security.register.submit'|trans }}
+        </button>
+    {{ form_end(form) }}
 
     <hr>
 
