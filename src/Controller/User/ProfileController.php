@@ -10,6 +10,7 @@
 namespace App\Controller\User;
 
 use App\Entity\User;
+use App\Events;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -24,7 +25,7 @@ use Twig\Environment;
 /**
  * @Route("/profile", name="user_profile_")
  */
-class ProfileController
+class ProfileController extends Controller
 {
     /**
      * @Route("/", name="show")
@@ -45,8 +46,9 @@ class ProfileController
 
     /**
      * @Route("/edit", name="edit")
+     * @param Request $request
      */
-    public function edit(Environment $twig, TokenStorageInterface $tokenStorage)
+    public function edit(Request $request, Environment $twig, TokenStorageInterface $tokenStorage, EventDispatcherInterface $eventDispatcher)
     {
         $user = $tokenStorage->getToken()->getUser();
 
@@ -55,9 +57,9 @@ class ProfileController
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        /*$form = $this->createForm(UserType::class, $user);
-
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid())
         {
             // On enregistre l'utilisateur dans la base
@@ -67,10 +69,10 @@ class ProfileController
 
             //On déclenche l'event
             $event = new GenericEvent($user);
-            $eventDispatcher->dispatch(Events::USER_PROFILE_EDIT, $event);
+            $eventDispatcher->dispatch(Events::USER_PROFILE_EDIT_SUCCESS, $event);
 
             return $this->redirectToRoute('user_profile_show');
-        }*/
+        }
 
         return new Response($twig->render('User/Profile/edit.html.twig', [
             'form' => $form->createView()

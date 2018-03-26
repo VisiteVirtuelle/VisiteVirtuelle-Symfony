@@ -27,5 +27,5 @@ final class Events
      * @var string
      */
     const USER_REGISTERED = 'user.registered';
-    const USER_PROFILE_EDIT = 'user.profile.edit';
+    const USER_PROFILE_EDIT_SUCCESS = 'user.profile.edit.success';
 }
