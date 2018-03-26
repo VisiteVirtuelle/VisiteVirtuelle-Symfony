@@ -13,15 +13,6 @@ admin:
         overview_word: Überblic
         visit_word: Besuche
 
-footer:
-    virtualvisit:
-        demo: Demo
-        visits_list: Liste der Besuche
-        legal: Rechtliche Hinweise
-    about:
-        title: Über
-        copyright: App entwickelt von Vincent und Guillaume Designed von Malko
-
 security:
     login:
         title: Melden Sie sich an, um fortzufahren

@@ -14,13 +14,9 @@ admin:
         visit_word: Visites
 
 footer:
-    virtualvisit:
-        demo: Démo
-        visits_list: Liste des visites
-        legal: Mentions légales
-    about:
-        title: A propos
-    copyright: App développé par Vincent et Guillaume Design par Malko
+    copyright: VirtualVisit a été réalisé dans le cadre d'un projet du BTS SN option IR de Montauban en 2018
+    github: GitHub
+    trello: Trello
 
 security:
     login:
@@ -42,7 +38,6 @@ security:
 
 visit:
     show:
-        copyright: Visite 360° developpé par Valentin et Thomas
         link:
             list: Visites
     list:

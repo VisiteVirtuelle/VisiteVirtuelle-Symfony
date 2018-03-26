@@ -14,14 +14,12 @@
                         <p class="font-weight-light">{{visit.sqft}} m² - {{visit.price}} €</p>
                         <p><small>{{ visit.location}}</small></p>
                     </div>
-                    <div class="card-footer text-center">
+                    <a href="{{ path('visit_show', {'id': visit.id}) }}" class="card-footer text-center">
                         <small>
-                            <a href="{{ path('visit_show', {'id': visit.id}) }}">
-                                <i class="fa fa-eye pr-1"></i>
-                                {{ 'visit.list.show'|trans }}
-                            </a>
+                            <i class="fa fa-eye pr-1"></i>
+                            {{ 'visit.list.show'|trans }}
                         </small>
-                    </div>
+                    </a>
                 </div>
             </div>
         {% else %}

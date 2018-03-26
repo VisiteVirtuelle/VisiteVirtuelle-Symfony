@@ -13,15 +13,6 @@ admin:
         overview_word: Visión de conjunt
         visit_word: Visitas
 
-footer:
-    virtualvisit:
-        demo: Manifestación
-        visits_list: Lista de visitas
-        legal: Avisos legales
-    about:
-        title: Acerca
-    copyright: App desarrollado por Vincent y Guillaume Designed por Malko
-
 security:
     login:
         title: Inicia sesion para continuar
