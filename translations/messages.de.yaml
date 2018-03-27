@@ -7,12 +7,6 @@ menu:
         dashboard: Armaturenbrett
         logout: Austragen
 
-admin:
-    dashboard:
-        title: Armaturenbrett
-        overview_word: Überblic
-        visit_word: Besuche
-
 security:
     login:
         title: Melden Sie sich an, um fortzufahren
@@ -31,6 +25,12 @@ security:
         headshot: Profilbild
         submit: Registrieren
         password_not_egal: Passwörter müssen identisch sein
+
+admin:
+    dashboard:
+        title: Armaturenbrett
+        overview_word: Überblic
+        visit_word: Besuche
 
 visit:
     show:

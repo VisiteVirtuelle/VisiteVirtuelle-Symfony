@@ -7,16 +7,14 @@ menu:
         dashboard: Dashboard
         logout: Log out
 
-admin:
-    dashboard:
-        title: Admin Dashboard
-        overview_word: Overview
-        visit_word: Visits
-
 footer:
     copyright: VirtualVisit was realized as part of a project of BTS SN option IR of Montauban in 2018
     github: GitHub
     trello: Trello
+
+util:
+    drag&drop:
+        title: Drag & Drop
 
 security:
     login:
@@ -36,6 +34,12 @@ security:
         submit: Register
         password_not_egal: Passwords must be the same !
 
+admin:
+    dashboard:
+        title: Admin Dashboard
+        overview_word: Overview
+        visit_word: Visits
+
 visit:
     show:
         link:
@@ -46,6 +50,8 @@ visit:
             title: There's no visit yet !
             message: If you're an agent you can create one by clicking on this button
             btn_editor: Visit Editor
+    editor:
+        title: Visit Editor
 
 http_error:
     name: Error %status_code%

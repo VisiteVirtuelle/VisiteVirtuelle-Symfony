@@ -1,0 +1,37 @@
+.drop {
+    width: 90%;
+    height: 90%;
+    min-height: 200px;
+    border: 3px dashed #DADFE3;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    background: transparent;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.drop .drop-body {
+    color: #8E99AE;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    padding-top: 3rem!important;
+}
+
+.drop .drop-body i {
+    font-size: 40px;
+    color: #787E85;
+}
+
+.drop .drop-footer {
+    color: #787E85;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 1rem!important;
+}

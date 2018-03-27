@@ -56,10 +56,10 @@ class EditorController extends Controller
 
         $form = $this->createForm(VisitType::class, $visit);
         $form->handleRequest($request);
-        if($id != "new")
+        /*if($id != "new")
         {
             $form->get('cover')->setData($this->project_dir.$id.'/cover.jpg');
-        }
+        }*/
 
         if ($form->isSubmitted() && $form->isValid())
         {

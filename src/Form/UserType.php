@@ -32,7 +32,7 @@ class UserType extends AbstractType
             $user = $event->getData();
             $form = $event->getForm();
 
-            // Test pour vérifier si c'est un nouveau utilisateur (inscription en cours)
+            // Test pour vérifier si c'est un nouvel utilisateur
             if(!$user || null === $user->getId())
             {
                 $form

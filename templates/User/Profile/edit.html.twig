@@ -1,9 +1,29 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/drop.css') }}">
+{% endblock %}
+
 {% block main %}
     {{ form_start(form) }}
-        {{ form_row(form.fullname, { 'label': 'security.register.fullname'|trans }) }}
-        {{ form_row(form.headshot, { 'label': 'security.register.headshot'|trans }) }}
+        <div class="row">
+            <div class="col">
+                <div class="drop">
+                    <div class="drop-body">
+                        <i class="fa fa-cloud-upload"></i>
+                        <h5>{{ 'util.drag&drop.title'|trans }}</h5>
+                    </div>
+                    <div class="drop-footer">
+                        {{ form_row(form.headshot, { 'label': 'security.register.headshot'|trans }) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                {{ form_row(form.fullname, { 'label': 'security.register.fullname'|trans }) }}
+            </div>
+        </div>
 
     	<button type="submit">
             {{ 'security.register.submit'|trans }}

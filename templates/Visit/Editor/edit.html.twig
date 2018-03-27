@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id 'visit_editor' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/drop.css') }}">
+{% endblock %}
 
+{% block body_id 'visit_editor' %}
 {% block body %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -25,7 +29,7 @@
 {% block main %}
     <h2>
         <i class="fa fa-cog pr-1"></i>
-        Visit editor
+        {{ 'visit.editor.title'|trans }}
     </h2>
 
     {{ form_start(form) }}
@@ -62,8 +66,15 @@
 
             <div class="col">
                 <h5 class="text-center">Cover</h5>
-                <img src="../assets/img/visit/cover/bourdelle.jpg" width="100%">
-                {{ form_row(form.cover) }}
+                <div class="drop">
+                    <div class="drop-body">
+                        <i class="fa fa-cloud-upload"></i>
+                        <h5>{{ 'util.drag&drop.title'|trans }}</h5>
+                    </div>
+                    <div class="drop-footer">
+                        {{ form_row(form.cover) }}
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -93,6 +104,17 @@
                 </table>
             </div>
         </div>
-        <div class="col"><img src="../assets/img/visit/room/ec.jpg" width="100%"></div>
+        <div class="col">
+            <h5 class="text-center">360° Photo</h5>
+            <div class="drop">
+                <div class="drop-body">
+                    <i class="fa fa-cloud-upload"></i>
+                    <h5>{{ 'util.drag&drop.title'|trans }}</h5>
+                </div>
+                <div class="drop-footer">
+
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

@@ -7,16 +7,14 @@ menu:
         dashboard: Panneau de Contrôle
         logout: Déconnexion
 
-admin:
-    dashboard:
-        title: Tableau Administrateur
-        overview_word: Overview
-        visit_word: Visites
-
 footer:
     copyright: VirtualVisit a été réalisé dans le cadre d'un projet du BTS SN option IR de Montauban en 2018
     github: GitHub
     trello: Trello
+
+util:
+    drag&drop:
+        title: Glisser & Déposer
 
 security:
     login:
@@ -36,6 +34,12 @@ security:
         submit: S'inscrire
         password_not_egal: Les mots de passe doivent être identique
 
+admin:
+    dashboard:
+        title: Tableau Administrateur
+        overview_word: Overview
+        visit_word: Visites
+
 visit:
     show:
         link:
@@ -46,6 +50,8 @@ visit:
             title: Il n'existe aucune visite !
             message: Si vous êtes un agent vous pouvez en créer une en cliquant sur ce bouton
             btn_editor: Editeur de visite
+    editor:
+        title: Éditeur de Visite
 
 http_error:
     name: Erreur %status_code%

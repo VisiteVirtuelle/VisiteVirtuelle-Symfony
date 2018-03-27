@@ -7,12 +7,6 @@ menu:
         dashboard: Salpicadero
         logout: Salir
 
-admin:
-    dashboard:
-        title: Tabla de administrador
-        overview_word: Visión de conjunt
-        visit_word: Visitas
-
 security:
     login:
         title: Inicia sesion para continuar
@@ -32,6 +26,12 @@ security:
         submit: Registarse
         password_not_egal: Las contraseñas deben ser las mismas
 
+admin:
+    dashboard:
+        title: Tabla de administrador
+        overview_word: Visión de conjunt
+        visit_word: Visitas
+
 visit:
     show:
         link:
@@ -42,7 +42,6 @@ visit:
             title: No hay visita!
             message: Si usted es un agente, puede crear uno haciendo clic en este bot�n
             btn_editor: Editor de visita
-
 
 http_error:
     name: Error %status_code%

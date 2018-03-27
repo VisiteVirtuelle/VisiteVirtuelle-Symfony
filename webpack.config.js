@@ -18,6 +18,7 @@ Encore
     ])
     .addStyleEntry('css/footer', './assets/css/footer.css')
     .addStyleEntry('css/login_page', './assets/css/login_page.css')
+    .addStyleEntry('css/drop', './assets/css/drop.css')
 
     // uncomment if you use Sass/SCSS files
     // .enableSassLoader()

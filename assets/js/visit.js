@@ -11,8 +11,6 @@ var isUserInteracting = false,
 var rooms = new Map();
 getXHR();
 
-var textures = [];
-
 const  renderer = new THREE.WebGLRenderer({canvas: document.querySelector("canvas")});
 
 const  camera = new THREE.PerspectiveCamera(75, 1, 1, 1100);
@@ -23,7 +21,7 @@ const scene = new THREE.Scene();
 const geometry = new THREE.SphereBufferGeometry(500, 60, 40);
 geometry.scale(-1, 1, 1);
 
-var texture = new THREE.ImageUtils.loadTexture('http://localhost:8000/visit/' + visit.id + "/" + rooms.values().next().value);
+var texture = new THREE.TextureLoader().load('http://localhost:8000/visit/' + visit.id + "/" + rooms.values().next().value);
 const material = new THREE.MeshBasicMaterial({map: texture,overdraw: 0.5});
 
 const mesh = new THREE.Mesh(geometry, material);
@@ -90,7 +88,6 @@ function MouseWheel( event )
 function loadImg(path)
 {
     mesh.material.map = THREE.ImageUtils.loadTexture( "http://localhost:8000/visit/" + visit.id + "/" + path );
-    mesh.material.map = THREE.ImageUtils.loadTexture(textures[3]);
     mesh.material.needsUpdate = true;
 }
 
@@ -113,7 +110,6 @@ function getXHR()
         rooms.set(
             x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
             x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue
-            textures[i]= THREE.ImageUtils.loadTexture( x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue );
         );
     }
 }
