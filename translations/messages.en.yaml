@@ -59,6 +59,7 @@ visit:
             message: There's no visit to display for this request.
     editor:
         title: Visit Editor
+        submit: Create the visit
         new_visit: Create a new visit
 
 http_error:

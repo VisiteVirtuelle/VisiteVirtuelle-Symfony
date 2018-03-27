@@ -60,6 +60,7 @@ visit:
             message: Il n'y aucune visite à afficher pour cette requête.
     editor:
         title: Éditeur de Visite
+        submit: Créer la visite
         new_visit: Créer une nouvelle visite
 
 http_error:

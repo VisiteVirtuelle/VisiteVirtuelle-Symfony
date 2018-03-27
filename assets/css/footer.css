@@ -1,5 +1,16 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 140px; /* Margin bottom by footer height */
+}
 footer {
-    padding:20px 0;
+    padding: 20px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 footer a {
