@@ -23,6 +23,8 @@ security:
         password: Password
         submit: Sign in
         forgot_password: Forgot the password ?
+
+registration:
     register:
         title: Register
         fullname: Full name
@@ -33,6 +35,13 @@ security:
         headshot: Profile picture
         submit: Register
         password_not_egal: Passwords must be the same !
+
+user:
+    list:
+        id: ID
+        fullname: Name
+        username: Username
+        email: Email
 
 admin:
     dashboard:

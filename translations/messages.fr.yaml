@@ -23,6 +23,8 @@ security:
         password: Mot de passe
         submit: Connexion
         forgot_password: Mot de passe oublié ?
+
+registration:
     register:
         title: S'enregistrer
         fullname: Nom complet
@@ -33,6 +35,13 @@ security:
         headshot: Image de profil
         submit: S'inscrire
         password_not_egal: Les mots de passe doivent être identique
+
+user:
+    list:
+        id: ID
+        fullname: Nom
+        username: Nom d'utilisateur
+        email: Email
 
 admin:
     dashboard:

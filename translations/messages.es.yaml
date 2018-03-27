@@ -15,6 +15,8 @@ security:
         submit: Conectarse
         remember_me: Se acuerda de mi
         forgot_password: Contraseña olvidada ?
+
+registration:
     register:
         title: Registro
         fullname: Nombre Completo

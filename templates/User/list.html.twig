@@ -1,7 +1,14 @@
 {% block main %}
     <div class="table-responsive">
         <table class="table table-striped">
-            <tbody>
+            <tbody class="text-center">
+                <tr>
+                    <td><strong>{{ 'user.list.id'|trans }}</strong></td>
+                    <td><strong>{{ 'user.list.fullname'|trans }}</strong></td>
+                    <td><strong>{{ 'user.list.username'|trans }}</strong></td>
+                    <td><strong>{{ 'user.list.email'|trans }}</strong></td>
+                </tr>
+
                 {% for user in users %}
                     <tr>
                         <td><small>{{ user.id }}</small></td>
