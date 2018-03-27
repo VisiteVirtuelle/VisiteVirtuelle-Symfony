@@ -2,7 +2,7 @@
 <sidebar>
     <group>
         <link name="Overview">/Admin/overviewtest.html.twig</link>
-        <link name="Users">/Admin/userslist.html.twig</link>
+        <link name="Users">User\UserController::list</link>
     </group>
     <group name="Visit">
         <link name="Visits">/Admin/visitstest.html.twig</link>

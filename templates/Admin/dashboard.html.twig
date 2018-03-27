@@ -1,8 +1,12 @@
 {% extends ['base.html.twig'] %}
 
-{% block title %}{{ parent() }} - {{ 'admin.dashboard.title'|trans }}{% endblock %}
+{% block title %}
+    {{ parent() }} - {{ 'admin.dashboard.title'|trans }}
+{% endblock %}
 
 {% block body %}
+    
+    
     <div class="row">
         <div class="col-2">
             {% for group in groups %}
@@ -10,7 +14,7 @@
                 <ul class="navbar-nav">
                     {% for link in group.links %}
                         <li>
-                            <a href="{{ path('admin_dashboard', {'template' : link|lower}) }}">
+                            <a href="{{ path('admin_dashboard', { 'template' : link|lower }) }}">
                                 {{ link }}
                             </a>
                         </li>
@@ -20,7 +24,23 @@
         </div>
 
         <div class="col">
-            {% include path  %}
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ path('admin_dashboard') }}">
+                        <span>{{ 'admin.dashboard.link.dashboard'|trans }}</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">
+                        groupe
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <span>page</span>
+                </li>
+             </ol>
+             
+            {{ render(controller('App\\Controller\\' ~ path)) }}
         </div>
     </div>
 {% endblock %}

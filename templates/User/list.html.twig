@@ -1,0 +1,16 @@
+{% block main %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td><small>{{ user.id }}</small></td>
+                        <td>{{ user.fullname }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -10,12 +10,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
 /**
@@ -33,15 +31,14 @@ class DashboardController
     /**
      * @Route("/{template}", defaults={"template"=""}, name="dashboard")
      */
-    public function dashboard($template, Environment $twig, RegistryInterface $doctrine)
+    public function dashboard($template, Environment $twig)
     {
         $xmlFile = $this->project_dir.'/config/dashboard_sidebar.xml';
         if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }
         $xml = simplexml_load_file($xmlFile);
-
-        $path = 'Admin/_overview.html.twig';
-        $users = $doctrine->getRepository(User::class)->findAll();
-
+        
+        $path = 'User\\UserController::list';
+        
         $groups = [];
         foreach ($xml->children() as $group)
         {
@@ -64,9 +61,8 @@ class DashboardController
         }
 
         return new Response($twig->render('Admin/dashboard.html.twig', [
-            'groups' => $groups,
             'path' => $path,
-            'users' => $users
+            'groups' => $groups
         ]));
     }
 }
