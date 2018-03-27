@@ -1,3 +1,10 @@
+{#
+ * This file is part of the Virtual Visit application.
+ *
+ * Vincent Claveau <guillaume.vidal@lycee-bourdelle.com>
+ *
+ #}
+
 {% extends ['base.html.twig'] %}
 
 {% block title %}
@@ -5,8 +12,6 @@
 {% endblock %}
 
 {% block body %}
-    
-    
     <div class="row">
         <div class="col-2">
             {% for group in groups %}
@@ -27,16 +32,18 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="{{ path('admin_dashboard') }}">
-                        <span>{{ 'admin.dashboard.link.dashboard'|trans }}</span>
+                        <span>{{ 'admin.dashboard.title'|trans }}</span>
                     </a>
                 </li>
-                <li class="breadcrumb-item">
-                    <a href="#">
-                        groupe
-                    </a>
-                </li>
+                {% if sidebarData.group is not empty %}
+                    <li class="breadcrumb-item">
+                        <a href="#">
+                            {{ sidebarData.group }}
+                        </a>
+                    </li>
+                {% endif %}
                 <li class="breadcrumb-item active">
-                    <span>page</span>
+                    {{ sidebarData.link }}
                 </li>
              </ol>
              

@@ -46,8 +46,7 @@ user:
 admin:
     dashboard:
         title: Admin Dashboard
-        overview_word: Overview
-        visit_word: Visits
+        
 
 visit:
     show:

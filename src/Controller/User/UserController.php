@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the Virtual Visit application.
+ *
+ * Vincent Claveau <guillaume.vidal@lycee-bourdelle.com>
+ *
+ */
+
 namespace App\Controller\User;
 
 use App\Entity\User;

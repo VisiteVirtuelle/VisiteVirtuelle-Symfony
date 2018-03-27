@@ -1,0 +1,25 @@
+{% block main %}
+    
+    {% set nbAdmin = 0 %}
+    {% set nbAgent = 0 %}
+    {% set nbUser = 0 %}
+    
+    {% for user in users %}
+        {% for role in user.roles %}
+            {% if role == 'ROLE_ADMIN' %}
+                {% set nbAdmin = nbAdmin + 1 %}
+            {% elseif role == 'ROLE_AGENT' %}
+                {% set nbAgent = nbAgent + 1 %}
+            {% elseif role == 'ROLE_USER' %}
+                {% set nbUser = nbUser + 1 %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    
+    <div class="table-responsive">
+        Nombre d'utilisateurs : {{ nbUser }}
+        Nombre d'agent : {{ nbAgent }}
+        Nombre d'admin : {{ nbAdmin }}
+        Total : {{ users | length }}
+    </div>
+{% endblock %}

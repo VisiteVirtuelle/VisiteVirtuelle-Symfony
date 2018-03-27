@@ -10,7 +10,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -27,7 +29,7 @@ class DashboardController
     {
         $this->project_dir = $project_dir;
     }
-
+    
     /**
      * @Route("/{template}", defaults={"template"=""}, name="dashboard")
      */
@@ -39,12 +41,17 @@ class DashboardController
         
         $path = 'User\\UserController::list';
         
+        $sidebarData = [
+            'group',
+            'link'
+        ];
+        
         $groups = [];
         foreach ($xml->children() as $group)
         {
-            $groupObj = new GroupStruct();
-            $groupObj->name = $group['name'];
-
+            $sidebarObj = new SidebarStruct();
+            $sidebarObj->name = $group['name'];
+            
             $links = [];
             foreach ($group->children() as $link)
             {
@@ -53,22 +60,41 @@ class DashboardController
                 if ($template == strtolower($link['name']))
                 {
                     $path = $link;
+                    $sidebarData['group'] = $group['name'];
+                    $sidebarData['link'] = $link['name'];
                 }
             }
 
-            $groupObj->links = $links;
-            array_push($groups, $groupObj);
+            $sidebarObj->links = $links;
+            array_push($groups, $sidebarObj);
         }
-
+        
         return new Response($twig->render('Admin/dashboard.html.twig', [
             'path' => $path,
-            'groups' => $groups
+            'groups' => $groups,
+            'sidebarData' => $sidebarData
+            
+        ]));
+    }
+    
+    /**
+     * @Route("/overview", name="overview")
+     */
+    public function overview(RegistryInterface $doctrine, Environment $twig)
+    {
+        $users = $doctrine->getRepository(User::class)->findAll();
+        
+        return new Response($twig->render('Admin/overview.html.twig', [
+            'users' => $users
         ]));
     }
 }
 
-class GroupStruct
+class SidebarStruct
 {
     public $name;
     public $links;
+    
+    public $group;
+    public $link;
 }

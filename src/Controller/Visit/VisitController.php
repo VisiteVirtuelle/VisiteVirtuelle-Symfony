@@ -37,7 +37,7 @@ class VisitController
             'visit' => $visit
         ]));
     }
-
+    
     /**
      * @Route("/list/{id}", requirements={"id": "\d+"}, defaults={"id" = null}, name="list")
      */
