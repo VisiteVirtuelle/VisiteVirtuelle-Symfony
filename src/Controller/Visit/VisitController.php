@@ -39,11 +39,18 @@ class VisitController
     }
 
     /**
-     * @Route("/list", name="list")
+     * @Route("/list/{id}", defaults={"id" = null}, requirements={"id": "\d+"}, name="list")
      */
-    public function list(Environment $twig, RegistryInterface $doctrine)
+    public function listAll($id, Environment $twig, RegistryInterface $doctrine)
     {
-        $visits = $doctrine->getRepository(Visit::class)->findAll();
+        $visits = $doctrine->getRepository(Visit::class);
+
+        if($id === null)
+        {
+            $visits = $visits->findAll();
+        } else {
+            $visits = $visits->findBy(['owner' => $id]);
+        }
 
         return new Response($twig->render('visit/list.html.twig', [
             'visits' => $visits

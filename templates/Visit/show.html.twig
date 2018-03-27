@@ -22,6 +22,15 @@
                 <span>{{ 'visit.show.link.list'|trans }}</span>
             </a>
         </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('visit_list', {'id': visit.owner.id}) }}">
+                {% if visit.owner.fullname %}
+                    <span>{{ visit.owner.fullname }}</span>
+                {% else %}
+                    <span>{{ visit.owner.username }}</span>
+                {% endif %}
+            </a>
+        </li>
         <li class="breadcrumb-item active">
             <span>{{ visit.name }}</span>
         </li>

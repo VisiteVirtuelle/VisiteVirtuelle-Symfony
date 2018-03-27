@@ -37,15 +37,17 @@ class EditorController extends Controller
     }
 
     /**
-     * @Route("/{id}", defaults={"id" = "new"}, requirements={"id": "\d+"}, name="edit")
+     * @Route("/{id}", defaults={"id" = null}, requirements={"id": "\d+"}, name="edit")
      */
     public function edit($id, Request $request, Environment $twig, TokenStorageInterface $tokenStorage, RegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
     {
-        if($id === "new")
+        if($id === null)
         {
+            //création d'une nouvelle visite
             $visit = new Visit();
             $visit->setOwner($tokenStorage->getToken()->getUser());
         } else {
+            //édition d'une visite existante
             $visit = $doctrine->getRepository(Visit::class)->find($id);
 
             if (null === $visit)
