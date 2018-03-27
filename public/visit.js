@@ -11,6 +11,8 @@ var isUserInteracting = false,
 var rooms = new Map();
 getXHR();
 
+
+
 const  renderer = new THREE.WebGLRenderer({canvas: document.querySelector("canvas")});
 
 const  camera = new THREE.PerspectiveCamera(75, 1, 1, 1100);
@@ -35,9 +37,37 @@ text2.style.width = 100;
 text2.style.height = 100;
 text2.style.backgroundColor = "white";
 text2.innerHTML = rooms.keys().next().value;
-text2.style.top = (canvas.clientHeight/2 - 100) + 'px';
-text2.style.left =  canvas.clientWidth/2  + 'px';
+text2.style.top = (canvas.clientHeight - 150) + 'px';
+text2.style.left =  window.innerWidth/2 + 'px';
 document.body.appendChild(text2);
+
+
+var light = new THREE.DirectionalLight( 0xffffff, 1 );
+light.position.set( 1, 1, 1 ).normalize();
+scene.add( light );
+
+/*var geometry2 = new THREE.BoxBufferGeometry( 20, 20, 20 );
+
+for ( var i = 0; i < 100; i ++ ) {
+
+	var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+
+	object.position.x = Math.random() * 800 - 400;
+	object.position.y = Math.random() * 800 - 400;
+	object.position.z = Math.random() * 800 - 400;
+
+	object.rotation.x = Math.random() * 2 * Math.PI;
+	object.rotation.y = Math.random() * 2 * Math.PI;
+	object.rotation.z = Math.random() * 2 * Math.PI;
+
+	object.scale.x = Math.random() + 0.5;
+	object.scale.y = Math.random() + 0.5;
+	object.scale.z = Math.random() + 0.5;
+
+	scene.add( object );
+
+}*/
+
 
 //Initialisation du menu
 initGui();
@@ -47,7 +77,14 @@ addEventListener('mousedown',  MouseDown,      false);
 addEventListener('mousemove',  MouseMove,      false);
 addEventListener('mouseup',    MouseUp,        false);
 addEventListener('wheel',      MouseWheel,     false);
+addEventListener('resize',     Resize,     false);
 
+
+function Resize()
+{
+	//alert("test");
+	
+}
 function initGui()
 {
     var gui = new dat.gui.GUI();
@@ -82,6 +119,10 @@ function MouseMove( event )
         lon = ( onMouseDownMouseX - event.clientX ) * 0.1 + onMouseDownLon;
         lat = ( event.clientY - onMouseDownMouseY ) * 0.1 + onMouseDownLat;
     }
+
+	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+	
 }
 
 //Fonction quand on lâche le clique desactiver le mouvement de la camera
@@ -133,6 +174,10 @@ function resizeCanvasToDisplaySize(force)
    
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
+    
+    text2.style.top =  200 + 'px';
+	text2.style.left =  (window.innerWidth/2 -40)  + 'px';
+
     if (force || canvas.width !== width ||canvas.height !== height)
     {
         // you must pass false here or three.js sadly fights the browser
@@ -142,8 +187,6 @@ function resizeCanvasToDisplaySize(force)
 
         // set render target sizes here
     }
-	//text2.style.top = (canvas.clientHeight/2 - 100) + 'px';
-	//text2.style.left =  canvas.clientWidth/2  + 'px';
 }
 
 //Fonction qui mets a jour les valeurs de la camera
