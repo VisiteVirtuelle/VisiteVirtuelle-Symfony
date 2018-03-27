@@ -47,11 +47,11 @@ visit:
     list:
         show: Visiter virtuellement
         empty:
-            title: Il n'existe aucune visite !
-            message: Si vous êtes un agent vous pouvez en créer une en cliquant sur ce bouton
-            btn_editor: Editeur de visite
+            title: Aucune visite !
+            message: Il n'y aucune visite à afficher pour cette requête.
     editor:
         title: Éditeur de Visite
+        new_visit: Créer une nouvelle visite
 
 http_error:
     name: Erreur %status_code%

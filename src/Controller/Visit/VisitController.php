@@ -39,9 +39,9 @@ class VisitController
     }
 
     /**
-     * @Route("/list/{id}", defaults={"id" = null}, requirements={"id": "\d+"}, name="list")
+     * @Route("/list/{id}", requirements={"id": "\d+"}, defaults={"id" = null}, name="list")
      */
-    public function listAll($id, Environment $twig, RegistryInterface $doctrine)
+    public function list($id, Environment $twig, RegistryInterface $doctrine)
     {
         $visits = $doctrine->getRepository(Visit::class);
 

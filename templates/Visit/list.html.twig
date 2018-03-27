@@ -23,15 +23,24 @@
                 </div>
             </div>
         {% else %}
-            <div class="jumbotron mx-auto">
-                <h1>{{ 'visit.list.empty.title'|trans }}</h1>
-                <p>{{ 'visit.list.empty.message'|trans }}</p>
-                <p>
-                    <a class="btn btn-primary" role="button" href="#">
-                        {{ 'visit.list.empty.btn_editor'|trans }}
-                    </a>
-                </p>
+            {# alerte si il n'y a aucune visite à afficher #}
+            <div class="col-12 alert alert-warning mt-3" role="alert">
+                <strong>{{ 'visit.list.empty.title'|trans }}</strong>
+                {{ 'visit.list.empty.message'|trans }}
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         {% endfor %}
+
+        {% if is_granted('ROLE_AGENT') %}
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 py-3 align-self-center text-center">
+                <a href="{{ path('visit_editor_edit') }}" class="btn btn-outline-primary btn-lg">
+                    <i class="fa fa-plus pr-1"></i>
+                    {{ 'visit.editor.new_visit'|trans }}
+                </a>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

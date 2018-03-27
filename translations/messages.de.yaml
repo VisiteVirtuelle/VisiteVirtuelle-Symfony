@@ -41,7 +41,6 @@ visit:
         empty:
             title: Es gibt keinen Besuch!
             message: Wenn Sie ein Agent sind, können Sie einen erstellen, indem Sie auf diese Schaltfläche klicken
-            btn_editor: Herausgeber des Besuchs
 
 http_error:
     name: Fehler %status_code%

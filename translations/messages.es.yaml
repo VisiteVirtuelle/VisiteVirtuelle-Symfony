@@ -41,7 +41,6 @@ visit:
         empty:
             title: No hay visita!
             message: Si usted es un agente, puede crear uno haciendo clic en este bot�n
-            btn_editor: Editor de visita
 
 http_error:
     name: Error %status_code%

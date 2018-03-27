@@ -37,7 +37,7 @@ class EditorController extends Controller
     }
 
     /**
-     * @Route("/{id}", defaults={"id" = null}, requirements={"id": "\d+"}, name="edit")
+     * @Route("/{id}", requirements={"id": "\d+"}, defaults={"id" = null}, name="edit")
      */
     public function edit($id, Request $request, Environment $twig, TokenStorageInterface $tokenStorage, RegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
     {
@@ -50,7 +50,7 @@ class EditorController extends Controller
             //édition d'une visite existante
             $visit = $doctrine->getRepository(Visit::class)->find($id);
 
-            if (null === $visit)
+            if ($visit === null)
             {
                 throw new NotFoundHttpException("This visit doesn't exist!");
             }
@@ -58,7 +58,8 @@ class EditorController extends Controller
 
         $form = $this->createForm(VisitType::class, $visit);
         $form->handleRequest($request);
-        /*if($id != "new")
+
+        /*if($id != null)
         {
             $form->get('cover')->setData($this->project_dir.$id.'/cover.jpg');
         }*/
@@ -79,7 +80,9 @@ class EditorController extends Controller
                 $eventDispatcher->dispatch(Events::VISIT_EDITOR_NEW_SUCCESS, $event);
             }
 
-            return $this->redirectToRoute('visit_list');
+            return $this->redirectToRoute('visit_show', [
+                'id' => $visit->getId()
+            ]);
         }
 
         return new Response($twig->render('visit/editor/edit.html.twig', [
