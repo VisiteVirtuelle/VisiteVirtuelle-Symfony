@@ -22,4 +22,13 @@
         Nombre d'admin : {{ nbAdmin }}
         Total : {{ users | length }}
     </div>
+	<div class="table-responsive">
+		Dernier utilisateurs enregistré :<br/>
+		{% for user in users %}
+			{% if user.id <= users | length and user.id > users | length - 5 %}
+				{{ user.username }}
+				{{ user.email }}<br/>
+			{% endif %}
+		{% endfor %}
+    </div>
 {% endblock %}

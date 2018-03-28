@@ -42,8 +42,8 @@ class DashboardController
         $path = 'User\\UserController::list';
         
         $sidebarData = [
-            'group',
-            'link'
+            'group' => '',
+            'link' => ''
         ];
         
         $groups = [];
@@ -94,7 +94,4 @@ class SidebarStruct
 {
     public $name;
     public $links;
-    
-    public $group;
-    public $link;
 }
