@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset>
+<!-- Sitemap fait par Malko CARRERAS -->
+
+<!-- Url avec location = fr  -->
+	<url>
+		<loc>localhost:8000/fr</loc>
+		<lastmod>2018-03-30T11:36:35+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>1.00</priority>
+	</url>
+	<url>
+		<loc>localhost:8000/fr/visit/list</loc>
+		<lastmod>2018-03-30T11:36:35+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>localhost:8000/fr/login</loc>
+		<lastmod>2018-03-30T11:36:35+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>localhost:8000/fr/register</loc>
+		<lastmod>2018-03-30T11:36:35+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>localhost:8000/fr/profile</loc>
+		<lastmod>2018-03-30T11:36:35+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.50</priority>
+	</url>
+	<url>
+		<loc>localhost:8000/fr/profile</loc>
+		<lastmod>2018-03-30T11:36:35+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.50</priority>
+	</url>
+	<url>
+		<loc>localhost:8000/fr/admin/dashboard</loc>
+		<lastmod>2018-03-30T11:36:35+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.50</priority>
+	</url>
+	<url>
+		<loc>localhost:8000/fr/admin/users</loc>
+		<lastmod>2018-03-30T11:36:35+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.50</priority>
+	</url>
+</urlset>
