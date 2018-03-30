@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tbody class="text-center">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Agent</th>
+                    <th>Square Feet</th>
+                    <th>Price</th>
+                    <th>Location</th>
+                </tr>
+
+                {% for visit in visits %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('visit_show', {'id': visit.id}) }}">
+                                <small>{{ visit.id }}</small>
+                            </a>
+                        </td>
+                        <td>{{ visit.name }}</td>
+                        <td>{{ visit.owner.username }}</td>
+                        <td>{{ visit.sqft }}</td>
+                        <td>{{ visit.price }}</td>
+                        <td>{{ visit.location }}</td>
+                    </tr>
+                {% endfor %}
+
+                {% if is_granted('ROLE_AGENT') %}
+                    <tr>
+                        <td colspan="6">
+                            <a href="{{ path('visit_editor_new') }}">
+                                <i class="fa fa-plus pr-1"></i>
+                                {{ 'visit.editor.new_visit'|trans }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

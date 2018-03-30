@@ -37,11 +37,11 @@ class VisitController
             'visit' => $visit
         ]));
     }
-    
+
     /**
-     * @Route("/list/{id}", requirements={"id": "\d+"}, defaults={"id" = null}, name="list")
+     * @Route("/list/{view}/{id}", requirements={"id": "\d+"}, defaults={"view" = "card", "id" = null}, name="list")
      */
-    public function list($id, Environment $twig, RegistryInterface $doctrine)
+    public function list($view, $id, Environment $twig, RegistryInterface $doctrine)
     {
         $visits = $doctrine->getRepository(Visit::class);
 
@@ -52,7 +52,21 @@ class VisitController
             $visits = $visits->findBy(['owner' => $id]);
         }
 
-        return new Response($twig->render('visit/list.html.twig', [
+        $template = "";
+        switch($view)
+        {
+            case "card":
+                $template = 'visit/list_card.html.twig';
+                break;
+            case "row":
+                $template = 'visit/list_row.html.twig';
+                break;
+            default:
+                throw new NotFoundHttpException("This view mode doesn't exist!");
+                break;
+        }
+
+        return new Response($twig->render($template, [
             'visits' => $visits
         ]));
     }

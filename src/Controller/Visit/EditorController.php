@@ -37,32 +37,15 @@ class EditorController extends Controller
     }
 
     /**
-     * @Route("/{id}", requirements={"id": "\d+"}, defaults={"id" = null}, name="edit")
+     * @Route("/new", name="new")
      */
-    public function edit($id, Request $request, Environment $twig, TokenStorageInterface $tokenStorage, RegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
+    public function new(Request $request, Environment $twig, TokenStorageInterface $tokenStorage, RegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
     {
-        if($id === null)
-        {
-            //création d'une nouvelle visite
-            $visit = new Visit();
-            $visit->setOwner($tokenStorage->getToken()->getUser());
-        } else {
-            //édition d'une visite existante
-            $visit = $doctrine->getRepository(Visit::class)->find($id);
-
-            if ($visit === null)
-            {
-                throw new NotFoundHttpException("This visit doesn't exist!");
-            }
-        }
+        $visit = new Visit();
+        $visit->setOwner($tokenStorage->getToken()->getUser());
 
         $form = $this->createForm(VisitType::class, $visit);
         $form->handleRequest($request);
-
-        /*if($id != null)
-        {
-            $form->get('cover')->setData($this->project_dir.$id.'/cover.jpg');
-        }*/
 
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -73,12 +56,45 @@ class EditorController extends Controller
 
             //On déclenche l'event
             $event = new GenericEvent($visit);
-            if($id === "new")
-            {
-                $eventDispatcher->dispatch(Events::VISIT_EDITOR_EDIT_SUCCESS, $event);
-            } else {
-                $eventDispatcher->dispatch(Events::VISIT_EDITOR_NEW_SUCCESS, $event);
-            }
+            $eventDispatcher->dispatch(Events::VISIT_EDITOR_NEW_SUCCESS, $event);
+
+            return $this->redirectToRoute('visit_show', [
+                'id' => $visit->getId()
+            ]);
+        }
+
+        return new Response($twig->render('visit/editor/edit.html.twig', [
+            'form' => $form->createView(),
+            'visit' => $visit
+        ]));
+    }
+
+    /**
+     * @Route("/{id}", requirements={"id": "\d+"}, name="edit")
+     */
+    public function edit($id, Request $request, Environment $twig, TokenStorageInterface $tokenStorage, RegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
+    {
+        $visit = $doctrine->getRepository(Visit::class)->find($id);
+
+        if ($visit === null)
+        {
+            throw new NotFoundHttpException("This visit doesn't exist!");
+        }
+
+        $form = $this->createForm(VisitType::class, $visit);
+        $form->handleRequest($request);
+        //$form->get('cover')->setData($this->project_dir.$id.'/cover.jpg');
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            // On enregistre la visite dans la base
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($visit);
+            $em->flush();
+
+            //On déclenche l'event
+            $event = new GenericEvent($visit);
+            $eventDispatcher->dispatch(Events::VISIT_EDITOR_EDIT_SUCCESS, $event);
 
             return $this->redirectToRoute('visit_show', [
                 'id' => $visit->getId()

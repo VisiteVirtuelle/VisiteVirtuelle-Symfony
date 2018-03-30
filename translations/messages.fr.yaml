@@ -62,8 +62,11 @@ visit:
             message: Il n'y aucune visite à afficher pour cette requête.
     editor:
         title: Éditeur de Visite
-        submit: Créer la visite
         new_visit: Créer une nouvelle visite
+        name: Nom
+        location: Localisation
+        sqft: Surface
+        price: Prix
 
 http_error:
     name: Erreur %status_code%

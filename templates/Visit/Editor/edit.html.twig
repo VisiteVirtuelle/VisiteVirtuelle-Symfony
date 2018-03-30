@@ -34,19 +34,19 @@
 
     {% form_theme form 'form/horizontal.html.twig' %}
     {{ form_start(form) }}
-        <div class="row">
+        <div class="row pb-4">
             {# form paramètres de la visite #}
             <div class="col">
-                <h5 class="text-center">Properties</h5>
-                {{ form_row(form.name) }}
-                {{ form_row(form.location) }}
-                {{ form_row(form.sqft) }}
-                {{ form_row(form.price) }}
+                <h5 class="text-center pb-2">Properties</h5>
+                {{ form_row(form.name, { 'label': 'visit.editor.name'|trans }) }}
+                {{ form_row(form.location, { 'label': 'visit.editor.location'|trans }) }}
+                {{ form_row(form.sqft, { 'label': 'visit.editor.sqft'|trans }) }}
+                {{ form_row(form.price, { 'label': 'visit.editor.price'|trans }) }}
             </div>
 
             {# cover de la visite #}
             <div class="col-12 col-md-5">
-                <h5 class="text-center">Cover</h5>
+                <h5 class="text-center pb-2">Cover</h5>
                 <div class="drop">
                     <div class="drop-body">
                         <i class="fa fa-cloud-upload"></i>

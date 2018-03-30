@@ -61,8 +61,11 @@ visit:
             message: There's no visit to display for this request.
     editor:
         title: Visit Editor
-        submit: Create the visit
         new_visit: Create a new visit
+        name: Name
+        location: Location
+        sqft: Square Feet
+        price: Price
 
 http_error:
     name: Error %status_code%
