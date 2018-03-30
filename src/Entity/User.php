@@ -68,7 +68,7 @@ class User implements UserInterface, \Serializable
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    protected $lastLogin;
+    private $lastLogin = null;
 
     /**
      * @var array
@@ -136,7 +136,12 @@ class User implements UserInterface, \Serializable
 
     public function getLastLogin()
     {
-        return $this->lastLogin;
+        return $this->lastLogin->format('T-m-d H:i:s');
+    }
+    
+    public function updateLastLogin()
+    {
+        $this->lastLogin = new \DateTime("now");
     }
 
     public function setLastLogin(\DateTime $time = null)
