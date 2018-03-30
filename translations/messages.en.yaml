@@ -13,6 +13,8 @@ footer:
     trello: Trello
 
 util:
+    form:
+        submit: Submit
     drag&drop:
         title: Drag & Drop
 
@@ -46,7 +48,7 @@ user:
 admin:
     dashboard:
         title: Admin Dashboard
-        
+
 
 visit:
     show:

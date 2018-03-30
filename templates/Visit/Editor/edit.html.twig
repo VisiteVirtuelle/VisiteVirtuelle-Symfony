@@ -32,39 +32,20 @@
         {{ 'visit.editor.title'|trans }}
     </h2>
 
+    {% form_theme form 'form/horizontal.html.twig' %}
     {{ form_start(form) }}
         <div class="row">
+            {# form paramètres de la visite #}
             <div class="col">
                 <h5 class="text-center">Properties</h5>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <tbody>
-                            <tr>
-                                <td class="float-right"><strong>Name</strong></td>
-                                <td>{{ form_row(form.name) }}</td>
-                            </tr>
-                            <tr>
-                                <td class="float-right"><strong>Owner</strong></td>
-                                <td>{{ visit.owner.username }}</td>
-                            </tr>
-                            <tr>
-                                <td class="float-right"><strong>Location</strong></td>
-                                <td>{{ form_row(form.location) }}</td>
-                            </tr>
-                            <tr>
-                                <td class="float-right"><strong>Surface</strong></td>
-                                <td>{{ form_row(form.sqft) }}</td>
-                            </tr>
-                            <tr>
-                                <td class="float-right"><strong>Price</strong></td>
-                                <td>{{ form_row(form.price) }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                {{ form_row(form.name) }}
+                {{ form_row(form.location) }}
+                {{ form_row(form.sqft) }}
+                {{ form_row(form.price) }}
             </div>
 
-            <div class="col">
+            {# cover de la visite #}
+            <div class="col-12 col-md-5">
                 <h5 class="text-center">Cover</h5>
                 <div class="drop">
                     <div class="drop-body">
@@ -77,44 +58,5 @@
                 </div>
             </div>
         </div>
-
-        <button type="submit">
-            {{ 'visit.editor.submit'|trans }}
-        </button>
     {{ form_end(form) }}
-
-    <hr>
-
-    <h4 class="text-center">Rooms</h4>
-    <div class="row">
-        <div class="col">
-            <h5 class="text-center">Salle EC</h5>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                            <td class="float-right"><strong>Cell 1</strong></td>
-                            <td>Cell 2</td>
-                        </tr>
-                        <tr>
-                            <td class="float-right"><strong>Cell 3</strong></td>
-                            <td>Cell 4</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col">
-            <h5 class="text-center">360° Photo</h5>
-            <div class="drop">
-                <div class="drop-body">
-                    <i class="fa fa-cloud-upload"></i>
-                    <h5>{{ 'util.drag&drop.title'|trans }}</h5>
-                </div>
-                <div class="drop-footer">
-
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}

@@ -13,6 +13,8 @@ footer:
     trello: Trello
 
 util:
+    form:
+        submit: Envoyer
     drag&drop:
         title: Glisser & Déposer
 

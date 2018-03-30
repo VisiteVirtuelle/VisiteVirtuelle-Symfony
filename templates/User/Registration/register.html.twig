@@ -1,14 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+    {% form_theme form 'form/horizontal.html.twig' %}
     {{ form_start(form) }}
         {{ form_row(form.username, { 'label': 'registration.register.username'|trans }) }}
         {{ form_row(form.email, { 'label': 'registration.register.email'|trans }) }}
         {{ form_row(form.password.first, { 'label': 'registration.register.password_1'|trans }) }}
         {{ form_row(form.password.second, { 'label': 'registration.register.password_2'|trans }) }}
-
-        <button type="submit">
-            {{ 'registration.register.submit'|trans }}
-        </button>
     {{ form_end(form) }}
 {% endblock %}

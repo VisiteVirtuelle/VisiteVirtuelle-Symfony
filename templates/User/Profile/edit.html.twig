@@ -6,8 +6,13 @@
 {% endblock %}
 
 {% block main %}
+    {% form_theme form 'form/horizontal.html.twig' %}
     {{ form_start(form) }}
         <div class="row">
+            <div class="col">
+                {{ form_row(form.fullname, { 'label': 'security.register.fullname'|trans }) }}
+            </div>
+
             <div class="col">
                 <div class="drop">
                     <div class="drop-body">
@@ -19,14 +24,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col">
-                {{ form_row(form.fullname, { 'label': 'security.register.fullname'|trans }) }}
-            </div>
         </div>
-
-    	<button type="submit">
-            {{ 'security.register.submit'|trans }}
-    	</button>
     {{ form_end(form) }}
 {% endblock %}
