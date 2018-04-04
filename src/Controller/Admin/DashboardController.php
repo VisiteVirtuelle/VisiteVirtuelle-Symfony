@@ -73,7 +73,6 @@ class DashboardController
             'path' => $path,
             'groups' => $groups,
             'sidebarData' => $sidebarData
-            
         ]));
     }
     

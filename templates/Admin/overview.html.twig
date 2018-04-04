@@ -31,20 +31,21 @@
         function drawChart()
         {
             var data = google.visualization.arrayToDataTable([
-                ['Type', 'Different types of Users'],
-                ['User', {{ nbUser }}],
-                ['Agent', {{ nbAgent }}],
-                ['Admin', {{ nbAdmin }}]
+                ['Type', 'Different types of Users', ''],
+                ['User', {{ nbUser }}, 'users'],
+                ['Agent', {{ nbAgent }}, 'users'],
+                ['Admin', {{ nbAdmin }}, 'users']
             ]);
 
-            var options = {
-                title: 'Users details',
-                pieHole: 0.4,
-                colors: ['#00c3ff', '#ffae00', '#ea3600']
-            };
-
             var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-            chart.draw(data, options);
+            chart.draw(data, { title: 'Users details', pieHole: 0.4, colors: ['#00c3ff', '#ffae00', '#ea3600'] });
+
+            var selectHandler = function(e)
+            {
+                window.location = data.getValue(chart.getSelection()[0]['row'], 2 );
+            }
+
+            google.visualization.events.addListener(chart, 'select', selectHandler);
         }
     </script>
 {% endblock %}

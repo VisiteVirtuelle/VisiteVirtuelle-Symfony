@@ -39,7 +39,7 @@ class VisitController
     }
 
     /**
-     * @Route("/list/{view}/{id}", requirements={"id": "\d+"}, defaults={"view" = "card", "id" = null}, name="list")
+     * @Route("/list/{view}/{id}", requirements={"id": "\d+"}, defaults={"view"="card", "id"=null}, name="list")
      */
     public function list($view, $id, Environment $twig, RegistryInterface $doctrine)
     {
@@ -56,7 +56,7 @@ class VisitController
         switch($view)
         {
             case "card":
-                $template = 'visit/list_card.html.twig';
+                $template = 'Visit/list_card.html.twig';
                 break;
             case "row":
                 $template = 'visit/list_row.html.twig';
@@ -65,7 +65,7 @@ class VisitController
                 throw new NotFoundHttpException("This view mode doesn't exist!");
                 break;
         }
-
+        
         return new Response($twig->render($template, [
             'visits' => $visits
         ]));
