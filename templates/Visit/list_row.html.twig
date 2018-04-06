@@ -13,20 +13,38 @@
                     <th>Square Feet</th>
                     <th>Price</th>
                     <th>Location</th>
+                    {% if is_granted('ROLE_AGENT') %}
+                        <th></th>
+                    {% endif %}
                 </tr>
 
                 {% for visit in visits %}
                     <tr>
                         <td>
-                            <a href="{{ path('visit_show', {'id': visit.id}) }}">
+                            <a href="{{ path('visit_show', {'id': visit.id}) }}" class="text-secondary">
                                 <small>{{ visit.id }}</small>
                             </a>
                         </td>
-                        <td>{{ visit.name }}</td>
+                        <td>
+                            <a href="{{ path('visit_show', {'id': visit.id}) }}" class="text-dark">
+                                {{ visit.name }}
+                            </a>
+                        </td>
                         <td>{{ visit.owner.username }}</td>
                         <td>{{ visit.sqft }}</td>
                         <td>{{ visit.price }}</td>
                         <td>{{ visit.location }}</td>
+                        {% if is_granted('ROLE_AGENT') %}
+                            {% if app.user == visit.owner or is_granted('ROLE_ADMIN') %}
+                                <td>
+                                    <a href="{{ path('visit_editor_edit', {'id': visit.id}) }}" class="text-secondary">
+                                        <i class="fa fa-cog"></i>
+                                    </a>
+                                </td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                        {% endif %}
                     </tr>
                 {% else %}
                 <tr>
@@ -38,7 +56,7 @@
 
                 {% if is_granted('ROLE_AGENT') %}
                     <tr>
-                        <td colspan="6">
+                        <td colspan="7">
                             <a href="{{ path('visit_editor_new') }}">
                                 <i class="fa fa-plus pr-1"></i>
                                 {{ 'visit.editor.new_visit'|trans }}

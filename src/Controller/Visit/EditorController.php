@@ -22,6 +22,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Twig\Environment;
 
 /**
@@ -72,13 +74,18 @@ class EditorController extends Controller
     /**
      * @Route("/{id}", requirements={"id": "\d+"}, name="edit")
      */
-    public function edit($id, Request $request, Environment $twig, TokenStorageInterface $tokenStorage, RegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
+    public function edit($id, Request $request, Environment $twig, RegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authChecker)
     {
         $visit = $doctrine->getRepository(Visit::class)->find($id);
 
         if ($visit === null)
         {
             throw new NotFoundHttpException("This visit doesn't exist!");
+        }
+
+        if(false === $authChecker->isGranted('ROLE_ADMIN') && $visit->getOwner() != $tokenStorage->getToken()->getUser())
+        {
+            throw new AccessDeniedException('You\'re not authorized to modify this visit !');
         }
 
         $form = $this->createForm(VisitType::class, $visit);
@@ -110,7 +117,7 @@ class EditorController extends Controller
     /**
      * @Route("/test/{id}", requirements={"id": "\d+"}, name="test")
      */
-    public function test($id, Request $request, Environment $twig, TokenStorageInterface $tokenStorage, RegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
+    public function test($id, Environment $twig, RegistryInterface $doctrine)
     {
         $visit = $doctrine->getRepository(Visit::class)->find($id);
 

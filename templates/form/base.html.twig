@@ -30,6 +30,10 @@
     </div>
 {% endblock choice_widget_expanded %}
 
+{% block money_widget %}
+    {%- set type = type|default('number') -%}
+    {{ parent() }}
+{% endblock %}
 
 {% block form_end -%}
     {% if not render_rest is defined or render_rest %}
