@@ -6,14 +6,24 @@ menu:
         profile: Perfil
         dashboard: Salpicadero
         logout: Salir
-
+        
+footer:
+    copyright: VirtualVisit se realizó como parte de un proyecto de BTS SN opción IR de Montauban en 2018
+    github: GitHub
+    trello: Trello
+    
+util:
+    form:
+        submit: Enviar
+    drag&drop:
+        title: Arrastrar y soltar
+      
 security:
     login:
         title: Inicia sesion para continuar
         username: Nombre del usuario
         password: Contraseña
         submit: Conectarse
-        remember_me: Se acuerda de mi
         forgot_password: Contraseña olvidada ?
 
 registration:
@@ -28,21 +38,33 @@ registration:
         submit: Registarse
         password_not_egal: Las contraseñas deben ser las mismas
 
+user:
+    list:
+        id: ID
+        fullname: Nombre Completo
+        username: Nombre del usuario
+        email: E-mail
+
 admin:
     dashboard:
         title: Tabla de administrador
-        overview_word: Visión de conjunt
-        visit_word: Visitas
 
 visit:
     show:
         link:
-            list: Besuche
+            list: Visitas
     list:
-        show: Para visitar virtualmente
+        show: Visita virtualmente
         empty:
-            title: No hay visita!
-            message: Si usted es un agente, puede crear uno haciendo clic en este bot�n
+            title: Sin visita!
+            message: No hay visita para mostrar para esta solicitud.
+    editor:
+        title: Visitar Editor
+        new_visit: Crea una nueva visita
+        name: Nombre
+        location: localización
+        sqft: Metro cuadrado
+        price: Precio
 
 http_error:
     name: Error %status_code%

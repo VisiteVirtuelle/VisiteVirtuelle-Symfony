@@ -49,7 +49,6 @@ admin:
     dashboard:
         title: Admin Dashboard
 
-
 visit:
     show:
         link:

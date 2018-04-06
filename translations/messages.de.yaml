@@ -7,13 +7,23 @@ menu:
         dashboard: Armaturenbrett
         logout: Austragen
 
+footer:
+    copyright: VirtualVisit wurde 2018 im Rahmen eines Projekts BTS SN Option IR von Montauban erstellt
+    github: GitHub
+    trello: Trello
+
+util:
+    form:
+        submit: Submit
+    drag&drop:
+        title: Drag & Drop
+
 security:
     login:
         title: Melden Sie sich an, um fortzufahren
         username: Benutzername
         password: Passwort
         submit: Einloggen
-        remember_me: Denk an mich
         forgot_password: Passwort vergessen?
 
 registration:
@@ -28,11 +38,16 @@ registration:
         submit: Registrieren
         password_not_egal: Passwörter müssen identisch sein
 
+user:
+    list:
+        id: ID
+        fullname: Name
+        username: Username
+        email: Email
+
 admin:
     dashboard:
         title: Armaturenbrett
-        overview_word: Überblic
-        visit_word: Besuche
 
 visit:
     show:
@@ -43,7 +58,14 @@ visit:
         empty:
             title: Es gibt keinen Besuch!
             message: Wenn Sie ein Agent sind, können Sie einen erstellen, indem Sie auf diese Schaltfläche klicken
-
+    editor:
+        title: Besuchs-Herausgeber
+        new_visit: Erstellen Sie einen neuen Besuch
+        name: Name
+        location: Lokalisierung
+        sqft: Quadratmeter
+        price: Preis
+        
 http_error:
     name: Fehler %status_code%
     description: Es gab einen unbekannten Fehler (HTTP %status_code%) was das Ergebnis Ihrer Anfrage verhindert hat.
