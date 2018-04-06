@@ -1,0 +1,41 @@
+<div class="bg-light border-bottom py-2">
+    <div class="container">
+        <div class="row">
+            <a data-toggle="collapse" href="#filters" role="button" aria-expanded="false" aria-controls="filters">
+                <i class="fa fa-filter"></i>
+                Filter
+            </a>
+
+            {# badge filtrage par agent #}
+            {% if owner %}
+                <span class="badge badge-secondary mx-2">
+                    Agent:
+                    {% if owner.fullname %}
+                        {{ owner.fullname }}
+                    {% else %}
+                        {{ owner.username }}
+                    {% endif %}
+                </span>
+            {% endif %}
+
+            {# boutons changement mode de vue #}
+            <div class="col d-flex flex-row-reverse">
+                <div class="btn-group btn-group-sm" aria-label="Change view">
+                    <a href="{{ path('visit_list', {'owner_id': app.request.get('owner_id'), 'view': 'row'}) }}"
+                     class="btn btn-secondary {{ app.request.get('view') == 'row' ? 'active' }}">
+                        <i class="fa fa-align-justify"></i>
+                    </a>
+
+                    <a href="{{ path('visit_list', {'owner_id': app.request.get('owner_id'), 'view': 'card'}) }}"
+                     class="btn btn-secondary {{ app.request.get('view') == 'card' ? 'active' }}">
+                        <i class="fa fa-columns"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse pt-2" id="filters">
+            Anim pariatur cliche reprehenderit
+        </div>
+    </div>
+</div>

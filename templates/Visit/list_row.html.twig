@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% include 'Visit/_list_filter.html.twig' %}
+
     <div class="table-responsive">
         <table class="table table-striped">
             <tbody class="text-center">
@@ -26,6 +28,12 @@
                         <td>{{ visit.price }}</td>
                         <td>{{ visit.location }}</td>
                     </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6">
+                        {{ 'visit.list.empty.message'|trans }}
+                    </td>
+                </tr>
                 {% endfor %}
 
                 {% if is_granted('ROLE_AGENT') %}

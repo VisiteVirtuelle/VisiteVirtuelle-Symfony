@@ -9,6 +9,7 @@
 
 namespace App\Controller\Visit;
 
+use App\Entity\User;
 use App\Entity\Visit;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,24 +40,29 @@ class VisitController
     }
 
     /**
-     * @Route("/list/{view}/{id}", requirements={"id": "\d+"}, defaults={"view"="card", "id"=null}, name="list")
+     * @Route("/list/{view}-{owner_id}",
+     *  requirements={"owner_id": "\d+"},
+     *  defaults={"view" = "card", "owner_id" = null},
+     *  name="list")
      */
-    public function list($view, $id, Environment $twig, RegistryInterface $doctrine)
+    public function list($view, $owner_id, Environment $twig, RegistryInterface $doctrine)
     {
         $visits = $doctrine->getRepository(Visit::class);
+        $owner = null;
 
-        if($id === null)
+        if($owner_id === null)
         {
             $visits = $visits->findAll();
         } else {
-            $visits = $visits->findBy(['owner' => $id]);
+            $visits = $visits->findBy(['owner' => $owner_id]);
+            $owner = $doctrine->getRepository(User::class)->find($owner_id);
         }
 
         $template = "";
         switch($view)
         {
             case "card":
-                $template = 'Visit/list_card.html.twig';
+                $template = 'visit/list_card.html.twig';
                 break;
             case "row":
                 $template = 'visit/list_row.html.twig';
@@ -65,9 +71,10 @@ class VisitController
                 throw new NotFoundHttpException("This view mode doesn't exist!");
                 break;
         }
-        
+
         return new Response($twig->render($template, [
-            'visits' => $visits
+            'visits' => $visits,
+            'owner' => $owner
         ]));
     }
 }

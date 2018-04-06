@@ -23,7 +23,7 @@
             </a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ path('visit_list', {'id': visit.owner.id}) }}">
+            <a href="{{ path('visit_list', {'owner_id': visit.owner.id}) }}">
                 {% if visit.owner.fullname %}
                     <span>{{ visit.owner.fullname }}</span>
                 {% else %}

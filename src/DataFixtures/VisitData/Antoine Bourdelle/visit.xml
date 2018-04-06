@@ -4,6 +4,10 @@
 		<name>Salle EC</name>
 		<url>img/ec.jpg</url>
 	</room>
+    <room>
+		<name>Couloir</name>
+		<url>img/couloir.jpeg</url>
+	</room>
 	<room>
 		<name>Salle IR</name>
 		<url>img/ir.jpg</url>

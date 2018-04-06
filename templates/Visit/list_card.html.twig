@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block body_id 'visit_list' %}
+{% block body %}
+    {% include 'Visit/_list_filter.html.twig' %}
+    {{ parent() }}
+{% endblock %}
+
 {% block main %}
     <div class="row">
         {% for visit in visits %}
