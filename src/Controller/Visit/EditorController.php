@@ -106,4 +106,21 @@ class EditorController extends Controller
             'visit' => $visit
         ]));
     }
+
+    /**
+     * @Route("/test/{id}", requirements={"id": "\d+"}, name="test")
+     */
+    public function test($id, Request $request, Environment $twig, TokenStorageInterface $tokenStorage, RegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
+    {
+        $visit = $doctrine->getRepository(Visit::class)->find($id);
+
+        if ($visit === null)
+        {
+            throw new NotFoundHttpException("This visit doesn't exist!");
+        }
+
+        return new Response($twig->render('visit/editor/test.html.twig', [
+            'visit' => $visit
+        ]));
+    }
 }
