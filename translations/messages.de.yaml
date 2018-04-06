@@ -39,10 +39,11 @@ registration:
         password_not_egal: Passwörter müssen identisch sein
 
 user:
+    profile: Dein Konto
     list:
         id: ID
-        fullname: Name
-        username: Username
+        fullname: Vollständiger Name
+        username: Benutzername
         email: Email
 
 admin:

@@ -39,6 +39,7 @@ registration:
         password_not_egal: Las contraseñas deben ser las mismas
 
 user:
+    profile: Su cuenta
     list:
         id: ID
         fullname: Nombre Completo

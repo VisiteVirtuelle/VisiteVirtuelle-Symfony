@@ -1,7 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    {{ user.fullname }}
-    {{ user.username }}
-    {{ user.email }}
+
+  <div class="jumbotron bg-secondary mx-auto mt-5" style="width:60%;">
+	<img alt="user_pics" class="rounded-circle mx-auto" width="150px"src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
+    <h1>{{'user.profile'|trans }}</h1>      
+    <p>{{'user.list.fullname'|trans }} : <span class="text-warning">{{ user.fullname }}</span> </p>
+	<p>{{'user.list.username'|trans }} : <span class="text-warning">{{ user.username }}</span></p>
+	<p>{{'user.list.email'|trans }} : <span class="text-warning">{{ user.email }}</span> </p>  
+  </div>
+
 {% endblock %}
