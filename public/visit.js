@@ -16,7 +16,8 @@ var mouse = new THREE.Vector2();
 var raycaster;
 var bottom = [];
 raycaster = new THREE.Raycaster();
- var nombre;
+var nombre;
+var clic;
 
 getXHR();
 
@@ -93,6 +94,7 @@ function MouseDown( event )
 {
     //event.preventDefault();
     isUserInteracting = true;
+	clic = false;
     onMouseDownMouseX = event.clientX;
     onMouseDownMouseY = event.clientY;
     onMouseDownLon = lon;
@@ -102,6 +104,7 @@ function MouseDown( event )
 //Fonction qui déplace la caméra si le clic gauche
 function MouseMove( event )
 {
+	clic = false;
     //Si clique de la souris enfonce
     if ( isUserInteracting === true )
     {
@@ -118,6 +121,7 @@ function MouseMove( event )
 //Fonction quand on lâche le clique desactiver le mouvement de la camera
 function MouseUp( event )
 {
+	clic = true;
     isUserInteracting = false;
 }
 
@@ -264,8 +268,9 @@ function raycaste()
 
 				var intersects = raycaster.intersectObjects( scene.children );
 				
-				if (isUserInteracting)
+				if (clic)
 				{
+					clic = false;
 					if ( intersects.length > 0 )
 					{
 						if ( intersects[ 0 ].object ) 
