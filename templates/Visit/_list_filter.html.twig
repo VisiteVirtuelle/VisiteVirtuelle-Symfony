@@ -19,6 +19,10 @@
                         {% else %}
                             {{ owner.username }}
                         {% endif %}
+
+                        <a href="{{ path('visit_list', {'view': app.request.get('view')}) }}" class="text-light pl-1">
+                            <span>&times;</span>
+                        </a>
                     </span>
                 {% endif %}
             </div>
