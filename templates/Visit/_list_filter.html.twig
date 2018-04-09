@@ -3,20 +3,25 @@
         <div class="row">
             <a data-toggle="collapse" href="#filters" role="button" aria-expanded="false" aria-controls="filters" class="text-secondary">
                 <i class="fa fa-filter"></i>
-                Filter
+                {{ 'visit.list.filter'|trans }}
             </a>
 
-            {# badge filtrage par agent #}
-            {% if owner %}
-                <span class="badge badge-secondary mx-2">
-                    Agent:
-                    {% if owner.fullname %}
-                        {{ owner.fullname }}
-                    {% else %}
-                        {{ owner.username }}
-                    {% endif %}
-                </span>
-            {% endif %}
+            {# badges de filtrage #}
+            <div class="col">
+                {# agent #}
+                {% if owner %}
+                    <span class="badge badge-primary">
+                        <small>
+                            {{ 'visit.list.agent'|trans }}
+                        </small>
+                        {% if owner.fullname %}
+                            {{ owner.fullname }}
+                        {% else %}
+                            {{ owner.username }}
+                        {% endif %}
+                    </span>
+                {% endif %}
+            </div>
 
             {# boutons changement mode de vue #}
             <div class="col d-flex flex-row-reverse">

@@ -38,6 +38,7 @@
                             {% if app.user == visit.owner or is_granted('ROLE_ADMIN') %}
                                 <td>
                                     <a href="{{ path('visit_editor_edit', {'id': visit.id}) }}" class="text-secondary">
+                                        {{ 'visit.list.edit'|trans }}
                                         <i class="fa fa-cog"></i>
                                     </a>
                                 </td>

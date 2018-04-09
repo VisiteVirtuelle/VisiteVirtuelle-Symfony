@@ -20,7 +20,17 @@
                         <img src="{{ asset("visit/" ~ visit.id ~ "/cover.jpg") }}" class="card-img-top" style="height:200px;">
                     </a>
                     <div class="card-body">
-                        <h5>{{ visit.name }}</h5>
+                        <div class="row">
+                            <h5>{{ visit.name }}</h5>
+                            {% if app.user == visit.owner or is_granted('ROLE_ADMIN') %}
+                                <div class="col d-flex flex-row-reverse">
+                                    <a href="{{ path('visit_editor_edit', {'id': visit.id}) }}">
+                                        {{ 'visit.list.edit'|trans }}
+                                        <i class="fa fa-cog"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
                         <p class="font-weight-light">{{visit.sqft}} m² - {{visit.price}} €</p>
                         <p><small>{{ visit.location}}</small></p>
                     </div>

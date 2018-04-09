@@ -55,6 +55,9 @@ visit:
         link:
             list: Visits
     list:
+        filter: Filter
+        agent: Agent
+        edit: Edit
         show: Visit virtually
         empty:
             title: No visit !

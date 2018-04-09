@@ -57,6 +57,9 @@ visit:
         link:
             list: Visites
     list:
+        filter: Filtrer
+        agent: Agent
+        edit: Editer
         show: Visiter virtuellement
         empty:
             title: Aucune visite !
