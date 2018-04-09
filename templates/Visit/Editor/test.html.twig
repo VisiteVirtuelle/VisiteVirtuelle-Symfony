@@ -1,40 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block javascripts %}
-    {{ parent() }}
+	{{ parent() }}
 	
-    <script>
-        var visit =  {
-            name: '{{ visit.name }}',
-            id: '{{ visit.id }}'
-        };
-    </script>
+	<script>
+		var visit =  {
+		name: '{{ visit.name }}',
+		id: '{{ visit.id }}'
+		};
+	</script>
 	<script src="{{ asset('editorVector.js') }}"></script>
 {% endblock %}
 
 {% block main %}
-    <div class="text-center py-3">
-        <h4>{{ visit.name }}</h2>
-        <canvas id="myCanvas" width="1200" height="800"></canvas>
-		<button style="position: absolute; top: 630px; left: 20px;"
-		onclick="mainWindow.NewFloor()">Nouvelle étage</button>
-	<button style="position: absolute; top: 655px; left: 20px;"
-		onclick="mainWindow.DeleteFloor()">Supprimer étage</button>
+	<div class="text-center py-3">
+		<h4>{{ visit.name }}</h4>
 		
-	<button style="position: absolute; top: 630px; left: 515px;"
-		onclick="mainWindow.GoNextFloor()">Étage suivant</button>
-	<button style="position: absolute; top: 630px; left: 280px;"
-		onclick="mainWindow.GoPrevFloor()">Étage précedant</button>
+		<div class="btn-group mr-2 mt-2 mb-2" role="group" aria-label="Bouton de gestion du plan">
+			<button type="button" class="border btn btn-secondary"
+				onclick="mainWindow.NewFloor()">Nouvelle étage</button>
+			<button type="button" class="border btn btn-secondary"
+				onclick="mainWindow.DeleteFloor()">Supprimer étage</button>
+			<button type="button" class="border btn btn-secondary"
+				onclick="mainWindow.GoNextFloor()">Étage suivant</button>
+			<button type="button" class="border btn btn-secondary"
+				onclick="mainWindow.GoPrevFloor()">Étage précedant</button>
+		</div>
+		<div class="btn-group mr-2 mt-2 mb-2" role="group" aria-label="Bouton de gestion du plan">
+			<button type="button" class="border btn btn-secondary"
+				onclick="mainWindow.NewRoom()">Ajouter une pièce</button>
+			<button type="button" class="border btn btn-secondary"
+				onclick="mainWindow.Save()">Sauvegarder</button>
+			<button type="button" class="border btn btn-secondary"
+				onclick="mainWindow.SetNameSelectedRoom()">Changer le nom de la pièce</button>
+			<button type="button" class="border btn btn-secondary"
+				onclick="mainWindow.DeleteSelectedRoom()">Supprimer la pièce</button>
+		</div>
 		
-	<button style="position: absolute; top: 630px; left: 150px;"
-		onclick="mainWindow.NewRoom()">Ajouter une pièce</button>
+		<canvas id="myCanvas" width="1200" height="650"></canvas>
 		
-	<button style="position: absolute; top: 655px; left: 515px;"
-		onclick="mainWindow.Save()">Sauvegarder</button>
-		
-	<button style="position: absolute; top: 50px; left: 630px;"
-		onclick="mainWindow.SetNameSelectedRoom()">Changer le nom de la pièce</button>
-	<button style="position: absolute; top: 80px; left: 630px;"
-		onclick="mainWindow.DeleteSelectedRoom()">Supprimer la pièce</button>
-    </div>
+
+	</div>
 {% endblock %}
