@@ -32,7 +32,14 @@
 
 {% block money_widget %}
     {%- set type = type|default('number') -%}
-    {{ parent() }}
+    <div class="row">
+        <div class="col">
+            {{ block('form_widget_simple') }}
+        </div>
+        <div class="my-auto">
+            {{ money_pattern | replace({ '{{ widget }}':''}) | raw }}
+        </div>
+    </div>
 {% endblock %}
 
 {% block form_end -%}
