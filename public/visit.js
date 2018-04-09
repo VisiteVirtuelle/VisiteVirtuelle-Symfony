@@ -21,14 +21,10 @@ var clic;
 
 getXHR();
 
-
-
 const  renderer = new THREE.WebGLRenderer({canvas: document.querySelector("canvas")});
 
 const  camera = new THREE.PerspectiveCamera(75, 1, 1, 1100);
 camera.target = new THREE.Vector3(0, 0, 0);
-
-
 
 const geometry = new THREE.SphereBufferGeometry(500, 60, 40);
 geometry.scale(-1, 1, 1);
@@ -54,11 +50,9 @@ text2.style.top = (canvas.clientHeight - 150) + 'px';
 text2.style.left =  window.innerWidth/2 + 'px';
 document.body.appendChild(text2);
 
-
 var light = new THREE.DirectionalLight( 0xffffff, 1 );
 light.position.set( 1, 1, 1 ).normalize();
 scene.add( light );
-
 
 //Initialisation du menu
 initGui();
@@ -68,14 +62,7 @@ addEventListener('mousedown',  MouseDown,      false);
 addEventListener('mousemove',  MouseMove,      false);
 addEventListener('mouseup',    MouseUp,        false);
 addEventListener('wheel',      MouseWheel,     false);
-addEventListener('resize',     Resize,     false);
 
-
-function Resize()
-{
-	//alert("test");
-	
-}
 function initGui()
 {
     var gui = new dat.gui.GUI();
@@ -83,7 +70,7 @@ function initGui()
 
     gui.add(obj, 'Room', Array.from(rooms.keys())).onChange(
         function(){
-			text2.innerHTML = obj.Room;
+            text2.innerHTML = obj.Room;
             loadImg(rooms.get(obj.Room));
         }
     );
@@ -94,7 +81,7 @@ function MouseDown( event )
 {
     //event.preventDefault();
     isUserInteracting = true;
-	clic = false;
+    clic = false;
     onMouseDownMouseX = event.clientX;
     onMouseDownMouseY = event.clientY;
     onMouseDownLon = lon;
@@ -104,7 +91,7 @@ function MouseDown( event )
 //Fonction qui déplace la caméra si le clic gauche
 function MouseMove( event )
 {
-	clic = false;
+    clic = false;
     //Si clique de la souris enfonce
     if ( isUserInteracting === true )
     {
@@ -113,15 +100,14 @@ function MouseMove( event )
         lat = ( event.clientY - onMouseDownMouseY ) * 0.1 + onMouseDownLat;
     }
 
-	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-	
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 }
 
 //Fonction quand on lâche le clique desactiver le mouvement de la camera
 function MouseUp( event )
 {
-	clic = true;
+    clic = true;
     isUserInteracting = false;
 }
 
@@ -131,24 +117,20 @@ function MouseWheel( event )
     /*var fov = camera.fov + event.deltaY * 0.05;
     camera.fov = THREE.Math.clamp( fov, 10, 75 );
     camera.updateProjectionMatrix();*/
-	
 }
 
 function loadImg(path,test)
 {
-
-	mesh.material.map = path;
-	affichageCube(test);
-	
-	
+    mesh.material.map = path;
+    affichageCube(test);
 }
 
 function getXHR()
 {
-	var tableauX = [];
-	var tableauY = [];
-	var tableauZ = [];
-	var geometry2 = new THREE.BoxBufferGeometry(20, 20, 20);
+    var tableauX = [];
+    var tableauY = [];
+    var tableauZ = [];
+    var geometry2 = new THREE.BoxBufferGeometry(20, 20, 20);
     var xmlhttp = "";
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -159,67 +141,57 @@ function getXHR()
     xmlhttp.open("GET", "http://localhost:8000/visit/" + visit.id + "/visit.xml", false);
     xmlhttp.send();
     const xmlDoc = xmlhttp.responseXML;
-	
-	var x = xmlDoc.getElementsByTagName("room");
-	nombre = x.length;
-	
+    
+    var x = xmlDoc.getElementsByTagName("room");
+    nombre = x.length;
+    
     for (var i = 0; i < x.length; i++)
-    {
-				 
-
-					
+    {           
         rooms.set(
             x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
-			 new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
-			 );
+            new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
+        );
 
-			var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+        var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
 
-					object.position.x = x[i].getElementsByTagName("positionX")[0].childNodes[0].nodeValue;
-					object.position.y = x[i].getElementsByTagName("positionY")[0].childNodes[0].nodeValue;
-					object.position.z = x[i].getElementsByTagName("positionZ")[0].childNodes[0].nodeValue;
+        object.position.x = x[i].getElementsByTagName("positionX")[0].childNodes[0].nodeValue;
+        object.position.y = x[i].getElementsByTagName("positionY")[0].childNodes[0].nodeValue;
+        object.position.z = x[i].getElementsByTagName("positionZ")[0].childNodes[0].nodeValue;
 
-					object.rotation.x = Math.random() * 2 * Math.PI;
-					object.rotation.y = Math.random() * 2 * Math.PI;
-					object.rotation.z = Math.random() * 2 * Math.PI;
+        object.rotation.x = Math.random() * 2 * Math.PI;
+        object.rotation.y = Math.random() * 2 * Math.PI;
+        object.rotation.z = Math.random() * 2 * Math.PI;
 
-					object.scale.x = Math.random() + 0.5;
-					object.scale.y = Math.random() + 0.5;
-					object.scale.z = Math.random() + 0.5;
-					object.path = new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue);
-					object.test = x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue;
-					object.testsuivant = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
-					//scene.add(object);
-					bottom.push(object);
-        		
-
-		
+        object.scale.x = Math.random() + 0.5;
+        object.scale.y = Math.random() + 0.5;
+        object.scale.z = Math.random() + 0.5;
+        object.path = new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue);
+        object.test = x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue;
+        object.testsuivant = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
+        //scene.add(object);
+        bottom.push(object);
     }
 }
 
 function affichageCube(chemin)
 {
-	for (var i = 0; i < nombre; i ++)
-	{
-		if (chemin === bottom[i].test)
-		{
-			
-			scene.add(bottom[i]);
-		}
-		else
-		{
-			scene.remove(bottom[i]);
-		}			
-	}
+    for (var i = 0; i < nombre; i ++)
+    {
+        if (chemin === bottom[i].test) 
+        {
+            scene.add(bottom[i]);
+        }
+        else
+        {
+            scene.remove(bottom[i]);
+        }           
+    }
 }
 
 function resizeCanvasToDisplaySize(force)
 {
-   
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
-    
-   
 
     if (force || canvas.width !== width ||canvas.height !== height)
     {
@@ -227,8 +199,6 @@ function resizeCanvasToDisplaySize(force)
         renderer.setSize(width, height, false);
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
-
-        // set render target sizes here
     }
 }
 
@@ -251,63 +221,57 @@ function update()
 // fonction animate qui s'occupera d'afficher la scène
 function animate()
 {
-	text2.style.top =  200 + 'px';
-	text2.style.left =  (window.innerWidth/2 -40)  + 'px';
-	
+    text2.style.top =  200 + 'px';
+    text2.style.left =  (window.innerWidth/2 -40)  + 'px';
+    
     resizeCanvasToDisplaySize();
-	requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
     update();
-	raycaste();
+    raycaste();
     renderer.render(scene, camera);
 }
     
 
 function raycaste()
 {
-	raycaster.setFromCamera( mouse, camera );
+    raycaster.setFromCamera( mouse, camera );
 
-				var intersects = raycaster.intersectObjects( scene.children );
-				
-				if (clic)
-				{
-					clic = false;
-					if ( intersects.length > 0 )
-					{
-						if ( intersects[ 0 ].object ) 
-						{
-							if ( INTERSECTED != intersects[ 0 ].object ) 
-							{
-								if ( INTERSECTED )
-								{
-									//INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-								} 
-									
-								if(intersects[ 0 ].object.material.emissive)
-								{
-									INTERSECTED = intersects[ 0 ].object;
-									loadImg(INTERSECTED.path, INTERSECTED.testsuivant);
-									//INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-									//INTERSECTED.material.emissive.setHex( 0xffffff );
-								}
-								else
-								{
-									INTERSECTED = null;
-								}
-								
-							}
-							
-
-						}
-					}
-				} 
-				else 
-				{
-
-					if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-
-					INTERSECTED = null;
-				
-				}
+    var intersects = raycaster.intersectObjects( scene.children );
+    
+    if(clic)
+    {
+        clic = false;
+        if(intersects.length > 0)
+        {
+            if(intersects[ 0 ].object) 
+            {
+                if(INTERSECTED != intersects[ 0 ].object) 
+                {
+                    if(INTERSECTED)
+                    {
+                        //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+                    } 
+                        
+                    if(intersects[ 0 ].object.material.emissive)
+                    {
+                        INTERSECTED = intersects[ 0 ].object;
+                        loadImg(INTERSECTED.path, INTERSECTED.testsuivant);
+                        //INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+                        //INTERSECTED.material.emissive.setHex( 0xffffff );
+                    }
+                    else
+                    {
+                        INTERSECTED = null;
+                    } 
+                }
+            }
+        }
+    } 
+    else 
+    {
+        if(INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+        INTERSECTED = null;  
+    }
 }
 
 requestAnimationFrame(animate);

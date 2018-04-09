@@ -3,17 +3,27 @@
 	<room>
 		<name>Salle EC</name>
 		<url>img/ec.jpg</url>
-	</room>
-	<room>
-		<name>Couloir</name>
-		<url>img/couloir.jpeg</url>
+		<button>
+		</button>
+		<positionX>10</positionX>
+		<positionY>20</positionY>
+		<positionZ>-30</positionZ>
+		<next>img/ir.jpg</next>
 	</room>
 	<room>
 		<name>Salle IR</name>
 		<url>img/ir.jpg</url>
+		<positionX>40</positionX>
+		<positionY>50</positionY>
+		<positionZ>-60</positionZ>
+		<next>img/ir2.jpg</next>
 	</room>
 	<room>
 		<name>Salle IR2</name>
 		<url>img/ir2.jpg</url>
+		<positionX>70</positionX>
+		<positionY>80</positionY>
+		<positionZ>-90</positionZ>
+		<next>img/ec.jpg</next>
 	</room>
 </visit>
