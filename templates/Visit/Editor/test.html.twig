@@ -2,17 +2,39 @@
 
 {% block javascripts %}
     {{ parent() }}
+	
     <script>
         var visit =  {
             name: '{{ visit.name }}',
             id: '{{ visit.id }}'
         };
     </script>
+	<script src="{{ asset('editorVector.js') }}"></script>
 {% endblock %}
 
 {% block main %}
     <div class="text-center py-3">
         <h4>{{ visit.name }}</h2>
-        <canvas style="height:100%; width:100%;"></canvas>
+        <canvas id="myCanvas" width="1200" height="800"></canvas>
+		<button style="position: absolute; top: 630px; left: 20px;"
+		onclick="mainWindow.NewFloor()">Nouvelle étage</button>
+	<button style="position: absolute; top: 655px; left: 20px;"
+		onclick="mainWindow.DeleteFloor()">Supprimer étage</button>
+		
+	<button style="position: absolute; top: 630px; left: 515px;"
+		onclick="mainWindow.GoNextFloor()">Étage suivant</button>
+	<button style="position: absolute; top: 630px; left: 280px;"
+		onclick="mainWindow.GoPrevFloor()">Étage précedant</button>
+		
+	<button style="position: absolute; top: 630px; left: 150px;"
+		onclick="mainWindow.NewRoom()">Ajouter une pièce</button>
+		
+	<button style="position: absolute; top: 655px; left: 515px;"
+		onclick="mainWindow.Save()">Sauvegarder</button>
+		
+	<button style="position: absolute; top: 50px; left: 630px;"
+		onclick="mainWindow.SetNameSelectedRoom()">Changer le nom de la pièce</button>
+	<button style="position: absolute; top: 80px; left: 630px;"
+		onclick="mainWindow.DeleteSelectedRoom()">Supprimer la pièce</button>
     </div>
 {% endblock %}
