@@ -32,8 +32,8 @@ camera.target = new THREE.Vector3(0, 0, 0);
 const geometry = new THREE.SphereBufferGeometry(500, 60, 40);
 geometry.scale(-1, 1, 1);
 
-alert("url1:" + rooms.values().next().value);
-affichageCube(rooms.values().next().value);
+//console.log(rooms.values().next().value);
+affichageCube(bottom[1].test);
 var texture = rooms.values().next().value;
 const material = new THREE.MeshBasicMaterial({map: texture,overdraw: 0.5});
 
@@ -130,11 +130,11 @@ function MouseWheel( event )
 	
 }
 
-function loadImg(path)
+function loadImg(path,test)
 {
-	
+
 	mesh.material.map = path;
-	affichageCube(path);
+	affichageCube(test);
 	
 	
 }
@@ -183,8 +183,8 @@ function getXHR()
 					object.scale.y = Math.random() + 0.5;
 					object.scale.z = Math.random() + 0.5;
 					object.path = new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue);
-					object.test = new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue);
-
+					object.test = x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue;
+					object.testsuivant = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
 					//scene.add(object);
 					bottom.push(object);
         		
@@ -197,11 +197,9 @@ function affichageCube(chemin)
 {
 	for (var i = 0; i < nombre; i ++)
 	{
-		//alert(" le chemin est :" + chemin);
-		//alert("le bottom est" + bottom[i].test);
 		if (chemin === bottom[i].test)
 		{
-			alert("coucou");
+			
 			scene.add(bottom[i]);
 		}
 		else
@@ -282,7 +280,7 @@ function raycaste()
 								if(intersects[ 0 ].object.material.emissive)
 								{
 									INTERSECTED = intersects[ 0 ].object;
-									loadImg(INTERSECTED.path);
+									loadImg(INTERSECTED.path, INTERSECTED.testsuivant);
 									//INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
 									//INTERSECTED.material.emissive.setHex( 0xffffff );
 								}
