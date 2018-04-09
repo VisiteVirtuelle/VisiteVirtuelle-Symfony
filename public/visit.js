@@ -9,6 +9,15 @@ var isUserInteracting = false,
 
 //Lecture du XML de la visite
 var rooms = new Map();
+
+var INTERSECTED;
+const scene = new THREE.Scene();
+var mouse = new THREE.Vector2();
+var raycaster;
+var bottom = [];
+raycaster = new THREE.Raycaster();
+ var nombre;
+
 getXHR();
 
 
@@ -18,11 +27,13 @@ const  renderer = new THREE.WebGLRenderer({canvas: document.querySelector("canva
 const  camera = new THREE.PerspectiveCamera(75, 1, 1, 1100);
 camera.target = new THREE.Vector3(0, 0, 0);
 
-const scene = new THREE.Scene();
+
 
 const geometry = new THREE.SphereBufferGeometry(500, 60, 40);
 geometry.scale(-1, 1, 1);
 
+alert("url1:" + rooms.values().next().value);
+affichageCube(rooms.values().next().value);
 var texture = rooms.values().next().value;
 const material = new THREE.MeshBasicMaterial({map: texture,overdraw: 0.5});
 
@@ -32,6 +43,7 @@ scene.add(mesh);
 const canvas = renderer.domElement;
 
 var text2 = document.createElement('div');
+text2.className = 'btn disabled';
 text2.style.position = 'absolute';
 text2.style.width = 100;
 text2.style.height = 100;
@@ -45,28 +57,6 @@ document.body.appendChild(text2);
 var light = new THREE.DirectionalLight( 0xffffff, 1 );
 light.position.set( 1, 1, 1 ).normalize();
 scene.add( light );
-
-/*var geometry2 = new THREE.BoxBufferGeometry( 20, 20, 20 );
-
-for ( var i = 0; i < 100; i ++ ) {
-
-	var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
-
-	object.position.x = Math.random() * 800 - 400;
-	object.position.y = Math.random() * 800 - 400;
-	object.position.z = Math.random() * 800 - 400;
-
-	object.rotation.x = Math.random() * 2 * Math.PI;
-	object.rotation.y = Math.random() * 2 * Math.PI;
-	object.rotation.z = Math.random() * 2 * Math.PI;
-
-	object.scale.x = Math.random() + 0.5;
-	object.scale.y = Math.random() + 0.5;
-	object.scale.z = Math.random() + 0.5;
-
-	scene.add( object );
-
-}*/
 
 
 //Initialisation du menu
@@ -142,11 +132,19 @@ function MouseWheel( event )
 
 function loadImg(path)
 {
+	
 	mesh.material.map = path;
+	affichageCube(path);
+	
+	
 }
 
 function getXHR()
 {
+	var tableauX = [];
+	var tableauY = [];
+	var tableauZ = [];
+	var geometry2 = new THREE.BoxBufferGeometry(20, 20, 20);
     var xmlhttp = "";
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -157,16 +155,60 @@ function getXHR()
     xmlhttp.open("GET", "http://localhost:8000/visit/" + visit.id + "/visit.xml", false);
     xmlhttp.send();
     const xmlDoc = xmlhttp.responseXML;
-
-    var x = xmlDoc.getElementsByTagName("room");
+	
+	var x = xmlDoc.getElementsByTagName("room");
+	nombre = x.length;
+	
     for (var i = 0; i < x.length; i++)
     {
+				 
+
+					
         rooms.set(
             x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
 			 new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
-        );
+			 );
+
+			var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+
+					object.position.x = x[i].getElementsByTagName("positionX")[0].childNodes[0].nodeValue;
+					object.position.y = x[i].getElementsByTagName("positionY")[0].childNodes[0].nodeValue;
+					object.position.z = x[i].getElementsByTagName("positionZ")[0].childNodes[0].nodeValue;
+
+					object.rotation.x = Math.random() * 2 * Math.PI;
+					object.rotation.y = Math.random() * 2 * Math.PI;
+					object.rotation.z = Math.random() * 2 * Math.PI;
+
+					object.scale.x = Math.random() + 0.5;
+					object.scale.y = Math.random() + 0.5;
+					object.scale.z = Math.random() + 0.5;
+					object.path = new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue);
+					object.test = new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue);
+
+					//scene.add(object);
+					bottom.push(object);
+        		
+
 		
     }
+}
+
+function affichageCube(chemin)
+{
+	for (var i = 0; i < nombre; i ++)
+	{
+		//alert(" le chemin est :" + chemin);
+		//alert("le bottom est" + bottom[i].test);
+		if (chemin === bottom[i].test)
+		{
+			alert("coucou");
+			scene.add(bottom[i]);
+		}
+		else
+		{
+			scene.remove(bottom[i]);
+		}			
+	}
 }
 
 function resizeCanvasToDisplaySize(force)
@@ -175,8 +217,7 @@ function resizeCanvasToDisplaySize(force)
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
     
-    text2.style.top =  200 + 'px';
-	text2.style.left =  (window.innerWidth/2 -40)  + 'px';
+   
 
     if (force || canvas.width !== width ||canvas.height !== height)
     {
@@ -208,10 +249,62 @@ function update()
 // fonction animate qui s'occupera d'afficher la scène
 function animate()
 {
+	text2.style.top =  200 + 'px';
+	text2.style.left =  (window.innerWidth/2 -40)  + 'px';
+	
     resizeCanvasToDisplaySize();
+	requestAnimationFrame(animate);
     update();
+	raycaste();
     renderer.render(scene, camera);
-    requestAnimationFrame(animate);
+}
+    
+
+function raycaste()
+{
+	raycaster.setFromCamera( mouse, camera );
+
+				var intersects = raycaster.intersectObjects( scene.children );
+				
+				if (isUserInteracting)
+				{
+					if ( intersects.length > 0 )
+					{
+						if ( intersects[ 0 ].object ) 
+						{
+							if ( INTERSECTED != intersects[ 0 ].object ) 
+							{
+								if ( INTERSECTED )
+								{
+									//INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+								} 
+									
+								if(intersects[ 0 ].object.material.emissive)
+								{
+									INTERSECTED = intersects[ 0 ].object;
+									loadImg(INTERSECTED.path);
+									//INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+									//INTERSECTED.material.emissive.setHex( 0xffffff );
+								}
+								else
+								{
+									INTERSECTED = null;
+								}
+								
+							}
+							
+
+						}
+					}
+				} 
+				else 
+				{
+
+					if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+
+					INTERSECTED = null;
+				
+				}
 }
 
 requestAnimationFrame(animate);

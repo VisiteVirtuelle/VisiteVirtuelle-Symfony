@@ -88,7 +88,11 @@ function MouseWheel( event )
 function loadImg(path)
 {
     mesh.material.map = THREE.ImageUtils.loadTexture( "http://localhost:8000/visit/" + visit.id + "/" + path );
+<<<<<<< Updated upstream
     mesh.material.needsUpdate = true;
+=======
+
+>>>>>>> Stashed changes
 }
 
 function getXHR()
