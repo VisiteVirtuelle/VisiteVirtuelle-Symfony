@@ -11,6 +11,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Entity\Visit;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -82,6 +83,43 @@ class DashboardController
     public function overview(RegistryInterface $doctrine, Environment $twig)
     {
         $users = $doctrine->getRepository(User::class)->findAll();
+        $visits = $doctrine->getRepository(Visit::class)->findAll();
+        
+        $visitOwnerList = [];
+        foreach ($visits as $visit)
+        {
+            array_push($visitOwnerList, $visit->getOwner()->getUsername());
+        }
+        
+        asort($visitOwnerList);
+        $nbVisit = [];
+        $i = 0; $j = 0; $k = 0;
+        $visitOwnerPrev = $visitOwnerList[0];
+        foreach ($visitOwnerList as $owner)
+        {
+            if ($k > 0)
+            {
+                $visitOwnerPrev = $visitOwnerList[$k - 1];
+            }
+            
+            if ($owner == $visitOwnerPrev)
+            {
+                $j++;
+                $nbVisit[$i] = $j;
+            }
+            else
+            {
+                $i++;
+                $j = 1;
+                $nbVisit[$i] = $j;
+            }
+            
+            $k++;
+        }
+        
+        echo $nbVisit[0];
+        echo $nbVisit[1];
+        echo $nbVisit[2];
         
         return new Response($twig->render('Admin/overview.html.twig', [
             'users' => $users

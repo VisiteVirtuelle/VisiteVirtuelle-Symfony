@@ -11,7 +11,7 @@
     {% set nbAdmin = 0 %}
     {% set nbAgent = 0 %}
     {% set nbUser = 0 %}
-
+    
     {% for user in users %}
         {% for role in user.roles %}
             {% if role == 'ROLE_ADMIN' %}
@@ -48,4 +48,30 @@
             google.visualization.events.addListener(chart, 'select', selectHandler);
         }
     </script>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart()
+        {
+            var data = google.visualization.arrayToDataTable([
+                ['Type', 'Different Visits per Users', ''],
+                ['First', {{ 1 }}],
+                ['Second', {{ 1 }}],
+                ['Third', {{ 1 }}],
+                ['Fourth', {{ 1 }}],
+                ['Fifth', {{ 1 }}]
+            ]);
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, { title: 'Visits details', pieHole: 0.4, colors: ['#00c3ff', '#ffae00', '#ea3600'] });
+
+            var selectHandler = function(e)
+            {
+                window.location = data.getValue(chart.getSelection()[0]['row'], 2 );
+            }
+
+            google.visualization.events.addListener(chart, 'select', selectHandler);
+        }
 {% endblock %}
