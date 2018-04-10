@@ -6,8 +6,8 @@
  #}
 
 {% block main %}
-    <div id="donutchart_users" style="width: 500px; height: 500px;"></div>
-    <div id="donutchart_visits" style="width: 500px; height: 500px;"></div>
+    <div id="donutchart_users" style="width: 400px; height: 280px;"></div>
+    <div id="donutchart_visits" style="width: 400px; height: 280px;"></div>
     
     {% set nbAdmin = 0 %}
     {% set nbAgent = 0 %}
@@ -39,7 +39,7 @@
                 ['Admin', {{ nbAdmin }}, 'users']
             ]);
             var users_chart = new google.visualization.PieChart(document.getElementById('donutchart_users'));
-            users_chart.draw(users_data, { title: 'Users details', pieHole: 0.4, colors: ['#00c3ff', '#ffae00', '#ea3600'] });
+            users_chart.draw(users_data, { title: 'Users details', pieHole: 0.4, colors: ['#00D8FF', '#FFD400', '#FF2600'] });
             
             var selectHandler = function(e)
             {
@@ -55,10 +55,10 @@
                 ['Third', {{ nbVisit[2] }}, 'visits'],
                 ['Fourth', {{ nbVisit[3] }}, 'visits'],
                 ['Fifth', {{ nbVisit[4] }}, 'visits'],
-                ['Fifth', {{ nbVisit[5] }}, 'visits']
+                ['Others', {{ nbVisit[5] }}, 'visits']
             ]);
             var visits_chart = new google.visualization.PieChart(document.getElementById('donutchart_visits'));
-            visits_chart.draw(visits_data, { title: 'Visits details', pieHole: 0.4, colors: ['#00c3ff', '#ffae00', '#ea3600'] });
+            visits_chart.draw(visits_data, { title: 'Visits details', pieHole: 0.4, colors: ['#FF2600', '#FFD400', '#55FF00', '#00D8FF', '#FF00AA', '#B7B7B7'] });
             
             var selectHandler = function(e)
             {
