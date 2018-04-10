@@ -143,27 +143,33 @@ function getXHR()
     xmlhttp.open("GET", "http://localhost:8000/visit/" + visit.id + "/visit.xml", false);
     xmlhttp.send();
     const xmlDoc = xmlhttp.responseXML;
-    
+     alert(xmlDoc.childNodes.length)
     var x = xmlDoc.getElementsByTagName("room");
+    var y = xmlDoc.getElementsByTagName("button");
+    alert(y.length);
     nombre = x.length;
     
+   ;
+    
+
     for (var i = 0; i < x.length; i++)
-    {           
+    {   
+        //alert(x[i].getElementsByTagName());
         rooms.set(
             x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
             new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
         );
 
         var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
-        
-        if (x[i].getElementsByTagName("positionX")[0].childNodes[0].nodeValue === null || x[i].getElementsByTagName("positionY")[0].childNodes[0].nodeValue === null || x[i].getElementsByTagName("positionZ")[0].childNodes[0].nodeValue)
+        if (y.length === 0)
         {
+            
             testClicButton = false;
         }
         else
         {
             testClicButton = true;
-            
+            //alert('coucou');
             object.position.x = x[i].getElementsByTagName("positionX")[0].childNodes[0].nodeValue;
             object.position.y = x[i].getElementsByTagName("positionY")[0].childNodes[0].nodeValue;
             object.position.z = x[i].getElementsByTagName("positionZ")[0].childNodes[0].nodeValue;
@@ -270,8 +276,6 @@ function raycaste()
                         if(intersects[ 0 ].object.material.emissive)
                         {
                             INTERSECTED = intersects[ 0 ].object;
-                            //alert(INTERSECTED.path);
-                            //alert(rooms.get(INTERSECTED.path))
                             loadImg(rooms.get(INTERSECTED.path), INTERSECTED.path);
                         
                         }
