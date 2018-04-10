@@ -24,7 +24,7 @@ class UserController
 
     public function __construct(UserRepository $userRepository)
     {
-        $this->visitRepository = $visitRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
