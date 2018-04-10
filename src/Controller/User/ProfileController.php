@@ -3,7 +3,7 @@
 /*
  * This file is part of the Virtual Visit application.
  *
- * Vincent CLaveau <vinc.claveau@gmail.com>
+ * Vincent Claveau <vinc.claveau@gmail.com>
  *
  */
 
@@ -27,30 +27,39 @@ use Twig\Environment;
  */
 class ProfileController extends Controller
 {
+    private $eventDispatcher;
+    private $tokenStorage;
+
+    public function __construct(EventDispatcherInterface $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+        $this->tokenStorage = $tokenStorage;
+    }
+
     /**
      * @Route("/", name="show")
      */
-    public function show(Environment $twig, TokenStorageInterface $tokenStorage)
+    public function show()
     {
-        $user = $tokenStorage->getToken()->getUser();
+        $user = $this->tokenStorage->getToken()->getUser();
 
         if(!is_object($user))
         {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return new Response($twig->render('User/Profile/show.html.twig', [
+        return $this->render('User/Profile/show.html.twig', [
             'user' => $user
-        ]));
+        ]);
     }
 
     /**
      * @Route("/edit", name="edit")
      * @param Request $request
      */
-    public function edit(Request $request, Environment $twig, TokenStorageInterface $tokenStorage, EventDispatcherInterface $eventDispatcher)
+    public function edit(Request $request)
     {
-        $user = $tokenStorage->getToken()->getUser();
+        $user = $this->tokenStorage->getToken()->getUser();
 
         if(!is_object($user))
         {
@@ -59,7 +68,7 @@ class ProfileController extends Controller
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid())
         {
             // On enregistre l'utilisateur dans la base
@@ -69,13 +78,13 @@ class ProfileController extends Controller
 
             //On déclenche l'event
             $event = new GenericEvent($user);
-            $eventDispatcher->dispatch(Events::USER_PROFILE_EDIT_SUCCESS, $event);
+            $this->eventDispatcher->dispatch(Events::USER_PROFILE_EDIT_SUCCESS, $event);
 
             return $this->redirectToRoute('user_profile_show');
         }
 
-        return new Response($twig->render('User/Profile/edit.html.twig', [
+        return $this->render('User/Profile/edit.html.twig', [
             'form' => $form->createView()
-        ]));
+        ]);
     }
 }

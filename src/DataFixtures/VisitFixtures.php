@@ -29,7 +29,6 @@ class VisitFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $userRepository = $manager->getRepository(User::class);
-        $filesystem = new Filesystem();
 
         //creating visits in the database
         foreach ($this->getData() as [$name, $owner, $location])
@@ -46,6 +45,7 @@ class VisitFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
 
         //copying visits data (images, xml)
+        $filesystem = new Filesystem();
         foreach ($this->getData() as [$name])
         {
             $visitRepository = $manager->getRepository(Visit::class);

@@ -24,7 +24,7 @@
                             <h5>{{ visit.name }}</h5>
                             {% if app.user == visit.owner or is_granted('ROLE_ADMIN') %}
                                 <div class="col d-flex flex-row-reverse">
-                                    <a href="{{ path('visit_editor_edit', {'id': visit.id}) }}">
+                                    <a href="{{ path('visit_editor_edit', {'id': visit.id}) }}" class="text-secondary">
                                         <small>
                                             {{ 'visit.list.edit'|trans }}
                                             <i class="fa fa-cog"></i>

@@ -24,10 +24,17 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class RegistrationController extends Controller
 {
+    private $eventDispatcher;
+
+    public function __construct(EventDispatcherInterface $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+    }
+
     /**
      * @Route("/register", name="registration_register")
      */
-    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, EventDispatcherInterface $eventDispatcher)
+    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -48,14 +55,13 @@ class RegistrationController extends Controller
 
             //On déclenche l'event
             $event = new GenericEvent($user);
-            $eventDispatcher->dispatch(Events::USER_REGISTERED, $event);
+            $this->eventDispatcher->dispatch(Events::USER_REGISTERED, $event);
 
             return $this->redirectToRoute('user_security_login');
         }
 
-        return $this->render(
-            'User/Registration/register.html.twig',
-            array('form' => $form->createView())
-        );
+        return $this->render('User/Registration/register.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

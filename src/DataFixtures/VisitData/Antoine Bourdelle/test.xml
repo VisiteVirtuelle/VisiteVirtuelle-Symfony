@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visit>
+	<room name="Salle EC" url="img/ec.jpg">
+        <button>
+    		<positionX>10</positionX>
+    		<positionY>20</positionY>
+    		<positionZ>-30</positionZ>
+    		<next>Salle IR</next>
+        </button>
+        <button>
+    		<positionX>10</positionX>
+    		<positionY>20</positionY>
+    		<positionZ>-30</positionZ>
+    		<next>Salle IR</next>
+        </button>
+	</room>
+	<room name="Salle IR" url="img/ir.jpg">
+        <button>
+    		<positionX>40</positionX>
+    		<positionY>50</positionY>
+    		<positionZ>-60</positionZ>
+    		<next>Salle IR2</next>
+        </button>
+	</room>
+	<room name="Salle IR2" url="img/ir2.jpg">
+        <button>
+            <positionX>70</positionX>
+    		<positionY>80</positionY>
+    		<positionZ>-90</positionZ>
+    		<next>Salle EC</next>
+        </button>
+        <button>
+            <positionX>70</positionX>
+    		<positionY>80</positionY>
+    		<positionZ>-90</positionZ>
+    		<next>Salle EC</next>
+        </button>
+	</room>
+</visit>

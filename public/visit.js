@@ -30,7 +30,7 @@ const geometry = new THREE.SphereBufferGeometry(500, 60, 40);
 geometry.scale(-1, 1, 1);
 
 //console.log(rooms.values().next().value);
-affichageCube(bottom[1].test);
+affichageCube(bottom[0].test);
 var texture = rooms.values().next().value;
 const material = new THREE.MeshBasicMaterial({map: texture,overdraw: 0.5});
 
@@ -141,12 +141,12 @@ function getXHR()
     xmlhttp.open("GET", "http://localhost:8000/visit/" + visit.id + "/visit.xml", false);
     xmlhttp.send();
     const xmlDoc = xmlhttp.responseXML;
-    
+
     var x = xmlDoc.getElementsByTagName("room");
     nombre = x.length;
-    
+
     for (var i = 0; i < x.length; i++)
-    {           
+    {
         rooms.set(
             x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
             new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
@@ -177,14 +177,14 @@ function affichageCube(chemin)
 {
     for (var i = 0; i < nombre; i ++)
     {
-        if (chemin === bottom[i].test) 
+        if (chemin === bottom[i].test)
         {
             scene.add(bottom[i]);
         }
         else
         {
             scene.remove(bottom[i]);
-        }           
+        }
     }
 }
 
@@ -223,35 +223,35 @@ function animate()
 {
     text2.style.top =  200 + 'px';
     text2.style.left =  (window.innerWidth/2 -40)  + 'px';
-    
+
     resizeCanvasToDisplaySize();
     requestAnimationFrame(animate);
     update();
     raycaste();
     renderer.render(scene, camera);
 }
-    
+
 
 function raycaste()
 {
     raycaster.setFromCamera( mouse, camera );
 
     var intersects = raycaster.intersectObjects( scene.children );
-    
+
     if(clic)
     {
         clic = false;
         if(intersects.length > 0)
         {
-            if(intersects[ 0 ].object) 
+            if(intersects[ 0 ].object)
             {
-                if(INTERSECTED != intersects[ 0 ].object) 
+                if(INTERSECTED != intersects[ 0 ].object)
                 {
                     if(INTERSECTED)
                     {
                         //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-                    } 
-                        
+                    }
+
                     if(intersects[ 0 ].object.material.emissive)
                     {
                         INTERSECTED = intersects[ 0 ].object;
@@ -262,15 +262,15 @@ function raycaste()
                     else
                     {
                         INTERSECTED = null;
-                    } 
+                    }
                 }
             }
         }
-    } 
-    else 
+    }
+    else
     {
         if(INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-        INTERSECTED = null;  
+        INTERSECTED = null;
     }
 }
 
