@@ -85,22 +85,30 @@ class DashboardController
         $users = $doctrine->getRepository(User::class)->findAll();
         $visits = $doctrine->getRepository(Visit::class)->findAll();
         
-        $visitOwnerList = array();
+        $visitOwnerList = [];
         foreach ($visits as $visit)
         {
             array_push($visitOwnerList, $visit->getOwner()->getUsername());
         }
         
+        $ownerVisit = [];
+        $ownerVisit = array_fill(0, 6, '');
         $nbVisit = [];
         $nbVisit = array_fill(0, 6, 1);
+        $visitOwnerPrev = '';
+        $visitOwnerList = array_map('strtolower', $visitOwnerList);
+        sort($visitOwnerList);
         $i = 0; $j = 0; $k = 0;
-        $visitOwnerPrev;
-        asort($visitOwnerList);
         foreach ($visitOwnerList as $owner)
         {
-            if ($k < 1)
+            if ($k > 0)
+            {
+                $visitOwnerPrev = $visitOwnerList[$k - 1];
+            }
+            else
             {
                 $visitOwnerPrev = $owner;
+                $ownerVisit[$i] = $owner;
             }
             
             if ($owner == $visitOwnerPrev)
@@ -113,20 +121,19 @@ class DashboardController
                 $i++;
                 $j = 1;
                 $nbVisit[$i] = $j;
+                $ownerVisit[$i] = $owner;
             }
             
-            if ($k > 0)
-            {
-                $visitOwnerPrev = $visitOwnerList[$k - 1];
-            }
             $k++;
         }
         
         rsort($nbVisit);
+        rsort($ownerVisit);
         
         return new Response($twig->render('Admin/overview.html.twig', [
             'users' => $users,
             'nbVisit' => $nbVisit,
+            'ownerVisit' => $ownerVisit
         ]));
     }
 }
