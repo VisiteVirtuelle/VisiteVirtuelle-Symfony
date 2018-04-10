@@ -14,14 +14,14 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-2 bg-light border-right border-secondary card-2 ">
+        <div class="col-2 bg-light border-right border-secondary card-2">
             {% for group in groups %}
-                <h4 class="ml-2">{{ group.name }}</h4>
+                <h4 class="ml-2 text-uppercase text-secondary">{{ group.name }}</h4>
                 <ul class="navbar-nav btn-group-vertical text-dark">
                     {% for link in group.links %}
-                        <li class="btn btn-secondary  ml-2">
-                            <a href="{{ path('admin_dashboard', { 'template' : link|lower }) }}" class="text-dark">
-                                {{ link }}
+                        <li class=" ml-2  ">
+                            <a href="{{ path('admin_dashboard', { 'template' : link|lower }) }}" class="btn btn-link" style="text-decoration: none">
+                                <i class="material-icons" style="font-size:16px">keyboard_arrow_right</i> <span class="mb-2"> {{ link }}</span>
                             </a>
                         </li>
                     {% endfor %}
