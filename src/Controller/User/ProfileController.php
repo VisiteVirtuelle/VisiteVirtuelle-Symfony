@@ -30,7 +30,7 @@ class ProfileController extends Controller
     private $eventDispatcher;
     private $tokenStorage;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher)
+    public function __construct(EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage)
     {
         $this->eventDispatcher = $eventDispatcher;
         $this->tokenStorage = $tokenStorage;

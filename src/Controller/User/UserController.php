@@ -32,7 +32,7 @@ class UserController
      */
     public function list(Environment $twig)
     {
-        $users = $this->visitRepository->findAll();
+        $users = $this->userRepository->findAll();
 
         return new Response($twig->render('User/list.html.twig', [
             'users' => $users
