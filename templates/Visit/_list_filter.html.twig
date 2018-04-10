@@ -9,15 +9,15 @@
             {# badges de filtrage #}
             <div class="col">
                 {# agent #}
-                {% if owner %}
+                {% if filters.agent %}
                     <span class="badge badge-primary">
                         <small>
                             {{ 'visit.list.agent'|trans }}
                         </small>
-                        {% if owner.fullname %}
-                            {{ owner.fullname }}
+                        {% if filters.agent.fullname %}
+                            {{ filters.agent.fullname }}
                         {% else %}
-                            {{ owner.username }}
+                            {{ filters.agent.username }}
                         {% endif %}
 
                         <a href="{{ path('visit_list', {'view': app.request.get('view')}) }}" class="text-light pl-1">

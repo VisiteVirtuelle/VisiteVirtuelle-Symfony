@@ -11,7 +11,8 @@ namespace App\Controller\Visit;
 
 use App\Entity\User;
 use App\Entity\Visit;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Repository\UserRepository;
+use App\Repository\VisitRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,12 +23,19 @@ use Twig\Environment;
  */
 class VisitController
 {
+    private $visitRepository;
+
+    public function __construct(VisitRepository $visitRepository)
+    {
+        $this->visitRepository = $visitRepository;
+    }
+
     /**
      * @Route("/{id}", requirements={"id": "\d+"}, name="show")
      */
-    public function show($id, Environment $twig, RegistryInterface $doctrine)
+    public function show($id, Environment $twig)
     {
-        $visit = $doctrine->getRepository(Visit::class)->find($id);
+        $visit = $this->visitRepository->find($id);
 
         if (null === $visit)
         {
@@ -45,20 +53,14 @@ class VisitController
      *  defaults={"view" = "card", "owner_id" = null},
      *  name="list")
      */
-    public function list($view, $owner_id, Environment $twig, RegistryInterface $doctrine)
+    public function list($view, $owner_id, Environment $twig, UserRepository $userRepository)
     {
-        $visits = $doctrine->getRepository(Visit::class);
-        $owner = null;
+        $visits = ($owner_id === null ? $this->visitRepository->findAll() : $this->visitRepository->findVisitsByOwner($owner_id));
 
-        if($owner_id === null)
-        {
-            $visits = $visits->findAll();
-        } else {
-            $visits = $visits->findBy(['owner' => $owner_id]);
-            $owner = $doctrine->getRepository(User::class)->find($owner_id);
-        }
+        $filters = [
+            'agent' => ($owner_id === null ? null : $userRepository->find($owner_id)),
+        ];
 
-        $template = "";
         switch($view)
         {
             case "card":
@@ -74,7 +76,7 @@ class VisitController
 
         return new Response($twig->render($template, [
             'visits' => $visits,
-            'owner' => $owner
+            'filters' => $filters
         ]));
     }
 }

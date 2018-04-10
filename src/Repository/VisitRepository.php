@@ -19,4 +19,19 @@ class VisitRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Visit::class);
     }
+
+    /**
+     * @param $owner
+     * @return Visit[]
+     */
+    public function findVisitsByOwner($owner): array
+    {
+        $qb = $this->createQueryBuilder('v')
+            ->andWhere('v.owner = :owner')
+            ->setParameter('owner', $owner)
+            ->orderBy('v.id', 'ASC')
+            ->getQuery();
+
+        return $qb->execute();
+    }
 }

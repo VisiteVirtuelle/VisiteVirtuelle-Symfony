@@ -10,22 +10,19 @@
 namespace App\Controller\Visit;
 
 use App\Events;
-use App\Entity\User;
 use App\Entity\Visit;
 use App\Form\VisitType;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Repository\VisitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Twig\Environment;
 
 /**
  * @Route("/editor", name="visit_editor_")
@@ -33,12 +30,15 @@ use Twig\Environment;
 class EditorController extends Controller
 {
     private $eventDispatcher;
+    private $tokenStorage;
+    private $visitRepository;
     private $visits_dir;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage, string $project_dir)
+    public function __construct(EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage, VisitRepository $visitRepository, string $project_dir)
     {
         $this->eventDispatcher = $eventDispatcher;
         $this->tokenStorage = $tokenStorage;
+        $this->visitRepository = $visitRepository;
         $this->visits_dir = $project_dir.'/public/visit/';
     }
 
@@ -81,9 +81,9 @@ class EditorController extends Controller
     /**
      * @Route("/{id}", requirements={"id": "\d+"}, name="edit")
      */
-    public function edit($id, Request $request, RegistryInterface $doctrine, AuthorizationCheckerInterface $authChecker)
+    public function edit($id, Request $request, AuthorizationCheckerInterface $authChecker)
     {
-        $visit = $doctrine->getRepository(Visit::class)->find($id);
+        $visit = $this->visitRepository->find($id);
 
         if ($visit === null)
         {
@@ -124,9 +124,9 @@ class EditorController extends Controller
     /**
      * @Route("/test/{id}", requirements={"id": "\d+"}, name="test")
      */
-    public function test($id, RegistryInterface $doctrine)
+    public function test($id)
     {
-        $visit = $doctrine->getRepository(Visit::class)->find($id);
+        $visit = $this->visitRepository->find($id);
 
         if ($visit === null)
         {
@@ -137,6 +137,7 @@ class EditorController extends Controller
             'visit' => $visit
         ]);
     }
+
 
     private function createVisitRepository($id)
     {

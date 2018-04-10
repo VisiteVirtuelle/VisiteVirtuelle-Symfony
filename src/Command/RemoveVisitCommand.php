@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the Virtual Visit application.
+ *
+ * Vincent Claveau <vinc.claveau@gmail.com>
+ *
+ */
+ 
 namespace App\Command;
 
 use App\Entity\Visit;

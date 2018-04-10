@@ -3,14 +3,14 @@
 /*
  * This file is part of the Virtual Visit application.
  *
- * Vincent Claveau <guillaume.vidal@lycee-bourdelle.com>
+ * Guillaume Vidal <guillaume.vidal@lycee-bourdelle.com>
  *
  */
 
 namespace App\Controller\User;
 
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Repository\UserRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -20,13 +20,20 @@ use Twig\Environment;
  */
 class UserController
 {
+    private $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->visitRepository = $visitRepository;
+    }
+
     /**
      * @Route("/list", name="list")
      */
-    public function list(RegistryInterface $doctrine, Environment $twig)
+    public function list(Environment $twig)
     {
-        $users = $doctrine->getRepository(User::class)->findAll();
-        
+        $users = $this->visitRepository->findAll();
+
         return new Response($twig->render('User/list.html.twig', [
             'users' => $users
         ]));
