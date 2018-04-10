@@ -44,7 +44,7 @@ function Room() {
 		return m_name;
 	};
 	this.SetName = function(name){
-		m_name = name;
+		m_name = name.replace(/[&\/\\#,+()$~%.":*?<>{}]/g,'');
 	};
 	this.Raycast = function(point){
 		var x = point.x, y = point.y;
@@ -293,7 +293,30 @@ function WindowCanvas() {
 		this.DrawSelectedFloor();
 	};
 	this.Save = function(){
+		var xmlString = "<blueprint>";					//début de la balise blueprint
 		
+		for(var iFloor=0; iFloor<m_floors.length; iFloor++){
+			xmlString += "<floor>";							//début de la balise floor
+			
+			var tempRooms = m_floors[iFloor].GetRooms();
+			for(var iRoom=0; iRoom<tempRooms.length; iRoom++){
+				var tempRoom = tempRooms[iRoom];
+				
+				xmlString += "<room>" +							//début balise room
+				"<name>" + tempRoom.GetName() + "</name>"; 			//récupération du nom
+				for(var j=0; j < tempRoom.GetPolygone().length; j++){
+					
+					xmlString += "<point>" +						//début balise point
+					"<x>" + tempRoom.GetPolygone()[j].x + "</x>" +		//balise x
+					"<y>" + tempRoom.GetPolygone()[j].y + "</y>" +		//balise y
+					"</point>";										//fin balise point
+				}
+				xmlString += "</room>";							//fin balise room
+			}
+			xmlString += "</floor>";						//fin balise floor
+		}
+		xmlString += "</blueprint>";					//fin de la balise blueprint
+		console.log(xmlString);
 	};
 
 	// désactivation du menu clique droit
