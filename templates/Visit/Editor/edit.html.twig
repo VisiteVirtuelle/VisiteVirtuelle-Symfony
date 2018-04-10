@@ -53,6 +53,7 @@
                         <h5>{{ 'util.drag&drop.title'|trans }}</h5>
                     </div>
                     <div class="drop-footer">
+                        {% form_theme form 'form/nolabel.html.twig' %}
                         {{ form_row(form.cover) }}
                     </div>
                 </div>

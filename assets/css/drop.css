@@ -29,9 +29,5 @@
 
 .drop .drop-footer {
     color: #787E85;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding-bottom: 1rem!important;
+    margin: 1rem;
 }

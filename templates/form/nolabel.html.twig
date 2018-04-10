@@ -1,0 +1,9 @@
+{% extends 'form/base.html.twig' %}
+
+
+{% block form_row -%}
+    <div class="form-group">
+        {{- form_widget(form, { attr: { class: errors|length ? 'form-control is-invalid': 'form-control' } }) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row %}

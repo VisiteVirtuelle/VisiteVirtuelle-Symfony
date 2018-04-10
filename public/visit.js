@@ -143,18 +143,15 @@ function getXHR()
     xmlhttp.open("GET", "http://localhost:8000/visit/" + visit.id + "/visit.xml", false);
     xmlhttp.send();
     const xmlDoc = xmlhttp.responseXML;
-     alert(xmlDoc.childNodes.length)
     var x = xmlDoc.getElementsByTagName("room");
     var y = xmlDoc.getElementsByTagName("button");
-    alert(y.length);
     nombre = x.length;
-    
+
    ;
-    
+
 
     for (var i = 0; i < x.length; i++)
-    {   
-        //alert(x[i].getElementsByTagName());
+    {
         rooms.set(
             x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
             new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
@@ -163,17 +160,16 @@ function getXHR()
         var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
         if (y.length === 0)
         {
-            
+
             testClicButton = false;
         }
         else
         {
             testClicButton = true;
-            //alert('coucou');
+
             object.position.x = x[i].getElementsByTagName("positionX")[0].childNodes[0].nodeValue;
             object.position.y = x[i].getElementsByTagName("positionY")[0].childNodes[0].nodeValue;
             object.position.z = x[i].getElementsByTagName("positionZ")[0].childNodes[0].nodeValue;
-        
 
             object.rotation.x = Math.random() * 2 * Math.PI;
             object.rotation.y = Math.random() * 2 * Math.PI;
@@ -182,12 +178,11 @@ function getXHR()
             object.scale.x = Math.random() + 0.5;
             object.scale.y = Math.random() + 0.5;
             object.scale.z = Math.random() + 0.5;
-           
+
             object.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
             object.name = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
             //object.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
-            //alert(object.path);
-            
+
             //scene.add(object);
             boutton.push(object);
         }
@@ -196,19 +191,16 @@ function getXHR()
 
 function affichageCube(chemin)
 {
-    //alert("la salle est " + chemin);
     for (var i = 0; i < nombre; i ++)
     {
-        if (chemin === boutton[i].name) 
+        if (chemin === boutton[i].name)
         {
-           // alert("ajout" + boutton[i].path );
             scene.add(boutton[i]);
         }
         else
         {
-           // alert("supprimer" + boutton[i].path );
             scene.remove(boutton[i]);
-        }           
+        }
     }
 }
 
@@ -247,14 +239,14 @@ function animate()
 {
     text2.style.top =  200 + 'px';
     text2.style.left =  (window.innerWidth/2 -40)  + 'px';
-    
+
     resizeCanvasToDisplaySize();
     requestAnimationFrame(animate);
     update();
     raycaste();
     renderer.render(scene, camera);
 }
-    
+
 
 function raycaste()
 {
@@ -263,34 +255,34 @@ function raycaste()
         raycaster.setFromCamera( mouse, camera );
 
         var intersects = raycaster.intersectObjects( scene.children );
-        
+
         if(clic)
         {
             clic = false;
             if(intersects.length > 0)
             {
-                if(intersects[ 0 ].object) 
+                if(intersects[ 0 ].object)
                 {
-                    if(INTERSECTED != intersects[ 0 ].object) 
+                    if(INTERSECTED != intersects[ 0 ].object)
                     {
                         if(intersects[ 0 ].object.material.emissive)
                         {
                             INTERSECTED = intersects[ 0 ].object;
                             loadImg(rooms.get(INTERSECTED.path), INTERSECTED.path);
-                        
+
                         }
                         else
                         {
                             INTERSECTED = null;
-                        } 
+                        }
                     }
                 }
             }
-        } 
-        else 
+        }
+        else
         {
             if(INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-            INTERSECTED = null;  
+            INTERSECTED = null;
         }
     }
 }
