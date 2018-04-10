@@ -6,7 +6,8 @@
  #}
 
 {% block main %}
-    <div id="donutchart" style="width: 800px; height: 500px;"></div>
+    <div id="donutchart_users" style="width: 500px; height: 500px;"></div>
+    <div id="donutchart_visits" style="width: 500px; height: 500px;"></div>
     
     {% set nbAdmin = 0 %}
     {% set nbAgent = 0 %}
@@ -30,48 +31,40 @@
         google.charts.setOnLoadCallback(drawChart);
         function drawChart()
         {
-            var data = google.visualization.arrayToDataTable([
+        	//Chart Users
+            var users_data = google.visualization.arrayToDataTable([
                 ['Type', 'Different types of Users', ''],
                 ['User', {{ nbUser }}, 'users'],
                 ['Agent', {{ nbAgent }}, 'users'],
                 ['Admin', {{ nbAdmin }}, 'users']
             ]);
-
-            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-            chart.draw(data, { title: 'Users details', pieHole: 0.4, colors: ['#00c3ff', '#ffae00', '#ea3600'] });
-
+            var users_chart = new google.visualization.PieChart(document.getElementById('donutchart_users'));
+            users_chart.draw(users_data, { title: 'Users details', pieHole: 0.4, colors: ['#00c3ff', '#ffae00', '#ea3600'] });
+            
             var selectHandler = function(e)
             {
-                window.location = data.getValue(chart.getSelection()[0]['row'], 2 );
+                window.location = users_data.getValue(users_chart.getSelection()[0]['row'], 2 );
             }
-
-            google.visualization.events.addListener(chart, 'select', selectHandler);
+            google.visualization.events.addListener(users_chart, 'select', selectHandler);
+            
+            //Chart Visits
+            var visits_data = google.visualization.arrayToDataTable([
+            	['Type', 'Different Visits per Users', ''],
+                ['First', {{ nbVisit[0] }}, 'visits'],
+                ['Second', {{ nbVisit[1] }}, 'visits'],
+                ['Third', {{ nbVisit[2] }}, 'visits'],
+                ['Fourth', {{ nbVisit[3] }}, 'visits'],
+                ['Fifth', {{ nbVisit[4] }}, 'visits'],
+                ['Fifth', {{ nbVisit[5] }}, 'visits']
+            ]);
+            var visits_chart = new google.visualization.PieChart(document.getElementById('donutchart_visits'));
+            visits_chart.draw(visits_data, { title: 'Visits details', pieHole: 0.4, colors: ['#00c3ff', '#ffae00', '#ea3600'] });
+            
+            var selectHandler = function(e)
+            {
+                window.location = visits_data.getValue(visits_chart.getSelection()[0]['row'], 2 );
+            }
+            google.visualization.events.addListener(visits_chart, 'select', selectHandler);
         }
     </script>
-    
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart()
-        {
-            var data = google.visualization.arrayToDataTable([
-                ['Type', 'Different Visits per Users', ''],
-                ['First', {{ 1 }}],
-                ['Second', {{ 1 }}],
-                ['Third', {{ 1 }}],
-                ['Fourth', {{ 1 }}],
-                ['Fifth', {{ 1 }}]
-            ]);
-
-            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-            chart.draw(data, { title: 'Visits details', pieHole: 0.4, colors: ['#00c3ff', '#ffae00', '#ea3600'] });
-
-            var selectHandler = function(e)
-            {
-                window.location = data.getValue(chart.getSelection()[0]['row'], 2 );
-            }
-
-            google.visualization.events.addListener(chart, 'select', selectHandler);
-        }
 {% endblock %}
