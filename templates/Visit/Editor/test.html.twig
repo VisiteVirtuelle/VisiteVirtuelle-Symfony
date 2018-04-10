@@ -16,17 +16,17 @@
 	<div class="text-center py-3">
 		<h4>{{ visit.name }}</h4>
 		
-		<div class="btn-group mr-2 mt-2 mb-2" role="group" aria-label="Bouton de gestion du plan">
+		<div class="btn-group mx-auto" role="group" aria-label="Bouton de gestion du plan">
 			<button type="button" class="border btn btn-secondary"
 				onclick="mainWindow.NewFloor()">Nouvelle étage</button>
 			<button type="button" class="border btn btn-secondary"
 				onclick="mainWindow.DeleteFloor()">Supprimer étage</button>
 			<button type="button" class="border btn btn-secondary"
-				onclick="mainWindow.GoNextFloor()">Étage suivant</button>
-			<button type="button" class="border btn btn-secondary"
 				onclick="mainWindow.GoPrevFloor()">Étage précedant</button>
+			<button type="button" class="border btn btn-secondary"
+				onclick="mainWindow.GoNextFloor()">Étage suivant</button>
 		</div>
-		<div class="btn-group mr-2 mt-2 mb-2" role="group" aria-label="Bouton de gestion du plan">
+		<div class="btn-group mx-auto" role="group" aria-label="Bouton de gestion du plan">
 			<button type="button" class="border btn btn-secondary"
 				onclick="mainWindow.NewRoom()">Ajouter une pièce</button>
 			<button type="button" class="border btn btn-secondary"
@@ -37,7 +37,7 @@
 				onclick="mainWindow.DeleteSelectedRoom()">Supprimer la pièce</button>
 		</div>
 		
-		<canvas id="myCanvas" width="1200" height="650"></canvas>
+		<canvas id="myCanvas" width="1000" height="650" class="" ></canvas>
 		
 
 	</div>
