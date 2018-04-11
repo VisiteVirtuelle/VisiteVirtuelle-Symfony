@@ -7,7 +7,7 @@
 
  {% block main %}
     <div id="donutchart_users" style="width: 300px; height: 280px;"></div>
-    <div id="donutchart_visits" style="width: 400px; height: 280px;"></div>
+    <div id="donutchart_visits" style="width: 300px; height: 280px;"></div>
     
     {% set nbAdmin = 0 %}
     {% set nbAgent = 0 %}
@@ -29,24 +29,52 @@
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script>
-        var users_chart = Highcharts.chart('donutchart_users',
+        Highcharts.setOptions({
+            colors: ['#7CB5EC', '#F7A35C', '#F45B5B']
+        });
+        Highcharts.chart(
+            'donutchart_users',
             {
-                chart:
-                    {
-                        type: 'pie', options3d: { enabled: false, alpha: 45 }
-                    },
-                plotOptions:
-                    {
-                        pie: { innerSize: 60, depth: 45 }
-                    },
+                title : { text: 'Users chart' },
+                chart: { type: 'pie', options3d: { enabled: false} },
+                plotOptions: {
+                    series: { allowPointSelect: true, cursor: 'pointer' },
+                    pie: { innerSize: 60, depth: 45 }
+                },
                 series:
-                    [{
-                        name: 'Quantity ', data: [
-                            ['User', {{ nbUser }}],
-                            ['Agent', {{ nbAgent }}],
-                            ['Admin', {{ nbAdmin }}]
-                        ]
-                    }]
+                [{
+                    data: [
+                        ['User', {{ nbUser }}],
+                        ['Agent', {{ nbAgent }}],
+                        ['Admin', {{ nbAdmin }}]
+                    ]
+                }]
+            }
+        );
+
+        Highcharts.setOptions({
+            colors: ['#F45B5B', '#F7A35C', '#90ED7D', '#7CB5EC', '#8085E9' ,'#BFBFBF']
+        });
+        Highcharts.chart(
+            'donutchart_visits',
+            {
+                title : { text: 'Visits chart' },
+                chart: { type: 'pie', options3d: { enabled: false} },
+                plotOptions: {
+                    series: { allowPointSelect: true, cursor: 'pointer' },
+                    pie: { innerSize: 60, depth: 45 }
+                },
+                series:
+                [{
+                    data: [
+                    	['{{ ownerVisit[0] }}', {{ nbVisit[0] }}],
+                        ['{{ ownerVisit[1] }}', {{ nbVisit[1] }}],
+                        ['{{ ownerVisit[2] }}', {{ nbVisit[2] }}],
+                        ['{{ ownerVisit[3] }}', {{ nbVisit[3] }}],
+                        ['{{ ownerVisit[4] }}', {{ nbVisit[4] }}],
+                        ['{{ ownerVisit[5] }}', {{ nbVisit[5] }}]
+                    ]
+                }]
             }
         );
     </script>
