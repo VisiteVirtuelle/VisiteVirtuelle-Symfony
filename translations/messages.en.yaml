@@ -55,7 +55,7 @@ visit:
         room: Room
         sqft: Totale surface
         price: Price of the visit
-        location: Location of the rental
+        location: Location of the visit
         blueprint: Interactive map
         link:
             list: Visits
