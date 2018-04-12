@@ -42,14 +42,14 @@ scene.add(mesh);
 const canvas = renderer.domElement;
 
 var text2 = document.createElement('div');
-text2.className = 'btn disabled';
-text2.style.position = 'absolute';
+text2.className = ' btn disabled';
+text2.style.position = 'relative';
 text2.style.width = 100;
 text2.style.height = 100;
 text2.style.backgroundColor = "white";
 text2.innerHTML = rooms.keys().next().value;
-text2.style.top = (canvas.clientHeight - 150) + 'px';
-text2.style.left =  window.innerWidth/2 + 'px';
+text2.style.bottom = (canvas.clientHeight - 10) + 'px';
+text2.style.left =  (canvas.clientWidth/2 + 50) + 'px';
 document.body.appendChild(text2);
 
 var light = new THREE.DirectionalLight( 0xffffff, 1 );
@@ -73,7 +73,7 @@ function initGui()
     gui.add(obj, 'Room', Array.from(rooms.keys())).onChange(
         function(){
             text2.innerHTML = obj.Room;
-            loadImg(rooms.get(obj.Room));
+            loadImg(rooms.get(obj.Room),obj.Room);
         }
     );
 }
@@ -143,8 +143,15 @@ function getXHR()
     xmlhttp.open("GET", "http://localhost:8000/visit/" + visit.id + "/visit.xml", false);
     xmlhttp.send();
     const xmlDoc = xmlhttp.responseXML;
+<<<<<<< Updated upstream
     var x = xmlDoc.getElementsByTagName("room");
     var y = xmlDoc.getElementsByTagName("button");
+=======
+     //alert(xmlDoc.childNodes.length)
+    var x = xmlDoc.getElementsByTagName("room");
+    var y = xmlDoc.getElementsByTagName("button");
+    //alert(y.length);
+>>>>>>> Stashed changes
     nombre = x.length;
 
    ;
@@ -237,9 +244,15 @@ function update()
 // fonction animate qui s'occupera d'afficher la scène
 function animate()
 {
+<<<<<<< Updated upstream
     text2.style.top =  200 + 'px';
     text2.style.left =  (window.innerWidth/2 -40)  + 'px';
 
+=======
+text2.style.bottom = (canvas.clientHeight - 10) + 'px';
+text2.style.left =  (canvas.clientWidth/2 +50) + 'px';
+    
+>>>>>>> Stashed changes
     resizeCanvasToDisplaySize();
     requestAnimationFrame(animate);
     update();
@@ -268,6 +281,7 @@ function raycaste()
                         if(intersects[ 0 ].object.material.emissive)
                         {
                             INTERSECTED = intersects[ 0 ].object;
+                            text2.innerHTML = INTERSECTED.path;
                             loadImg(rooms.get(INTERSECTED.path), INTERSECTED.path);
 
                         }

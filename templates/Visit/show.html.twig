@@ -13,6 +13,7 @@
     <script src="{{ asset('three.js') }}"></script>
     <script src="{{ asset('dat.gui.min.js') }}"></script>
     <script src="{{ asset('visit.js') }}"></script>
+	<script src="{{ asset('editorVector.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -42,6 +43,26 @@
 {% block main %}
     <div class="text-center py-3">
         <h4>{{ visit.name }}</h4>
-        <canvas style="height:100%; width:100%;"></canvas>
+		  <div class="row" style="height:600px;">
+				<span class="col-9">
+					<canvas style="height:100%;width:100%;" >
+					</canvas>
+				</span>
+				<span class="col-3 bg-secondary card-2 ">
+					<div class="mt-5">
+						<h4 class="text-light"> {{ visit.name }} : {{ 'visit.show.room'|trans }} </h4>
+						<p class="d-flex p-2">{{ 'visit.show.sqft'|trans }} : {{visit.sqft}} m² </p>
+						<p class="d-flex p-2">{{ 'visit.show.price'|trans }} : {{visit.price}} €</p>
+						<p class="d-flex p-2">{{ 'visit.show.location'|trans }} : {{ visit.location}} </p>
+						<p class="text-light"> {{ 'visit.show.blueprint'|trans }} :</p>
+						<div id="blueprint" class="card-4" style="height:300px;width:100%;">
+							<canvas id="myCanvas" style="height:80%;width:100%;"></canvas>
+							<button type="button" class="border btn btn-secondary mb-2"
+						onclick="mainWindow.GoPrevFloor()"> <- </button>
+							<button type="button" class="border btn btn-secondary mb-2"
+						onclick="mainWindow.GoNextFloor()"> -> </button>
+						</div>
+				</span>
+		</div>
     </div>
 {% endblock %}

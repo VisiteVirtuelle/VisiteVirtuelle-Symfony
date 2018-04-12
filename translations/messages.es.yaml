@@ -52,6 +52,11 @@ admin:
 
 visit:
     show:
+        room: Habitación
+        sqft: Área total
+        price: Precio de la visita
+        location: Localización de la visita
+        blueprint: Mapa interactivo
         link:
             list: Visitas
     list:

@@ -54,6 +54,11 @@ admin:
 
 visit:
     show:
+        room: Pièce
+        sqft: Surface totale
+        price: Prix de la visite
+        location: Lieu de la visiste
+        blueprint: Plan intéractif
         link:
             list: Visites
     list:

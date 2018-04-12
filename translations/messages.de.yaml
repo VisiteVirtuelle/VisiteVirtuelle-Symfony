@@ -52,6 +52,11 @@ admin:
 
 visit:
     show:
+        room: Zimmer
+        sqft: Gesamtfläche
+        price: Preis des Besuches
+        location: Ort des Besuchs
+        blueprint: Interaktive Karte
         link:
             list: Besuche
     list:

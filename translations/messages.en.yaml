@@ -52,6 +52,11 @@ admin:
 
 visit:
     show:
+        room: Room
+        sqft: Totale surface
+        price: Price of the visit
+        location: Location of the rental
+        blueprint: Interactive map
         link:
             list: Visits
     list:
