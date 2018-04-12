@@ -66,9 +66,12 @@ class VisitFixtures extends Fixture implements DependentFixtureInterface
             ['Mountains', 'Votop', 'World'],
             ['Canyons', 'Votop', 'USA'],
             ['Islands', 'Votop', 'World'],
-            ['Paris', 'agent', 'Paris'],
+            ['Paris', 'guiguiz', 'Paris'],
+            ['Bangkok', 'guiguiz', 'Thaïland'],
             ['UFO', 'agent', 'Taïwan'],
-            ['Misc', 'Pillon', 'Somewhere']
+            ['Misc', 'Pillon', 'Somewhere'],
+            ['Buddha', 'Tao999', 'Asia'],
+            ['Soudan', 'YeTskyan', 'Africa']
         ];
     }
 

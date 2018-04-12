@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visit>
+    <room>
+        <name>Blanc</name>
+        <url>img/blanc.jpg</url>
+    </room>
+    <room>
+        <name>Noir</name>
+        <url>img/noir.jpg</url>
+    </room>
+    <room>
+    	<name>Bigbuddha</name>
+    	<url>img/bigbuddha.jpg</url></room>
+</visit>

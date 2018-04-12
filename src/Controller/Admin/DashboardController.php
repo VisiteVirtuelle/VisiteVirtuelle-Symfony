@@ -94,7 +94,7 @@ class DashboardController
         $ownerVisit = [];
         $ownerVisit = array_fill(0, 6, '');
         $nbVisit = [];
-        $nbVisit = array_fill(0, 6, 1);
+        $nbVisit = array_fill(0, 6, 0);
         $visitOwnerPrev = '';
         $visitOwnerList = array_map('strtolower', $visitOwnerList);
         sort($visitOwnerList);

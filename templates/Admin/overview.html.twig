@@ -29,6 +29,7 @@
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script>
+        //Users chart
         Highcharts.setOptions({
             colors: ['#7CB5EC', '#F7A35C', '#F45B5B']
         });
@@ -52,6 +53,7 @@
             }
         );
 
+        //Visits chart
         Highcharts.setOptions({
             colors: ['#F45B5B', '#F7A35C', '#90ED7D', '#7CB5EC', '#8085E9' ,'#BFBFBF']
         });
@@ -67,12 +69,12 @@
                 series:
                 [{
                     data: [
-                    	['{{ ownerVisit[0] }}', {{ nbVisit[0] }}],
-                        ['{{ ownerVisit[1] }}', {{ nbVisit[1] }}],
-                        ['{{ ownerVisit[2] }}', {{ nbVisit[2] }}],
-                        ['{{ ownerVisit[3] }}', {{ nbVisit[3] }}],
+                    	['{{ ownerVisit[3] }}', {{ nbVisit[0] }}],
+                        ['{{ ownerVisit[2] }}', {{ nbVisit[1] }}],
+                        ['{{ ownerVisit[1] }}', {{ nbVisit[2] }}],
+                        ['{{ ownerVisit[0] }}', {{ nbVisit[3] }}],
                         ['{{ ownerVisit[4] }}', {{ nbVisit[4] }}],
-                        ['{{ ownerVisit[5] }}', {{ nbVisit[5] }}]
+                        ['others', {{ nbVisit[5] }}]
                     ]
                 }]
             }
