@@ -11,7 +11,11 @@ footer:
     copyright: VirtualVisit wurde 2018 im Rahmen eines Projekts BTS SN Option IR von Montauban erstellt
     github: GitHub
     trello: Trello
-
+    
+pagination:
+    next: Nächster
+    previous: Bisherige
+    
 util:
     form:
         submit: Submit
@@ -60,6 +64,9 @@ visit:
         link:
             list: Besuche
     list:
+        filter: Filter
+        agent: Mittel
+        edit: Ausgabe
         show: Um virtuell zu besuchen
         empty:
             title: Es gibt keinen Besuch!

@@ -11,7 +11,11 @@ footer:
     copyright: VirtualVisit was realized as part of a project of BTS SN option IR of Montauban in 2018
     github: GitHub
     trello: Trello
-
+    
+pagination:
+    next: Next
+    previous: Previous
+    
 util:
     form:
         submit: Submit

@@ -12,6 +12,10 @@ footer:
     github: GitHub
     trello: Trello
 
+pagination:
+    next: Suivant
+    previous: Précédent
+    
 util:
     form:
         submit: Envoyer

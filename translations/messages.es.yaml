@@ -12,6 +12,10 @@ footer:
     github: GitHub
     trello: Trello
     
+pagination:
+    next: Siguiente
+    previous: Anterior
+    
 util:
     form:
         submit: Enviar
@@ -60,10 +64,14 @@ visit:
         link:
             list: Visitas
     list:
+        filter: Filtrar
+        agent: Agente
+        edit: Editar
         show: Visita virtualmente
         empty:
             title: Sin visita!
             message: No hay visita para mostrar para esta solicitud.
+
     editor:
         title: Visitar Editor
         new_visit: Crea una nueva visita
