@@ -28,6 +28,7 @@ class VisitRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('v')
             ->andWhere('v.owner = :owner')
+            ->setParameter('owner', $owner)
             ->orderBy('v.id', 'ASC')
             ->getQuery();
 
