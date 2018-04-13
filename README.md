@@ -1,4 +1,4 @@
-# Visite Virtuelle Immobilière
+﻿# Visite Virtuelle Immobilière
 Visite Virtuelle Immobilière est un projet du BTS SN option IR du [lycée Antoine Bourdelle] de Montauban.
 L'objectif du projet consiste créer une application Web destinée aux Agences Immobilières en leur permettant de créer des visites en vue 360° qui peuvent être visité par leurs clients.
 
@@ -33,8 +33,8 @@ Les commandes ci-dessous sont à exécuter à la racine du projet:
 * Vincent CLAVEAU - *(Développeur Symfony)*
 * Guillaume VIDAL - *(Développeur Symfony)*
 * Valentin PILLON - *(Développeur ThreeJS)*
-* Thomas DUDITLIEUX - *Développeur ThreeJS)*
-* Malko CARRERAS - *(Web Designer)*
+* Thomas DUDITLIEUX - *(Développeur ThreeJS)*
+* Malko CARRERAS - *(Concepteur Web)*
 
 ## Organisation du projet
 **Trello:** https://trello.com/b/lRY92q0W/organisation

@@ -12,7 +12,7 @@
     </script>
     <script src="{{ asset('three.js') }}"></script>
     <script src="{{ asset('dat.gui.min.js') }}"></script>
-    <script src="{{ asset('visit.js') }}"></script>
+    <!--<script src="{{ asset('visit.js') }}"></script>-->
     <script src="{{ asset('editorVector.js') }}"></script>
 {% endblock %}
 
@@ -41,13 +41,12 @@
 {% endblock %}
 
 {% block main %}
-    <div class="text-center py-3">
+    <div class="text-center py-3" >
         <h4>{{ visit.name }}</h4>
-        <div class="row" style="height:600px;">
+        <div class="row" style="height:100%;width:100%;">
             <div class="col-9">
                 <canvas style="height:100%;width:100%;" ></canvas>
             </div>
-
             <div class="col-3 bg-secondary card-2 ">
                 <div class="mt-5">
                     <h4 class="text-light"> {{ visit.name }} : {{ 'visit.show.room'|trans }} </h4>
@@ -59,11 +58,11 @@
                         <canvas id="myCanvas" style="height:80%;width:100%;"></canvas>
                         <button type="button" class="border btn btn-secondary mb-2"
                                 onclick="mainWindow.GoPrevFloor()">
-                            &lt-
+                            <i class="fa fa-arrow-left"></i>
                         </button>
                         <button type="button" class="border btn btn-secondary mb-2"
                                 onclick="mainWindow.GoNextFloor()">
-                            -&gt
+                            <i class="fa fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
