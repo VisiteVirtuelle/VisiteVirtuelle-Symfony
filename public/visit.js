@@ -143,15 +143,12 @@ function getXHR()
     xmlhttp.open("GET", "http://localhost:8000/visit/" + visit.id + "/visit.xml", false);
     xmlhttp.send();
     const xmlDoc = xmlhttp.responseXML;
-<<<<<<< Updated upstream
     var x = xmlDoc.getElementsByTagName("room");
     var y = xmlDoc.getElementsByTagName("button");
-=======
      //alert(xmlDoc.childNodes.length)
     var x = xmlDoc.getElementsByTagName("room");
     var y = xmlDoc.getElementsByTagName("button");
     //alert(y.length);
->>>>>>> Stashed changes
     nombre = x.length;
 
    ;
@@ -244,15 +241,12 @@ function update()
 // fonction animate qui s'occupera d'afficher la scène
 function animate()
 {
-<<<<<<< Updated upstream
     text2.style.top =  200 + 'px';
     text2.style.left =  (window.innerWidth/2 -40)  + 'px';
 
-=======
 text2.style.bottom = (canvas.clientHeight - 10) + 'px';
 text2.style.left =  (canvas.clientWidth/2 +50) + 'px';
-    
->>>>>>> Stashed changes
+
     resizeCanvasToDisplaySize();
     requestAnimationFrame(animate);
     update();
