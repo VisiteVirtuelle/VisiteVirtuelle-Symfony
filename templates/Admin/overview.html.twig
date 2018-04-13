@@ -26,8 +26,6 @@
     {% endfor %}
     
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script>
         //Users chart
         Highcharts.setOptions({
@@ -36,11 +34,11 @@
         Highcharts.chart(
             'donutchart_users',
             {
-                title : { text: 'Users chart' },
-                chart: { type: 'pie', options3d: { enabled: false} },
+                title : { useHTML: true, text: 'Users chart' },
+                chart: { type: 'pie' },
                 plotOptions: {
                     series: { allowPointSelect: true, cursor: 'pointer' },
-                    pie: { innerSize: 60, depth: 45 }
+                    pie: { innerSize: 60 }
                 },
                 series:
                 [{
@@ -61,18 +59,18 @@
             'donutchart_visits',
             {
                 title : { text: 'Visits chart' },
-                chart: { type: 'pie', options3d: { enabled: false} },
+                chart: { type: 'pie' },
                 plotOptions: {
                     series: { allowPointSelect: true, cursor: 'pointer' },
-                    pie: { innerSize: 60, depth: 45 }
+                    pie: { innerSize: 60 }
                 },
                 series:
                 [{
                     data: [
-                    	['{{ ownerVisit[3] }}', {{ nbVisit[0] }}],
-                        ['{{ ownerVisit[2] }}', {{ nbVisit[1] }}],
-                        ['{{ ownerVisit[1] }}', {{ nbVisit[2] }}],
-                        ['{{ ownerVisit[0] }}', {{ nbVisit[3] }}],
+                    	['{{ ownerVisit[0] }}', {{ nbVisit[0] }}],
+                        ['{{ ownerVisit[1] }}', {{ nbVisit[1] }}],
+                        ['{{ ownerVisit[2] }}', {{ nbVisit[2] }}],
+                        ['{{ ownerVisit[3] }}', {{ nbVisit[3] }}],
                         ['{{ ownerVisit[4] }}', {{ nbVisit[4] }}],
                         ['others', {{ nbVisit[5] }}]
                     ]
@@ -80,49 +78,4 @@
             }
         );
     </script>
-    
-    <!--
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart()
-        {
-        	//Chart Users
-            var users_data = google.visualization.arrayToDataTable([
-                ['Type', 'Different types of Users', ''],
-                ['User', {{ nbUser }}, 'users'],
-                ['Agent', {{ nbAgent }}, 'users'],
-                ['Admin', {{ nbAdmin }}, 'users']
-            ]);
-            var users_chart = new google.visualization.PieChart(document.getElementById('donutchart_users'));
-            users_chart.draw(users_data, { title: 'Users details', pieHole: 0.4, colors: ['#00D8FF', '#FFD400', '#FF2600'] });
-            
-            var selectHandler = function(e)
-            {
-                window.location = users_data.getValue(users_chart.getSelection()[0]['row'], 2 );
-            }
-            google.visualization.events.addListener(users_chart, 'select', selectHandler);
-            
-            //Chart Visits
-            var visits_data = google.visualization.arrayToDataTable([
-            	['Type', 'Different Visits per Users', ''],
-                ['{{ ownerVisit[0] }}', {{ nbVisit[0] }}, 'visits'],
-                ['{{ ownerVisit[1] }}', {{ nbVisit[1] }}, 'visits'],
-                ['{{ ownerVisit[2] }}', {{ nbVisit[2] }}, 'visits'],
-                ['{{ ownerVisit[3] }}', {{ nbVisit[3] }}, 'visits'],
-                ['{{ ownerVisit[4] }}', {{ nbVisit[4] }}, 'visits'],
-                ['{{ ownerVisit[5] }}', {{ nbVisit[5] }}, 'visits']
-            ]);
-            var visits_chart = new google.visualization.PieChart(document.getElementById('donutchart_visits'));
-            visits_chart.draw(visits_data, { title: 'Visits details', pieHole: 0.4, colors: ['#FF2600', '#FFD400', '#55FF00', '#00D8FF', '#FF00AA', '#B7B7B7'] });
-            
-            var selectHandler = function(e)
-            {
-                window.location = visits_data.getValue(visits_chart.getSelection()[0]['row'], 2 );
-            }
-            google.visualization.events.addListener(visits_chart, 'select', selectHandler);
-        }
-    </script>
-     -->
 {% endblock %}

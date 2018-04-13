@@ -71,6 +71,7 @@ class VisitFixtures extends Fixture implements DependentFixtureInterface
             ['UFO', 'agent', 'Taïwan'],
             ['Misc', 'Pillon', 'Somewhere'],
             ['Buddha', 'Tao999', 'Asia'],
+            ['Vancouver', 'YeTskyan', 'Canada'],
             ['Soudan', 'YeTskyan', 'Africa']
         ];
     }

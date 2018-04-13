@@ -3,10 +3,18 @@
         <table class="table table-striped">
             <tbody class="text-center">
                 <tr>
-                    <td><strong>{{ 'user.list.id'|trans }}</strong></td>
-                    <td><strong>{{ 'user.list.fullname'|trans }}</strong></td>
-                    <td><strong>{{ 'user.list.username'|trans }}</strong></td>
-                    <td><strong>{{ 'user.list.email'|trans }}</strong></td>
+                    <th>
+                        <a href="#" class="nav-link text-dark">{{ 'user.list.id'|trans }} <span class="fa fa-caret-down "/></a>
+                    </th>
+                    <th>
+                        <a href="#" class="nav-link text-dark">{{ 'user.list.fullname'|trans }} <span class="fa fa-caret-down "/></a>
+                    </th>
+                    <th>
+                        <a href="#" class="nav-link text-dark">{{ 'user.list.username'|trans }} <span class="fa fa-caret-down "/></a>
+                    </th>
+                    <th>
+                        <a href="#" class="nav-link text-dark">{{ 'user.list.email'|trans }} <span class="fa fa-caret-down "/></a>
+                    </th>
                 </tr>
 
                 {% for user in users %}

@@ -96,7 +96,6 @@ class DashboardController
         $nbVisit = [];
         $nbVisit = array_fill(0, 6, 0);
         $visitOwnerPrev = '';
-        $visitOwnerList = array_map('strtolower', $visitOwnerList);
         sort($visitOwnerList);
         $i = 0; $j = 0; $k = 0;
         foreach ($visitOwnerList as $owner)
@@ -127,8 +126,25 @@ class DashboardController
             $k++;
         }
         
-        rsort($nbVisit);
-        rsort($ownerVisit);
+        do {
+            $change = false;
+            
+            for ($i = 0; $i < count($ownerVisit) - 1; $i++)
+            {
+                if($nbVisit[$i] < $nbVisit[$i + 1])
+                {
+                    $tmpNb = $nbVisit[$i];
+                    $nbVisit[$i] = $nbVisit[$i + 1];
+                    $nbVisit[$i + 1] = $tmpNb;
+                    
+                    $tmpOw = $ownerVisit[$i];
+                    $ownerVisit[$i] = $ownerVisit[$i + 1];
+                    $ownerVisit[$i + 1] = $tmpOw;
+                    
+                    $change = true;
+                }
+            }
+        } while($change);
         
         return new Response($twig->render('Admin/overview.html.twig', [
             'users' => $users,

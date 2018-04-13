@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visit>
+    <room>
+        <name>City</name>
+        <url>img/city.jpg</url>
+    </room>
+    <room>
+        <name>Winter</name>
+        <url>img/winter.jpg</url>
+    </room>
+</visit>
