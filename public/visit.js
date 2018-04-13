@@ -63,7 +63,7 @@ initGui();
 addEventListener('mousedown',  MouseDown,      false);
 addEventListener('mousemove',  MouseMove,      false);
 addEventListener('mouseup',    MouseUp,        false);
-addEventListener('wheel',      MouseWheel,     false);
+//addEventListener('wheel',      MouseWheel,     false);
 
 function initGui()
 {
@@ -145,14 +145,7 @@ function getXHR()
     const xmlDoc = xmlhttp.responseXML;
     var x = xmlDoc.getElementsByTagName("room");
     var y = xmlDoc.getElementsByTagName("button");
-     //alert(xmlDoc.childNodes.length)
-    var x = xmlDoc.getElementsByTagName("room");
-    var y = xmlDoc.getElementsByTagName("button");
-    //alert(y.length);
     nombre = x.length;
-
-   ;
-
 
     for (var i = 0; i < x.length; i++)
     {
@@ -241,11 +234,8 @@ function update()
 // fonction animate qui s'occupera d'afficher la scène
 function animate()
 {
-    text2.style.top =  200 + 'px';
-    text2.style.left =  (window.innerWidth/2 -40)  + 'px';
-
-text2.style.bottom = (canvas.clientHeight - 10) + 'px';
-text2.style.left =  (canvas.clientWidth/2 +50) + 'px';
+    text2.style.bottom = (canvas.clientHeight - 10) + 'px';
+    text2.style.left =  (canvas.clientWidth/2 +50) + 'px';
 
     resizeCanvasToDisplaySize();
     requestAnimationFrame(animate);
