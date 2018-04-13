@@ -4,34 +4,40 @@
 		<name>Salle EC</name>
 		<url>img/ec.jpg</url>
 		<button>
+			<positionX>10</positionX>
+			<positionY>20</positionY>
+			<positionZ>-30</positionZ>
+			<next>Salle IR2</next>
 		</button>
-		<positionX>10</positionX>
-		<positionY>20</positionY>
-		<positionZ>-30</positionZ>
-		<next>img/ir.jpg</next>
 	</room>
-    <room>
+	<room>
 		<name>Couloir</name>
 		<url>img/couloir.jpeg</url>
-		<positionX>40</positionX>
-		<positionY>50</positionY>
-		<positionZ>-60</positionZ>
-		<next>img/ec.jpg</next>
+		<button>
+			<positionX>40</positionX>
+			<positionY>50</positionY>
+			<positionZ>-60</positionZ>
+			<next>Salle EC</next>
+		</button>
 	</room>
 	<room>
 		<name>Salle IR</name>
 		<url>img/ir.jpg</url>
-		<positionX>40</positionX>
-		<positionY>50</positionY>
-		<positionZ>-60</positionZ>
-		<next>img/ir2.jpg</next>
+		<button>
+			<positionX>40</positionX>
+			<positionY>50</positionY>
+			<positionZ>-60</positionZ>
+			<next>Couloir</next>
+		</button>
 	</room>
 	<room>
 		<name>Salle IR2</name>
 		<url>img/ir2.jpg</url>
-		<positionX>70</positionX>
-		<positionY>80</positionY>
-		<positionZ>-90</positionZ>
-		<next>img/couloir.jpg</next>
+		<button>
+			<positionX>70</positionX>
+			<positionY>80</positionY>
+			<positionZ>-90</positionZ>
+			<next>Salle IR</next>
+		</button>
 	</room>
 </visit>
