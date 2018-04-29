@@ -4,20 +4,20 @@
             <tbody class="text-center">
                 <tr>
                     <th>
-                        <a href="#" class="nav-link text-dark">{{ 'user.list.id'|trans }} <span class="fa fa-caret-down "/></a>
+                        <a href="/sortby/id" class="nav-link text-dark">{{ 'user.list.id'|trans }} <span class="fa fa-caret-down "/></a>
                     </th>
                     <th>
-                        <a href="#" class="nav-link text-dark">{{ 'user.list.fullname'|trans }} <span class="fa fa-caret-down "/></a>
+                        <a href="/sortby/fullname" class="nav-link text-dark">{{ 'user.list.fullname'|trans }} <span class="fa fa-caret-down "/></a>
                     </th>
                     <th>
-                        <a href="#" class="nav-link text-dark">{{ 'user.list.username'|trans }} <span class="fa fa-caret-down "/></a>
+                        <a href="/sortby/username" class="nav-link text-dark">{{ 'user.list.username'|trans }} <span class="fa fa-caret-down "/></a>
                     </th>
                     <th>
-                        <a href="#" class="nav-link text-dark">{{ 'user.list.email'|trans }} <span class="fa fa-caret-down "/></a>
+                        <a href="/sortby/email" class="nav-link text-dark">{{ 'user.list.email'|trans }} <span class="fa fa-caret-down "/></a>
                     </th>
                 </tr>
 
-                {% for user in users %}
+                {% for user in sortList %}
                     <tr>
                         <td><small>{{ user.id }}</small></td>
                         <td>{{ user.fullname }}</td>

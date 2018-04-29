@@ -6,3 +6,7 @@ homepage:
     defaults:
         template: Default/homepage.html.twig
         _locale: '%locale%'
+        
+list_ordered:
+    path:     /sortby/{column}
+    controller: App\Controller\User\UserController::listOrderedBy
