@@ -25,26 +25,31 @@ class VisitType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
+                'label' => 'visit.form.name',
                 'constraints' => [
                     new Assert\NotBlank(),
                 ],
             ])
             ->add('location', TextType::class, [
+                'label' => 'visit.form.location',
                 'constraints' => [
                     new Assert\NotBlank(),
                 ],
             ])
             ->add('sqft', IntegerType::class, [
+                'label' => 'visit.form.sqft',
                 'constraints' => [
                     new Assert\NotBlank(),
                 ],
             ])
             ->add('price', MoneyType::class, [
+                'label' => 'visit.form.price',
                 'constraints' => [
                     new Assert\NotBlank(),
                 ],
             ])
             ->add('cover', FileType::class, [
+                'label' => 'visit.form.cover',
                 'mapped' => false,
                 'constraints' => [
                     new Assert\NotBlank(),

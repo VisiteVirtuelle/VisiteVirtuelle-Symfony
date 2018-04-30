@@ -63,6 +63,12 @@ class EditorController extends Controller
             // Création du répertoire contenant le XML et les photos
             $this->updateVisitXML($visit->getID());
 
+            //On déplace la photo de couverture
+            $form['cover']->getData()->move(
+                $this->visits_dir.$visit->getID(),
+                'cover.jpg'
+            );
+
             // On déclenche l'event
             $event = new GenericEvent($visit);
             $this->eventDispatcher->dispatch(Events::VISIT_EDITOR_NEW_SUCCESS, $event);
@@ -101,10 +107,16 @@ class EditorController extends Controller
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            // On enregistre la visite dans la base
+            //On enregistre la visite dans la base
             $em = $this->getDoctrine()->getManager();
             $em->persist($visit);
             $em->flush();
+
+            //On déplace la photo de couverture
+            $form['cover']->getData()->move(
+                $this->visits_dir.$id,
+                'cover.jpg'
+            );
 
             //On déclenche l'event
             $event = new GenericEvent($visit);

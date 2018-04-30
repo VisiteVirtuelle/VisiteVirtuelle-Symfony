@@ -55,6 +55,11 @@ admin:
         title: Admin Dashboard
 
 visit:
+    form:
+        name: Name
+        location: Location
+        sqft: Square Feet
+        price: Price
     show:
         room: Room
         sqft: Totale surface
