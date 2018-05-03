@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
 {% block main %}
     {% form_theme form 'form/horizontal.html.twig' %}
-	<div class="card-2 mt-2 pb-2 bg-info border border-secondary" ><center>
+	<div class="card-2 mt-2 pb-2 bg-dark border border-secondary" ><center>
     {{ form_start(form) }}
-	<h4 class="pt-2 text-dark">{{'registration.register.title'|trans }}</h4>
-	<div class="pt-4"style="width:95%;">
+	<h4 class="pt-2 text-white">{{'registration.register.title'|trans }}</h4>
+	<div class="pt-4 text-white"style="width:95%;">
         {{ form_row(form.username, { 'label': 'registration.register.username'|trans }) }}
         {{ form_row(form.email, { 'label': 'registration.register.email'|trans }) }}
         {{ form_row(form.password.first, { 'label': 'registration.register.password_1'|trans }) }}
@@ -13,4 +17,8 @@
 	</div>
     {{ form_end(form) }}
 	</center></div>
+
+
 {% endblock %}
+
+
