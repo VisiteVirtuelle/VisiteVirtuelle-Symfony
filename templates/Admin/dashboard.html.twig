@@ -46,9 +46,12 @@
                 <li class="breadcrumb-item active ">
                     {{ sidebarData.link }}
                 </li>
-             </ol>
-             
-            {{ render(controller('App\\Controller\\' ~ path)) }}
+            </ol>
+            {% if path == 'Visit\\VisitController::list' %}
+                {{ render(controller('App\\Controller\\' ~ path, { 'view': "card", 'owner_id': null }, {} )) }}
+            {% else %}
+                {{ render(controller('App\\Controller\\' ~ path)) }}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

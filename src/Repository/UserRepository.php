@@ -17,6 +17,13 @@ class UserRepository extends ServiceEntityRepository
     {
         $entityManager = $this->getEntityManager();
         
+        $sortTab = [
+            'id' => 'ASC',
+            'fullname' => 'ASC',
+            'username' => 'ASC',
+            'email' => 'ASC'
+        ];
+        
         switch ($column)
         {
             case 'id':

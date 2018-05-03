@@ -49,9 +49,9 @@ class VisitController
 
     /**
      * @Route("/list/{view}-{owner_id}",
-     *  requirements={"owner_id": "\d+"},
-     *  defaults={"view" = "card", "owner_id" = null},
-     *  name="list")
+     * requirements = { "owner_id": "\d+" },
+     * defaults = { "view" = "card", "owner_id" = null },
+     * name = "list")
      */
     public function list($view, $owner_id, Environment $twig, UserRepository $userRepository)
     {
