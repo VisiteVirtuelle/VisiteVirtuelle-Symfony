@@ -13,7 +13,12 @@
     <script src="{{ asset('three.js') }}"></script>
     <script src="{{ asset('dat.gui.min.js') }}"></script>
     <script src="{{ asset('visit.js') }}"></script>
+<<<<<<< Updated upstream
     <script src="{{ asset('editorVector.js') }}"></script>
+=======
+    <script src="{{ asset('visitDisplayBlueprint.js') }}"></script>
+	
+>>>>>>> Stashed changes
 {% endblock %}
 
 {% block body %}
@@ -45,8 +50,10 @@
         <h4>{{ visit.name }}</h4>
         <div class="row" style="height:100%;width:100%;">
             <div class="col-9">
-                <canvas style="height:100%;width:100%;" ></canvas>
-            </div>
+				<div class="mr-5">
+					<canvas id="canvasVue" style="width:80%;position:relative;"></canvas>
+				</div>
+			</div>
             <div class="col-3 bg-secondary card-2 ">
                 <div class="mt-5">
                     <h4 class="text-light"> {{ visit.name }} : {{ 'visit.show.room'|trans }} </h4>

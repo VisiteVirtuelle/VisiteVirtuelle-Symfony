@@ -10,9 +10,9 @@ GRID_NB_ROW = 30;
 const
 GRID_NB_COL = 30;
 const
-GRID_SPACING_POINT = 20;
+GRID_SPACING_POINT = 9;
 const
-GRID_CROSS_LENGTH = 12;
+GRID_CROSS_LENGTH = 2;
 // ////////////////////////////DÉCLARATION DES
 // OBJETS////////////////////////////
 function Room() {

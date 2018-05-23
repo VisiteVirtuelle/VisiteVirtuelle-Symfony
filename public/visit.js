@@ -1,145 +1,497 @@
-"use strict";
+var room = {
+			rooms:new Map(),
+			camera:new THREE.PerspectiveCamera(75, 1, 1, 1100),
+			geometry:new THREE.SphereBufferGeometry(500, 60, 40),
+			texture:"",
+			material:"",
+			scene:new THREE.Scene(),
+			renderer:new THREE.WebGLRenderer({canvas: document.getElementById("canvasVue")}),
+			mesh:"",
+			mouse:new THREE.Vector2(),
+			raycaster:new THREE.Raycaster(),
+			isUserInteracting:false,
+			onMouseDownMouseX :0,
+			onMouseDownMouseY :0,
+			lon :0,
+			onMouseDownLon:0,
+			lat :0,
+			onMouseDownLat:0,
+			phi: 0,
+			theta:0,
+			clic:false,
+			
+			getClic : function()
+			{
+				return this.clic;
+			},
+			
+			getRooms : function()
+			{
+				return this.rooms;
+			},
+			
+			getCamera : function()
+			{
+				return this.camera;
+			},
+			
+			getGeometry : function()
+			{
+				return this.geometry;
+			},
+			
+			getTexture : function()
+			{
+				return this.texture;
+			},
+			
+			getMaterial : function()
+			{
+				return this.material;
+			},
+			
+			getScene : function()
+			{
+				return this.scene;
+			},
+			
+			getRenderer : function()
+			{
+				return this.renderer;
+			},
+			
+			getMesh : function()
+			{
+				return this.mesh;
+			},
+			
+			getMouse : function()
+			{
+				return this.mouse;
+			},
+			
+			getRaycaster : function()
+			{
+				return this.raycaster;
+			},
+			
+			getIsUserInteracting : function()
+			{
+				return this.isUserInteracting;
+			},
+			
+			getOnMouseDownMouseY : function()
+			{
+				return this.onMouseDownMouseY;
+			},
+			
+			getOnMouseDownMouseX : function()
+			{
+				return this.onMouseDownMouseX;
+			},
+			
+			getLon : function()
+			{
+				return this.lon;
+			},
+			
+			getOnMouseDownLon : function()
+			{
+				return this.onMouseDownLon;
+			},
+			
+			getLat : function()
+			{
+				return this.lat;
+			},
+			
+			getTheta : function()
+			{
+				return this.theta;
+			},
+			
+			getPhi : function()
+			{
+				return this.phi;
+			},
+			
+			getOnMouseDownLat : function()
+			{
+				return this.onMouseDownLat;
+			},
+			///////////////////////////////////////////////////
+			
+			setClic : function(valeur)
+			{
+				this.clic = valeur;
+			},
+			
+			setRooms : function(valeur)
+			{
+				 this.rooms= valeur;
+			},
+			
+			setCamera : function(valeur)
+			{
+				 this.camera= valeur;
+			},
+			
+			setGeometry : function(valeur)
+			{
+				 this.geometry= valeur;
+			},
+			
+			setTexture : function(valeur)
+			{
+				 this.texture= valeur;
+			},
+			
+			setMaterial : function(valeur)
+			{
+				 this.material= valeur;
+			},
+			
+			setScene : function(valeur)
+			{
+				 this.scene= valeur;
+			},
+			
+			setRenderer : function(valeur)
+			{
+				 this.renderer= valeur;
+			},
+			
+			setMesh : function(valeur)
+			{
+				 this.mesh= valeur;
+			},
+			
+			setMouseX : function(valeur)
+			{
+				 this.mouse.x= valeur;
+			},
+			
+			setMouseY : function(valeur)
+			{
+				 this.mouse.y= valeur;
+			},
+			
+			setRaycaster : function(valeur)
+			{
+				 this.raycaster= valeur;
+			},
+			
+			setIsUserInteracting : function(valeur)
+			{
+				 this.isUserInteracting= valeur;
+			},
+			
+			setOnMouseDownMouseY : function(valeur)
+			{
+				 this.onMouseDownMouseY= valeur;
+			},
+			
+			setOnMouseDownMouseX : function(valeur)
+			{
+				 this.onMouseDownMouseX= valeur;
+			},
+			
+			setLon : function(valeur)
+			{
+				 this.lon= valeur;
+			},
+			
+			setOnMouseDownLon : function(valeur)
+			{
+				 this.onMouseDownLon= valeur;
+			},
+			
+			setOnMouseDownLat : function(valeur)
+			{
+				 this.onMouseDownLat= valeur;
+			},
+			
+			setLat : function(valeur)
+			{
+				 this.lat= valeur;
+			},
+			
+			setTheta : function(valeur)
+			{
+				 this.theta= valeur;
+			},
+			
+			setPhi : function(valeur)
+			{
+				 this.phi= valeur;
+			},
+			
+			cameraSet : function()
+			{
+				this.camera.target = new THREE.Vector3(0, 0, 0);
+				this.scene.add(this.camera);
+			},
+			
+			geometrySet : function()
+			{
+				this.geometry.scale(-1, 1, 1);
+			},
+			
+			meshSet : function()
+			{
+				//alert(this.rooms.values().next().value);
+				this.material= new THREE.MeshBasicMaterial({map: this.rooms.values().next().value,overdraw: 0.5});
+				this.mesh = new THREE.Mesh(this.geometry, this.material);
+				this.scene.add(this.mesh);
+			},
 
-var isUserInteracting = false,
-    onMouseDownMouseX = 0,
-    onMouseDownMouseY = 0,
-    lon = 0, onMouseDownLon = 0,
-    lat = 0, onMouseDownLat = 0,
-    phi = 0, theta = 0;
+			loadImg : function(path,name,boutton)
+			{
+				this.mesh.material.map = path;
+				boutton.affichageCube(name);
+			},
+				
+			update : function()
+			{
+				//Mise a jour déplacement verticale
+				this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
+				this.phi = THREE.Math.degToRad( 90 - this.lat );
+				this.theta = THREE.Math.degToRad( this.lon );
 
-//Lecture du XML de la visite
-var rooms = new Map();
-var roomsboutton = new Map();
+				this.camera.target.x = 500 * Math.sin( this.phi ) * Math.cos( this.theta );
+				this.camera.target.y = 500 * Math.cos( this.phi );
+				this.camera.target.z = 500 * Math.sin( this.phi ) * Math.sin( this.theta );
 
-var INTERSECTED;
-const scene = new THREE.Scene();
-var mouse = new THREE.Vector2();
-var raycaster;
-var boutton = [];
-raycaster = new THREE.Raycaster();
-var nombre;
-var clic;
-var testClicButton;
+				//Mets a jour l'affichage de la camera
+				this.camera.lookAt( this.camera.target );
+				this.renderer.render( this.scene, this.camera );
+			},
+			
+			/*animate : function(boutton)
+			{
+				requestAnimationFrame(this.animate);
+				this.update();
+				boutton.raycaste(this);
+				this.renderer.render(this.scene, this.camera);
+			}*/
+			
+			initGui : function()
+			{
+				var gui = new dat.gui.GUI();
+				var obj = { Room: 0 };
 
-getXHR();
+				var tempThis = this
+				gui.add(obj, 'Room', Array.from(this.rooms.keys())).onChange
+				(
+					function()
+					{
+						//text2.innerHTML = obj.Room;
+						//console.log(this.);
+						tempThis.loadImg(tempThis.rooms.get(obj.Room),obj.Room);
+					}
+				);
+			}
+};
 
-const  renderer = new THREE.WebGLRenderer({canvas: document.querySelector("canvas")});
+var boutton = {
+	rooms:new Map(),
+	testClicButton:false,
+	bouttonTest : [],
+	INTERSECTED:0,
+	
+	 affichageCube:function(chemin)
+	{
+		for (var i = 0; i < nombre; i ++)
+		{
+		//alert("affichagecube");
+		if (chemin === this.bouttonTest[i].name)
+			{
+				room1.scene.add(this.bouttonTest[i]);
+				//alert("affichagecube");
+			}
+        else
+			{
+				room1.scene.remove(this.bouttonTest[i]);
+				//alert("Del affichagecube");
+			}
+		}
+	},
+	
+	raycaste:function(room)
+	{
+		 if (this.testClicButton)
+		{
+			room.raycaster.setFromCamera( room.mouse, room.camera );
 
-const  camera = new THREE.PerspectiveCamera(75, 1, 1, 1100);
-camera.target = new THREE.Vector3(0, 0, 0);
+			var intersects = room.raycaster.intersectObjects( room.scene.children );
 
-const geometry = new THREE.SphereBufferGeometry(500, 60, 40);
-geometry.scale(-1, 1, 1);
+			if(room.clic)
+			{
+			
+				room.clic = false;
+				if(intersects.length > 0)
+				{
+				
+					if(intersects[ 0 ].object)
+					{
+					
+						if(this.INTERSECTED != intersects[ 0 ].object)
+						{
+						
+							if(intersects[ 0 ].object.material.emissive)
+							{
+								//alert("test");
+								this.INTERSECTED = intersects[ 0 ].object;
+								//text2.innerHTML = INTERSECTED.path;
+								alert("raycaste");
+								console.log(this.INTERSECTED.path);
+								console.log(room1.rooms.get(this.INTERSECTED.path));
+								room.loadImg(room1.rooms.get(this.INTERSECTED.path), this.INTERSECTED.path,this);
 
-//console.log(rooms.values().next().value);
-if ( testClicButton === true) affichageCube(boutton[0].name);
-var texture = rooms.values().next().value;
-const material = new THREE.MeshBasicMaterial({map: texture,overdraw: 0.5});
+							}
+							else
+							{
+								this.INTERSECTED = null;
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				if(this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+				this.INTERSECTED = null;
+			}
+		}
+	},
+	
+	getTestClicBoutton : function()
+	{
+		return this.testClicButton;
+	},
+	
+	getINTERSECTED : function ()
+	{
+		return this.INTERSECTED;
+	},
+	
+	setTestClicBoutton : function(valeur)
+	{
+		this.testClicButton = valeur;
+	},
+	
+	setINTERSECTED : function (valeur)
+	{
+		this.INTERSECTED = valeur;
+	}
+	
+};
+///////////////////////////////////////////////////////////////////////////
+//Listenr d evenements
 
-const mesh = new THREE.Mesh(geometry, material);
-scene.add(mesh);
-
-const canvas = renderer.domElement;
-
-var text2 = document.createElement('div');
-text2.className = ' btn disabled';
-text2.style.position = 'relative';
-text2.style.width = 100;
-text2.style.height = 100;
-text2.style.backgroundColor = "white";
-text2.innerHTML = rooms.keys().next().value;
-text2.style.bottom = (canvas.clientHeight - 10) + 'px';
-text2.style.left =  (canvas.clientWidth/2 + 50) + 'px';
-document.body.appendChild(text2);
-
-var light = new THREE.DirectionalLight( 0xffffff, 1 );
-light.position.set( 1, 1, 1 ).normalize();
-scene.add( light );
-
-//Initialisation du menu
-initGui();
-
-//Enregistrement des evenements
 addEventListener('mousedown',  MouseDown,      false);
 addEventListener('mousemove',  MouseMove,      false);
 addEventListener('mouseup',    MouseUp,        false);
-//addEventListener('wheel',      MouseWheel,     false);
+/////////////////////////////////////////////////////////////////////////
+//Creation de l objet room
 
-function initGui()
+var room1 =  Object.create(room);
+var boutton1 = Object.create(boutton);
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+//Fonction pour commencer la visite
+//Lire XML
+getXHR();
+
+////////////////////////////////////////////////////////////////////////
+
+room1.getRenderer().setSize( 1000, 800 );
+//document.getElementById('container').appendChild(room1.renderer.domElement);
+////////////////////////////////////////////////////////////////////////
+
+//Parametre de la salle
+room1.cameraSet();
+room1.geometrySet();
+room1.meshSet();
+
+//Affichage de la salle
+room1.getRenderer().render( room1.getScene(), room1.getCamera() );
+if ( boutton1.getTestClicBoutton() === true) boutton1.affichageCube(boutton1.bouttonTest[0].name);	
+const canvas = room1.getRenderer().domElement;
+
+
+//Lancer le menu
+room1.initGui();
+
+// fonction animate qui s'occupera d'afficher la scène
+function animate()
 {
-    var gui = new dat.gui.GUI();
-    var obj = { Room: 0 };
-
-    gui.add(obj, 'Room', Array.from(rooms.keys())).onChange(
-        function(){
-            text2.innerHTML = obj.Room;
-            loadImg(rooms.get(obj.Room),obj.Room);
-        }
-    );
+    requestAnimationFrame(animate);
+    room1.update();
+	boutton1.raycaste(room1);
+    room1.renderer.render(room1.getScene(), room1.getCamera());
 }
 
-//Clique de la souris enfonce
+requestAnimationFrame(animate);
+
+//////////////////////////////////////////////////////////////////////////
+//FONCTION D EVENEMENTS
+
 function MouseDown( event )
 {
-    //event.preventDefault();
-    isUserInteracting = true;
-    clic = false;
-    onMouseDownMouseX = event.clientX;
-    onMouseDownMouseY = event.clientY;
-    onMouseDownLon = lon;
-    onMouseDownLat = lat;
+	room1.setClic(false);
+	room1.setOnMouseDownMouseX(event.clientX);
+	room1.setOnMouseDownMouseY(event.clientY);
+	room1.setOnMouseDownLon(room1.getLon());
+	room1.setOnMouseDownLat(room1.getLat());
+	
+	if ( 126 < event.clientX && event.clientX < (126+canvas.clientWidth) && 174 < event.clientY && event.clientY < (174+canvas.clientHeight))
+	{
+		room1.setIsUserInteracting(true);
+	}
 }
 
 //Fonction qui déplace la caméra si le clic gauche
 function MouseMove( event )
 {
-    clic = false;
-    //Si clique de la souris enfonce
-    if ( isUserInteracting === true )
-    {
-        // Mises a jour des valeurs de la longitude et l latitude
-        lon = ( onMouseDownMouseX - event.clientX ) * 0.1 + onMouseDownLon;
-        lat = ( event.clientY - onMouseDownMouseY ) * 0.1 + onMouseDownLat;
-    }
-
-    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+	room1.setClic(false);
+	//Si clique de la souris enfonce
+	
+	if ( room1.getIsUserInteracting() === true )
+	{
+		// Mises a jour des valeurs de la longitude et l latitude
+		room1.setLon(( room1.getOnMouseDownMouseX() - event.clientX ) * 0.1 + room1.getOnMouseDownLon());
+		room1.setLat(( event.clientY - room1.getOnMouseDownMouseY() ) * 0.1 + room1.getOnMouseDownLat());
+		//room1.lon = ( room1.onMouseDownMouseX - event.clientX ) * 0.1 + room1.onMouseDownLon;
+		//room1.lat = ( event.clientY - room1.onMouseDownMouseY ) * 0.1 + room1.onMouseDownLat;
+		
+	}
+	room1.setMouseX(( event.clientX / window.innerWidth ) * 2 - 1) ;
+	room1.setMouseY(( event.clientY / window.innerHeight ) * 2 + 1);
 }
 
 //Fonction quand on lâche le clique desactiver le mouvement de la camera
-function MouseUp( event )
+function MouseUp ( event )
 {
-    clic = true;
-    isUserInteracting = false;
+	room1.setClic(true);
+	room1.setIsUserInteracting(false);
 }
 
-//Fonction qui gere le controle molette et permet de zoomer ou dezoumer sur une image
-function MouseWheel( event )
-{
-    /*var fov = camera.fov + event.deltaY * 0.05;
-    camera.fov = THREE.Math.clamp( fov, 10, 75 );
-    camera.updateProjectionMatrix();*/
-}
 
-function loadImg(path,test)
-{
-    mesh.material.map = path;
-    if ( testClicButton === true) affichageCube(test);
-}
 
+//////////////////////////////////////////////////////////////////////
 function getXHR()
 {
-    var tableauX = [];
-    var tableauY = [];
-    var tableauZ = [];
-    var geometry2 = new THREE.BoxBufferGeometry(20, 20, 20);
+	var geometry2 = new THREE.BoxBufferGeometry(20, 20, 20);
     var xmlhttp = "";
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
     } else {// code for IE6, IE5
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-
     xmlhttp.open("GET", "http://localhost:8000/visit/" + visit.id + "/visit.xml", false);
     xmlhttp.send();
     const xmlDoc = xmlhttp.responseXML;
@@ -149,140 +501,42 @@ function getXHR()
 
     for (var i = 0; i < x.length; i++)
     {
-        rooms.set(
+		
+        room1.getRooms().set(
             x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
-            new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
+            new THREE.TextureLoader().load("http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
         );
 
-        var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+       	var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
         if (y.length === 0)
         {
 
-            testClicButton = false;
+            boutton1.setTestClicBoutton(false);
+			
         }
         else
         {
-            testClicButton = true;
+			//alert("boutton");
+            boutton1.setTestClicBoutton(true);
+			object.position.x = 10;
+			object.position.y = 10;
+			object.position.z = 10;
 
-            object.position.x = x[i].getElementsByTagName("positionX")[0].childNodes[0].nodeValue;
-            object.position.y = x[i].getElementsByTagName("positionY")[0].childNodes[0].nodeValue;
-            object.position.z = x[i].getElementsByTagName("positionZ")[0].childNodes[0].nodeValue;
+			object.rotation.x = Math.random() * 2 * Math.PI;
+			object.rotation.y = Math.random() * 2 * Math.PI;
+			object.rotation.z = Math.random() * 2 * Math.PI;
 
-            object.rotation.x = Math.random() * 2 * Math.PI;
-            object.rotation.y = Math.random() * 2 * Math.PI;
-            object.rotation.z = Math.random() * 2 * Math.PI;
+			object.scale.x = 0.5;//Math.random() + 0.5;
+			object.scale.y = 0.5;//Math.random() + 0.5;
+			object.scale.z = 0.5;//Math.random() + 0.5;
+			object.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
+			//alert(object.path);
+			object.name = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
 
-            object.scale.x = Math.random() + 0.5;
-            object.scale.y = Math.random() + 0.5;
-            object.scale.z = Math.random() + 0.5;
-
-            object.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
-            object.name = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
-            //object.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
-
-            //scene.add(object);
-            boutton.push(object);
+            //room1.scene.add(object);
+            boutton1.bouttonTest.push(object);
+			//console.log(boutton1.boutton.name);
         }
     }
 }
 
-function affichageCube(chemin)
-{
-    for (var i = 0; i < nombre; i ++)
-    {
-        if (chemin === boutton[i].name)
-        {
-            scene.add(boutton[i]);
-        }
-        else
-        {
-            scene.remove(boutton[i]);
-        }
-    }
-}
-
-function resizeCanvasToDisplaySize(force)
-{
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-
-    if (force || canvas.width !== width ||canvas.height !== height)
-    {
-        // you must pass false here or three.js sadly fights the browser
-        renderer.setSize(width, height, false);
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-    }
-}
-
-//Fonction qui mets a jour les valeurs de la camera
-function update()
-{
-    //Mise a jour déplacement verticale
-    lat = Math.max( - 85, Math.min( 85, lat ) );
-    phi = THREE.Math.degToRad( 90 - lat );
-    theta = THREE.Math.degToRad( lon );
-
-    camera.target.x = 500 * Math.sin( phi ) * Math.cos( theta );
-    camera.target.y = 500 * Math.cos( phi );
-    camera.target.z = 500 * Math.sin( phi ) * Math.sin( theta );
-
-    //Mets a jour l'affichage de la camera
-    camera.lookAt( camera.target );
-}
-
-// fonction animate qui s'occupera d'afficher la scène
-function animate()
-{
-    text2.style.bottom = (canvas.clientHeight - 10) + 'px';
-    text2.style.left =  (canvas.clientWidth/2 +50) + 'px';
-
-    resizeCanvasToDisplaySize();
-    requestAnimationFrame(animate);
-    update();
-    raycaste();
-    renderer.render(scene, camera);
-}
-
-
-function raycaste()
-{
-    if (testClicButton)
-    {
-        raycaster.setFromCamera( mouse, camera );
-
-        var intersects = raycaster.intersectObjects( scene.children );
-
-        if(clic)
-        {
-            clic = false;
-            if(intersects.length > 0)
-            {
-                if(intersects[ 0 ].object)
-                {
-                    if(INTERSECTED != intersects[ 0 ].object)
-                    {
-                        if(intersects[ 0 ].object.material.emissive)
-                        {
-                            INTERSECTED = intersects[ 0 ].object;
-                            text2.innerHTML = INTERSECTED.path;
-                            loadImg(rooms.get(INTERSECTED.path), INTERSECTED.path);
-
-                        }
-                        else
-                        {
-                            INTERSECTED = null;
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
-            if(INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-            INTERSECTED = null;
-        }
-    }
-}
-
-requestAnimationFrame(animate);
