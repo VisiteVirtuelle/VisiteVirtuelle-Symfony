@@ -11,6 +11,7 @@
 
 {% block body_id 'security_login' %}
 {% block body %}
+	<a class="btn btn-dark m-2" href="{{ path('homepage') }}"><i class="fa fa-arrow-left"></i></a>
     <form action="{{ path('user_security_login') }}" method="post">
         <h2 class="sr-only">{{ 'security.login.title'|trans }}</h2>
 
