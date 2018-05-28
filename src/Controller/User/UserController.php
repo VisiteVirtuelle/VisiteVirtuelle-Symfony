@@ -18,9 +18,9 @@ use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/user_", name="user_")
+ * @Route("/user_", name="user_")   //Route d'accès à la classe
  */
-class UserController extends Controller
+class UserController extends Controller //Classe dédié aux acions lié à la table user
 {
     private $userRepository;
 
@@ -37,8 +37,8 @@ class UserController extends Controller
         $column = '';
         
         $sortList = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->querySort($column);
+        ->getRepository(User::class)
+        ->querySort($column);
         
         return new Response($twig->render('User/list.html.twig', [
             'sortList' => $sortList
@@ -46,16 +46,22 @@ class UserController extends Controller
     }
     
     /**
-     * @Route("/sortby/{column}", name="list_ordered")
+     * @Route("/sortby/{column}", name="list_ordered")  //Route d'accès à la fonction
      */
-    public function listOrderedBy($column, Environment $twig)
+    public function listOrderedBy($column, Environment $twig)   //Fonction de récupération et de tri des données de la table user
     {
-        $sortList = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->querySort($column);
+        $sortList = $this->getDoctrine()    //$sortList est le service Doctrine qui nous permet de gérer la base de données
+            ->getRepository(User::class)    //Récupère le repository UserRepository
+            ->querySort($column);   //Tri dans l'ordre du champ $column qui est une variable envoyé par le lien des champs
         
-        return new Response($twig->render('User/list.html.twig', [
+        return new Response($twig->render('User/list.html.twig', [  //Envoie $sortList à la Vue list.html.twig
             'sortList' => $sortList
         ]));
     }
 }
+
+
+
+
+
+
