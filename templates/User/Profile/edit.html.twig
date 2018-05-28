@@ -8,22 +8,45 @@
 {% block main %}
     {% form_theme form 'form/horizontal.html.twig' %}
     {{ form_start(form) }}
-        <div class="row">
-            <div class="col">
-                {{ form_row(form.fullname, { 'label': 'security.register.fullname'|trans }) }}
+        <div class="row bg-muted rounded mt-4">
+            <div class="col m-2">
+                {{ form_row(form.fullname, { 'label': 'registration.register.fullname'|trans }) }}
             </div>
 
-            <div class="col">
+            <div class="col m-2">
                 <div class="drop">
                     <div class="drop-body">
                         <i class="fa fa-cloud-upload"></i>
                         <h5>{{ 'util.drag&drop.title'|trans }}</h5>
                     </div>
                     <div class="drop-footer">
-                        {{ form_row(form.headshot, { 'label': 'security.register.headshot'|trans }) }}
+                        {{ form_row(form.headshot, { 'label': 'registration.register.headshot'|trans }) }}
                     </div>
                 </div>
             </div>
         </div>
+		
     {{ form_end(form) }}
+	<hr>
+		<div class="row bg-muted mt-4 mb-4 rounded mx-auto">
+			<div class="m-2">
+				<h2> Choisir votre fond de visite : </h2>
+				<form action="">
+				<div class="row mx-auto">
+				<p class="m-2"><input  type="radio" name="color" id="Rouge"/> Red </p>
+				<p class="m-2"><input  type="radio" name="color" id="Vert"/>	Green </p>
+				<p class="m-2"><input  type="radio" name="color" id="Bleu"/>	Blue </p>
+				
+				<p class="m-2"><input  type="radio" name="color" id="Cyan"/>	Cyan </p>
+				<p class="m-2"><input  type="radio" name="color" id="Noir"/> 	Dark </p>
+				<p class="m-2"><input  type="radio" name="color" id="Gris"/>	Grey </p>
+				</div>
+				<div class="row mx-auto">
+				<p class="m-2"><input  type="radio" name="color" id="Default" checked="checked"/>	Default </p>
+				</div>
+				<center><button type="button" class="mx-auto btn bg-info"> Modifier </button></center>
+				</form>
+			</div>
+		</div>
+	<a class="btn btn-dark m-2" href="{{ path('homepage') }}"><i class="fa fa-arrow-left"> Retour à la page d'accueil</i></a>
 {% endblock %}

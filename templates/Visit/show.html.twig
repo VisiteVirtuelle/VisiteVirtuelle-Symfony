@@ -12,9 +12,10 @@
     </script>
     <script src="{{ asset('three.js') }}"></script>
     <script src="{{ asset('dat.gui.min.js') }}"></script>
-    <script src="{{ asset('visit.js') }}"></script>
+    <script src="{{ asset('visit.js') }}"></script> 
     <script src="{{ asset('editorVector.js') }}"></script>
     <script src="{{ asset('visitDisplayBlueprint.js') }}"></script>
+	{# <script src="{{ asset('preferences.js') }}"></script>#}
 	
 {% endblock %}
 
@@ -51,7 +52,7 @@
 					<canvas id="canvasVue" style="width:80%;position:relative;"></canvas>
 				</div>
 			</div>
-            <div class="col-3 bg-secondary card-2 ">
+			<div class="col-3 bg-secondary card-2 " id="panel_view">
                 <div class="mt-5">
                     <h4 class="text-light"> {{ visit.name }} : {{ 'visit.show.room'|trans }} </h4>
                     <p class="d-flex p-2">{{ 'visit.show.sqft'|trans }} : {{visit.sqft}} m² </p>
