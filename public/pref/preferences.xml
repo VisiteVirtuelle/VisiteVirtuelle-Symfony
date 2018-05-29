@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pref>
+	<user>
+		<name>Pillon</name>
+		<bg>danger</bg>
+	</user>
+	<user>
+		<name>Votop</name>
+		<bg>warning</bg>
+	</user>
+	<user>
+		<name>YeTskyan</name>
+		<bg>success</bg>
+	</user>
+</pref>
