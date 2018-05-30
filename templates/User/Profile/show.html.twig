@@ -10,4 +10,5 @@
 	<p>{{'user.list.email'|trans }} : <span class="text-warning">{{ user.email }}</span> </p>  
   </div>
 
+	<a href="{{ path('user_profile_edit') }}" class="btn btn-success" ><i class="fa fa-cog"></i> {{ 'user.edit'|trans }}</a>
 {% endblock %}

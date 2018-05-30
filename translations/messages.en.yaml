@@ -41,9 +41,11 @@ registration:
         headshot: Profile picture
         submit: Register
         password_not_egal: Passwords must be the same !
+        back: Back to the home page
 
 user:
     profile: Your account
+    edit: Edit your profile
     list:
         id: ID
         fullname: Name

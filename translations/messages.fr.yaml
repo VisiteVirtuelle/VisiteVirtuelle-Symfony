@@ -41,9 +41,11 @@ registration:
         headshot: Image de profil
         submit: S'inscrire
         password_not_egal: Les mots de passe doivent être identique
+        back: Retour sur la page d'accueil
 
 user:
     profile: Votre compte
+    edit: Editer votre profil
     list:
         id: ID
         fullname: Nom
