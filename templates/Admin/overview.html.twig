@@ -6,14 +6,14 @@
  #}
 
  {% block main %}
-    <div id="donutchart_users" style="width: 300px; height: 280px;"></div>
+    <div id="donutchart_users" style="width: 300px; height: 280px;"></div>  {# Déclaration des diagrammes #}
     <div id="donutchart_visits" style="width: 300px; height: 280px;"></div>
     
     {% set nbAdmin = 0 %}
     {% set nbAgent = 0 %}
     {% set nbUser = 0 %}
     
-    {% for user in users %}
+    {% for user in users %} {# Conte les différents rôle des utilisateurs présent sur la base de données #}
         {% for role in user.roles %}
             {% if role == 'ROLE_ADMIN' %}
                 {% set nbAdmin = nbAdmin + 1 %}
@@ -25,13 +25,13 @@
         {% endfor %}
     {% endfor %}
     
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>   {# Intégration de la bibliothèque JavaScript #}
     <script>
         //Users chart
         Highcharts.setOptions({
             colors: ['#7CB5EC', '#F7A35C', '#F45B5B']
         });
-        Highcharts.chart(
+        Highcharts.chart(   //Configuration des paramètres
             'donutchart_users',
             {
                 title : { useHTML: true, text: 'Users chart' },
@@ -42,7 +42,7 @@
                 },
                 series:
                 [{
-                    data: [
+                    data: [ //Données à afficher
                         ['User', {{ nbUser }}],
                         ['Agent', {{ nbAgent }}],
                         ['Admin', {{ nbAdmin }}]
@@ -55,7 +55,7 @@
         Highcharts.setOptions({
             colors: ['#F45B5B', '#F7A35C', '#90ED7D', '#7CB5EC', '#8085E9' ,'#BFBFBF']
         });
-        Highcharts.chart(
+        Highcharts.chart(   //Configuration des paramètres
             'donutchart_visits',
             {
                 title : { text: 'Visits chart' },
@@ -66,7 +66,7 @@
                 },
                 series:
                 [{
-                    data: [
+                    data: [ //Données à afficher
                     	['{{ ownerVisit[0] }}', {{ nbVisit[0] }}],
                         ['{{ ownerVisit[1] }}', {{ nbVisit[1] }}],
                         ['{{ ownerVisit[2] }}', {{ nbVisit[2] }}],

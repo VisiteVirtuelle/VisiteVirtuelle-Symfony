@@ -83,15 +83,15 @@ class DashboardController
     
     
     /**
-     * @Route("/overview", name="overview") //Route d'accès à la focntion
+     * @Route("/overview", name="overview") //Route d'accès à la fonction
      */
-    public function overview(RegistryInterface $doctrine, Environment $twig)    //Fonction d'xploitation des données de la table user et visit
+    public function overview(RegistryInterface $doctrine, Environment $twig)    //Fonction d'exploitation des données de la table user et visit
     {
-        $users = $doctrine->getRepository(User::class)->findAll();  //$users contient toute les données de la table user
-        $visits = $doctrine->getRepository(Visit::class)->findAll();    //$visits contient toute les données de la table visit
+        $users = $doctrine->getRepository(User::class)->findAll();  //$users contient toutes les données de la table user
+        $visits = $doctrine->getRepository(Visit::class)->findAll();    //$visits contient toutes les données de la table visit
         
         $visitOwnerList = [];
-        foreach ($visits as $visit)
+        foreach ($visits as $visit) //Stock tous les propriétaires dans $visitOwnerList[]
         {
             array_push($visitOwnerList, $visit->getOwner()->getUsername());
         }
@@ -101,9 +101,9 @@ class DashboardController
         $nbVisit = [];
         $nbVisit = array_fill(0, 6, 0);
         $visitOwnerPrev = '';
-        sort($visitOwnerList);
+        sort($visitOwnerList);  //Trie la liste par ordre alphabétique
         $i = 0; $j = 0; $k = 0;
-        foreach ($visitOwnerList as $owner)
+        foreach ($visitOwnerList as $owner) //Liste contenant les propriétaires
         {
             if ($k > 0)
             {
@@ -118,7 +118,7 @@ class DashboardController
             if ($owner == $visitOwnerPrev)
             {
                 $j++;
-                $nbVisit[$i] = $j;
+                $nbVisit[$i] = $j;  //$nbVisit contient le nombre de visites qu'a un propriétaire
             }
             else
             {
@@ -131,7 +131,7 @@ class DashboardController
             $k++;
         }
         
-        do {
+        do {    //Synchronise les liste $ownerVisit et $nbVisit pour que les visites correspondent à leur probriétaires
             $change = false;
             
             for ($i = 0; $i < count($ownerVisit) - 1; $i++)
@@ -151,7 +151,7 @@ class DashboardController
             }
         } while($change);
         
-        return new Response($twig->render('Admin/overview.html.twig', [
+        return new Response($twig->render('Admin/overview.html.twig', [ //Envoie les variables à la Vue overview.html.twig
             'users' => $users,
             'nbVisit' => $nbVisit,
             'ownerVisit' => $ownerVisit
