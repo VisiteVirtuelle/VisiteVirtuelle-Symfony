@@ -74,6 +74,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "nikic/php-parser": {
+        "version": "v4.0.2"
+    },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
     },
