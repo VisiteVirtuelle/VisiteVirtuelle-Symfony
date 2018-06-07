@@ -46,6 +46,7 @@ var room = {
 			}			
 };
 
+var iboutton
 var boutton = {
 	rooms:new Map(),
 	positionx:"",
@@ -57,7 +58,109 @@ var boutton = {
 	path:"",
 	name:"",
 	testClicButton:false,
+<<<<<<< HEAD
+	bouttonTest : [],
+	INTERSECTED:0,
+	
+	 affichageCube:function(chemin)
+	{
+		alert("affichage");
+		for (var i = 0; i < nombre; i ++)
+		{
+		//alert("affichagecube");
+		if (chemin === this.bouttonTest[i].name)
+			{
+				room1.scene.add(this.bouttonTest[i]);
+				//alert("affichagecube");
+				iboutton = i;
+				//console.log(boutton1.bouttonTest[iboutton]);
+				
+				
+			}
+        else
+			{
+				room1.scene.remove(this.bouttonTest[i]);
+				//alert("Del affichagecube");
+			}
+		}
+	},
+	
+	raycaste:function(room)
+	{
+		 if (this.testClicButton)
+		{
+			room.raycaster.setFromCamera( room.mouse, room.camera );
+
+			var intersects = room.raycaster.intersectObjects( room.scene.children );
+
+			if(room.clic)
+			{
+			
+				room.clic = false;
+				if(intersects.length > 0)
+				{
+				
+					if(intersects[ 0 ].object)
+					{
+					
+						if(this.INTERSECTED != intersects[ 0 ].object)
+						{
+							if ( this.INTERSECTED ){
+								this.INTERSECTED.material.emissive.setHex( this.INTERSECTED.currentHex );
+							} 
+							if(intersects[ 0 ].object.material.emissive)
+							{
+								//alert("test");
+								this.INTERSECTED = intersects[ 0 ].object;
+								//text2.innerHTML = INTERSECTED.path;
+								alert("raycaste");
+								//console.log(this.INTERSECTED.path);
+								//console.log(room1.rooms.get(this.INTERSECTED.path));
+								this.INTERSECTED = intersects[ 0 ].object;
+								this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
+								this.INTERSECTED.material.emissive.setHex( 0xffffff );
+								room.loadImg(room1.rooms.get(this.INTERSECTED.path), this.INTERSECTED.path);
+
+							}
+							else
+							{
+								this.INTERSECTED = null;
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				if(this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+				this.INTERSECTED = null;
+			}
+		}
+		room.renderer.render(room.scene,room.camera);
+	},
+	
+	getTestClicBoutton : function()
+	{
+		return this.testClicButton;
+	},
+	
+	getINTERSECTED : function ()
+	{
+		return this.INTERSECTED;
+	},
+	
+	setTestClicBoutton : function(valeur)
+	{
+		this.testClicButton = valeur;
+	},
+	
+	setINTERSECTED : function (valeur)
+	{
+		this.INTERSECTED = valeur;
+	}
+=======
 	boutton:new Array(),
+>>>>>>> master
 	
 };
 ///////////////////////////////////////////////////////////////////////////
@@ -71,8 +174,20 @@ addEventListener('mouseup',    MouseUp,        false);
 
 var room1 = Object.create(room);
 var boutton1 = Object.create(boutton);
+<<<<<<< HEAD
+
+var triangleShape = new THREE.Shape();
+				triangleShape.moveTo( 80, 20 );
+				triangleShape.lineTo( 40, 80 );
+				triangleShape.lineTo( 120, 80 );
+				triangleShape.lineTo( 80, 20 ); // close path
+
+room1.scene.add(triangleShape);
+console.log(triangleShape);
+=======
 var rect
 room1.canavs = room1.renderer.domElement;
+>>>>>>> master
 ////////////////////////////////////////////////////////////////////////
 
 //Fonction pour commencer la visite
@@ -90,6 +205,15 @@ room1.cameraSet();
 room1.geometrySet();
 room1.meshSet();
 //Affichage de la salle
+<<<<<<< HEAD
+room1.getRenderer().render( room1.getScene(), room1.getCamera() );
+console.log(boutton1.bouttonTest[0].name);
+if ( boutton1.getTestClicBoutton() === true) room1.scene.add(boutton1.bouttonTest[0]);	
+const canvas = room1.getRenderer().domElement;
+
+//Lancer le menu
+room1.initGui();
+=======
 room1.renderer.render( room1.scene, room1.camera );	
 
 /////////////////////////////////////////////////////////////////////////
@@ -108,6 +232,7 @@ function update()
     //Mets a jour l'affichage de la camera
     room1.camera.lookAt( room1.camera.target );
 }
+>>>>>>> master
 
 // fonction animate qui s'occupera d'afficher la scène
 function animate()
@@ -148,6 +273,8 @@ function MouseDown( event )
 	{
 		isUserInteracting = true;
 	}
+	console.log(event.clientX);
+	console.log(event.clientY);
 }
 
 //Fonction qui déplace la caméra si le clic gauche
@@ -166,9 +293,21 @@ function MouseMove( event )
 	if ( room1.isUserInteracting === true )
 	{
 		// Mises a jour des valeurs de la longitude et l latitude
+<<<<<<< HEAD
+		room1.setLon(( room1.getOnMouseDownMouseX() - event.clientX ) * 0.1 + room1.getOnMouseDownLon());
+		room1.setLat(( event.clientY - room1.getOnMouseDownMouseY() ) * 0.1 + room1.getOnMouseDownLat());
+		//room1.lon = ( room1.onMouseDownMouseX - event.clientX ) * 0.1 + room1.onMouseDownLon;
+		//room1.lat = ( event.clientY - room1.onMouseDownMouseY ) * 0.1 + room1.onMouseDownLat;
+		room1.scene.remove(boutton1.bouttonTest[iboutton]);
+		//boutton1.bouttonTest[iboutton].position.z =  10;
+		//boutton1.bouttonTest[iboutton].position.y =  10;
+		room1.scene.add(boutton1.bouttonTest[iboutton]);
+		//console.log(boutton1.bouttonTest[iboutton]);
+=======
 		room1.lon = ( room1.onMouseDownMouseX - event.clientX ) * 0.1 + room1.onMouseDownLon;
 		room1.lat = ( event.clientY - room1.onMouseDownMouseY ) * 0.1 + room1.onMouseDownLat;
 		
+>>>>>>> master
 	}
 	room1.mouse.x = (( event.clientX / window.innerWidth ) * 2 - 1) ;
 	room1.mouse.y = - (( event.clientY / window.innerHeight ) * 2 + 1);
@@ -186,7 +325,7 @@ function MouseUp ( event )
 //////////////////////////////////////////////////////////////////////
 function getXHR()
 {
-	var geometry2 = new THREE.BoxBufferGeometry(20, 20, 20);
+	var geometry2 = new THREE.BoxBufferGeometry(10, 10, 10);
     var xmlhttp = "";
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -200,6 +339,10 @@ function getXHR()
     var y = xmlDoc.getElementsByTagName("button");
     nombre = x.length;
 
+		var spriteMap = new THREE.TextureLoader().load( "http://localhost:8000/sprite.png" );
+		var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
+	
+	
     for (var i = 0; i < x.length; i++)
     {
 		
@@ -207,15 +350,67 @@ function getXHR()
             x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
              new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
         );
+<<<<<<< HEAD
+		
+		var group = new THREE.Object3D();
+		var sprite = new THREE.Sprite( spriteMaterial );
+		
+				
+				
+				
+       	//var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+        if (x.length === 1)
+=======
 
         var boutton = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
         if (y.length === 0)
+>>>>>>> master
         {
 
             testClicButton = false;
         }
         else
         {
+<<<<<<< HEAD
+			//alert("boutton");
+            boutton1.setTestClicBoutton(true);
+			//profondeur
+			object.position.x = 10;
+			//hauteur
+			object.position.y = 10;
+			
+			object.position.z = 10;
+
+			object.rotation.x = Math.random() * 2 * Math.PI;
+			object.rotation.y = Math.random() * 2 * Math.PI;
+			object.rotation.z = Math.random() * 2 * Math.PI;
+
+			object.scale.x = Math.random() ;//Math.random() + 0.5;
+			object.scale.y = Math.random() ;//Math.random() + 0.5;
+			object.scale.z = Math.random() ;//Math.random() + 0.5;
+			object.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
+			//alert(object.path);
+			object.name = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+
+            //room1.scene.add(object);
+            boutton1.bouttonTest.push(object);
+			//console.log(boutton1.boutton.name);*/
+			
+			boutton1.setTestClicBoutton(true);
+			
+		
+		
+			/*sprite.scale.set(1, 1, 1);
+			sprite.position.set(20, 1, 1);
+			sprite.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
+			sprite.name = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+				
+			group.add(sprite);
+			boutton1.bouttonTest.push(group);
+				
+			
+			//room1.scene.add(group);*/
+=======
             testClicButton = true;
 
             boutton1.positionx = x[i].getElementsByTagName("positionX")[0].childNodes[0].nodeValue;
@@ -236,8 +431,12 @@ function getXHR()
 
             //scene.add(object);
             boutton1.boutton.push(boutton);
+>>>>>>> master
         }
+		
+		//console.log(group);
     }
+	
 }
 
 function initGui()
