@@ -47,12 +47,30 @@
     <div class="text-center py-3" >
         <h4>{{ visit.name }}</h4>
         <div class="row" style="height:100%;width:100%;">
-            <div class="col-9">
-				<div class="mr-5">
-					<canvas id="canvasVue" style="width:80%;position:relative;"></canvas>
+            <div class="col-xl-9">
+			<center>
+				<div class="mr-5" style="width:80%;height:45%;position:relative;">
+					<canvas id="canvasvue" style="width:80%;height:45%;position:relative;"></canvas>
 				</div>
+			</center>
 			</div>
-			<div class="col-3 bg-secondary card-2 " id="panel_view">
+			
+			{% if visit.owner.username == utilisateurs[7] %}
+				<div class="col-xl-3 bg-{{ color[7] }} card-2 " id="panel_view">
+			{% elseif visit.owner.username == utilisateurs[6] %}
+				<div class="col-xl-3 bg-{{ color[6] }} card-2 " id="panel_view">
+			{% elseif visit.owner.username == utilisateurs[3] %}
+				<div class="col-xl-3 bg-{{ color[3] }} card-2 " id="panel_view">		
+			{% elseif visit.owner.username == utilisateurs[4] %}
+				<div class="col-xl-3 bg-{{ color[4] }} card-2 " id="panel_view">
+			{% elseif visit.owner.username == utilisateurs[5] %}
+				<div class="col-xl-3 bg-{{ color[5] }} card-2 " id="panel_view">
+			{% else %}
+					<div class="col-xl-3 bg-secondary card-2 " id="panel_view">
+			{% endif %}
+			
+			
+			<center>
                 <div class="mt-5">
                     <h4 class="text-light"> {{ visit.name }} : {{ 'visit.show.room'|trans }} </h4>
                     <p class="d-flex p-2">{{ 'visit.show.sqft'|trans }} : {{visit.sqft}} m² </p>
@@ -71,6 +89,7 @@
                         </button>
                     </div>
                 </div>
+				</center>
             </div>
         </div>
     </div>

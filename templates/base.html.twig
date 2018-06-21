@@ -4,6 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Virtual Visit{% endblock %}</title>
+		
+	{% set foo = [1, 2] %}
+	{% set  utilisateurs = ["admin", "agent" , "user" , "Votop" , "guiguiz" , "Pillon" , "Tao999" , "YeTskyan"] %}
+	{% set color = ["secondary", "secondary", "secondary", "primary", "danger", "warning", "success", "info"] %}
+
 
         {% block stylesheets %}
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
