@@ -15,11 +15,12 @@
 {% block body %}
     <div class="row">
         <div class="col-2 bg-light border-right border-secondary card-2">
-            {% for group in groups %}
-                <h4 class="ml-2 text-uppercase text-secondary">{{ group.name }}</h4>
+            {% for group in groups %}   {# Parcours du tableau groups[] #}
+                <h4 class="ml-2 text-uppercase text-secondary">{{ group.name }}</h4>    {# Affiche le nom du groupe au-dessus de ses liens #}
                 <ul class="navbar-nav btn-group-vertical text-dark">
-                    {% for link in group.links %}
+                    {% for link in group.links %}   {# Parcours les liens du group #}
                         <li class=" ml-2  ">
+                            {# Créer le lien du menu #}
                             <a href="{{ path('admin_dashboard', { 'template' : link|lower }) }}" class="btn btn-link" style="text-decoration: none">
                                 <i class="material-icons" style="font-size:16px">keyboard_arrow_right</i> <span class="mb-2"> {{ link }}</span>
                             </a>
@@ -36,13 +37,6 @@
                         <span>{{ 'admin.dashboard.title'|trans }}</span>
                     </a>
                 </li>
-                {% if sidebarData.group is not empty %}
-                    <li class="breadcrumb-item ">
-                        <a href="#">
-                            {{ sidebarData.group }}
-                        </a>
-                    </li>
-                {% endif %}
                 <li class="breadcrumb-item active ">
                     {{ sidebarData.link }}
                 </li>
@@ -50,7 +44,7 @@
             {% if path == 'Visit\\VisitController::list' %}
                 {{ render(controller('App\\Controller\\' ~ path, { 'view': "card", 'owner_id': null }, {} )) }}
             {% else %}
-                {{ render(controller('App\\Controller\\' ~ path)) }}
+                {{ render(controller('App\\Controller\\' ~ path)) }}    {# Cette fonction permet d'afficher un rendu du Controller grâce à la variable path #}
             {% endif %}
         </div>
     </div>

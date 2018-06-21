@@ -2,7 +2,7 @@
     <div class="table-responsive">
         <table class="table table-striped">
             <tbody class="text-center">
-                <tr>
+                <tr>    {# Lien des différents champs affiché #}
                     <th>
                         <a href="/sortby/id" class="nav-link text-dark">{{ 'user.list.id'|trans }} <span class="fa fa-caret-down "/></a>
                     </th>
@@ -17,7 +17,7 @@
                     </th>
                 </tr>
 
-                {% for user in sortList %}
+                {% for user in sortList %}  {# Affichage des champs de la table user #}
                     <tr>
                         <td><small>{{ user.id }}</small></td>
                         <td>{{ user.fullname }}</td>
@@ -29,3 +29,5 @@
         </table>
     </div>
 {% endblock %}
+
+

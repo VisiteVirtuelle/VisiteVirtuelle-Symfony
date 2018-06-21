@@ -5,7 +5,7 @@ var room = {
 			texture:"",
 			material:"",
 			scene:new THREE.Scene(),
-			renderer:new THREE.WebGLRenderer({canvas: document.querySelector("canvas")}),
+			renderer:new THREE.WebGLRenderer({canvas: document.getElementById("canvasVue")}),
 			mesh:"",
 			mouse:new THREE.Vector2(),
 			raycaster:new THREE.Raycaster(),
@@ -19,12 +19,217 @@ var room = {
 			phi: 0,
 			theta:0,
 			clic:false,
-			canvas:0,
+			
+			getClic : function()
+			{
+				return this.clic;
+			},
+			
+			getRooms : function()
+			{
+				return this.rooms;
+			},
+			
+			getCamera : function()
+			{
+				return this.camera;
+			},
+			
+			getGeometry : function()
+			{
+				return this.geometry;
+			},
+			
+			getTexture : function()
+			{
+				return this.texture;
+			},
+			
+			getMaterial : function()
+			{
+				return this.material;
+			},
+			
+			getScene : function()
+			{
+				return this.scene;
+			},
+			
+			getRenderer : function()
+			{
+				return this.renderer;
+			},
+			
+			getMesh : function()
+			{
+				return this.mesh;
+			},
+			
+			getMouse : function()
+			{
+				return this.mouse;
+			},
+			
+			getRaycaster : function()
+			{
+				return this.raycaster;
+			},
+			
+			getIsUserInteracting : function()
+			{
+				return this.isUserInteracting;
+			},
+			
+			getOnMouseDownMouseY : function()
+			{
+				return this.onMouseDownMouseY;
+			},
+			
+			getOnMouseDownMouseX : function()
+			{
+				return this.onMouseDownMouseX;
+			},
+			
+			getLon : function()
+			{
+				return this.lon;
+			},
+			
+			getOnMouseDownLon : function()
+			{
+				return this.onMouseDownLon;
+			},
+			
+			getLat : function()
+			{
+				return this.lat;
+			},
+			
+			getTheta : function()
+			{
+				return this.theta;
+			},
+			
+			getPhi : function()
+			{
+				return this.phi;
+			},
+			
+			getOnMouseDownLat : function()
+			{
+				return this.onMouseDownLat;
+			},
+			///////////////////////////////////////////////////
+			
+			setClic : function(valeur)
+			{
+				this.clic = valeur;
+			},
+			
+			setRooms : function(valeur)
+			{
+				 this.rooms= valeur;
+			},
+			
+			setCamera : function(valeur)
+			{
+				 this.camera= valeur;
+			},
+			
+			setGeometry : function(valeur)
+			{
+				 this.geometry= valeur;
+			},
+			
+			setTexture : function(valeur)
+			{
+				 this.texture= valeur;
+			},
+			
+			setMaterial : function(valeur)
+			{
+				 this.material= valeur;
+			},
+			
+			setScene : function(valeur)
+			{
+				 this.scene= valeur;
+			},
+			
+			setRenderer : function(valeur)
+			{
+				 this.renderer= valeur;
+			},
+			
+			setMesh : function(valeur)
+			{
+				 this.mesh= valeur;
+			},
+			
+			setMouseX : function(valeur)
+			{
+				 this.mouse.x= valeur;
+			},
+			
+			setMouseY : function(valeur)
+			{
+				 this.mouse.y= valeur;
+			},
+			
+			setRaycaster : function(valeur)
+			{
+				 this.raycaster= valeur;
+			},
+			
+			setIsUserInteracting : function(valeur)
+			{
+				 this.isUserInteracting= valeur;
+			},
+			
+			setOnMouseDownMouseY : function(valeur)
+			{
+				 this.onMouseDownMouseY= valeur;
+			},
+			
+			setOnMouseDownMouseX : function(valeur)
+			{
+				 this.onMouseDownMouseX= valeur;
+			},
+			
+			setLon : function(valeur)
+			{
+				 this.lon= valeur;
+			},
+			
+			setOnMouseDownLon : function(valeur)
+			{
+				 this.onMouseDownLon= valeur;
+			},
+			
+			setOnMouseDownLat : function(valeur)
+			{
+				 this.onMouseDownLat= valeur;
+			},
+			
+			setLat : function(valeur)
+			{
+				 this.lat= valeur;
+			},
+			
+			setTheta : function(valeur)
+			{
+				 this.theta= valeur;
+			},
+			
+			setPhi : function(valeur)
+			{
+				 this.phi= valeur;
+			},
 			
 			cameraSet : function()
 			{
 				this.camera.target = new THREE.Vector3(0, 0, 0);
-				this.scene.add(room1.camera);
+				this.scene.add(this.camera);
 			},
 			
 			geometrySet : function()
@@ -34,7 +239,7 @@ var room = {
 			
 			meshSet : function()
 			{
-				alert(this.rooms.values().next().value);
+				//alert(this.rooms.values().next().value);
 				this.material= new THREE.MeshBasicMaterial({map: this.rooms.values().next().value,overdraw: 0.5});
 				this.mesh = new THREE.Mesh(this.geometry, this.material);
 				this.scene.add(this.mesh);
@@ -43,21 +248,154 @@ var room = {
 			loadImg : function(path,name)
 			{
 				this.mesh.material.map = path;
-			}			
+				boutton.affichageCube(name);
+			},
+				
+			update : function()
+			{
+				//Mise a jour déplacement verticale
+				this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
+				this.phi = THREE.Math.degToRad( 90 - this.lat );
+				this.theta = THREE.Math.degToRad( this.lon );
+
+				this.camera.target.x = 500 * Math.sin( this.phi ) * Math.cos( this.theta );
+				this.camera.target.y = 500 * Math.cos( this.phi );
+				this.camera.target.z = 500 * Math.sin( this.phi ) * Math.sin( this.theta );
+
+				//Mets a jour l'affichage de la camera
+				this.camera.lookAt( this.camera.target );
+				this.renderer.render( this.scene, this.camera );
+			},
+			
+			/*animate : function(boutton)
+			{
+				requestAnimationFrame(this.animate);
+				this.update();
+				boutton.raycaste(this);
+				this.renderer.render(this.scene, this.camera);
+			}*/
+			
+			initGui : function()
+			{
+				var gui = new dat.gui.GUI();
+				var obj = { Room: 0 };
+
+				var tempThis = this
+				gui.add(obj, 'Room', Array.from(this.rooms.keys())).onChange
+				(
+					function()
+					{
+						//text2.innerHTML = obj.Room;
+						//console.log(this.);
+						tempThis.loadImg(tempThis.rooms.get(obj.Room),obj.Room);
+					}
+				);
+			}
 };
 
+var iboutton
 var boutton = {
 	rooms:new Map(),
-	positionx:"",
-	positiony:"",
-	positionz:"",
-	rotationx:"",
-	rotationy:"",
-	rotationz:"",
-	path:"",
-	name:"",
 	testClicButton:false,
-	boutton:new Array(),
+	bouttonTest : [],
+	INTERSECTED:0,
+	
+	 affichageCube:function(chemin)
+	{
+		alert("affichage");
+		for (var i = 0; i < nombre; i ++)
+		{
+		//alert("affichagecube");
+		if (chemin === this.bouttonTest[i].name)
+			{
+				room1.scene.add(this.bouttonTest[i]);
+				//alert("affichagecube");
+				iboutton = i;
+				//console.log(boutton1.bouttonTest[iboutton]);
+				
+				
+			}
+        else
+			{
+				room1.scene.remove(this.bouttonTest[i]);
+				//alert("Del affichagecube");
+			}
+		}
+	},
+	
+	raycaste:function(room)
+	{
+		 if (this.testClicButton)
+		{
+			room.raycaster.setFromCamera( room.mouse, room.camera );
+
+			var intersects = room.raycaster.intersectObjects( room.scene.children );
+
+			if(room.clic)
+			{
+			
+				room.clic = false;
+				if(intersects.length > 0)
+				{
+				
+					if(intersects[ 0 ].object)
+					{
+					
+						if(this.INTERSECTED != intersects[ 0 ].object)
+						{
+							if ( this.INTERSECTED ){
+								this.INTERSECTED.material.emissive.setHex( this.INTERSECTED.currentHex );
+							} 
+							if(intersects[ 0 ].object.material.emissive)
+							{
+								//alert("test");
+								this.INTERSECTED = intersects[ 0 ].object;
+								//text2.innerHTML = INTERSECTED.path;
+								alert("raycaste");
+								//console.log(this.INTERSECTED.path);
+								//console.log(room1.rooms.get(this.INTERSECTED.path));
+								this.INTERSECTED = intersects[ 0 ].object;
+								this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
+								this.INTERSECTED.material.emissive.setHex( 0xffffff );
+								room.loadImg(room1.rooms.get(this.INTERSECTED.path), this.INTERSECTED.path);
+
+							}
+							else
+							{
+								this.INTERSECTED = null;
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				if(this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+				this.INTERSECTED = null;
+			}
+		}
+		room.renderer.render(room.scene,room.camera);
+	},
+	
+	getTestClicBoutton : function()
+	{
+		return this.testClicButton;
+	},
+	
+	getINTERSECTED : function ()
+	{
+		return this.INTERSECTED;
+	},
+	
+	setTestClicBoutton : function(valeur)
+	{
+		this.testClicButton = valeur;
+	},
+	
+	setINTERSECTED : function (valeur)
+	{
+		this.INTERSECTED = valeur;
+	}
 	
 };
 ///////////////////////////////////////////////////////////////////////////
@@ -69,53 +407,50 @@ addEventListener('mouseup',    MouseUp,        false);
 /////////////////////////////////////////////////////////////////////////
 //Creation de l objet room
 
-var room1 = Object.create(room);
+var room1 =  Object.create(room);
 var boutton1 = Object.create(boutton);
-var rect
-room1.canavs = room1.renderer.domElement;
+
+var triangleShape = new THREE.Shape();
+				triangleShape.moveTo( 80, 20 );
+				triangleShape.lineTo( 40, 80 );
+				triangleShape.lineTo( 120, 80 );
+				triangleShape.lineTo( 80, 20 ); // close path
+
+room1.scene.add(triangleShape);
+console.log(triangleShape);
 ////////////////////////////////////////////////////////////////////////
 
 //Fonction pour commencer la visite
 //Lire XML
 getXHR();
-//Lancer le menu
-initGui();
+
 ////////////////////////////////////////////////////////////////////////
 
-room1.renderer.setSize( 1000, 800 );
+room1.getRenderer().setSize( 1000, 800 );
 //document.getElementById('container').appendChild(room1.renderer.domElement);
 ////////////////////////////////////////////////////////////////////////
+
 //Parametre de la salle
 room1.cameraSet();
 room1.geometrySet();
 room1.meshSet();
+
 //Affichage de la salle
-room1.renderer.render( room1.scene, room1.camera );	
+room1.getRenderer().render( room1.getScene(), room1.getCamera() );
+console.log(boutton1.bouttonTest[0].name);
+if ( boutton1.getTestClicBoutton() === true) room1.scene.add(boutton1.bouttonTest[0]);	
+const canvas = room1.getRenderer().domElement;
 
-/////////////////////////////////////////////////////////////////////////
-//Fonction qui mets a jour les valeurs de la camera
-function update()
-{
-    //Mise a jour déplacement verticale
-    //room1.lat = Math.max( - 85, Math.min( 85, room1.lat ) );
-    room1.phi = THREE.Math.degToRad( 90 - room1.lat );
-    room1.theta = THREE.Math.degToRad( room1.lon );
-
-    room1.camera.target.x = 500 * Math.sin( room1.phi ) * Math.cos( room1.theta );
-    room1.camera.target.y = 500 * Math.cos( room1.phi );
-    room1.camera.target.z = 500 * Math.sin( room1.phi ) * Math.sin( room1.theta );
-
-    //Mets a jour l'affichage de la camera
-    room1.camera.lookAt( room1.camera.target );
-}
+//Lancer le menu
+room1.initGui();
 
 // fonction animate qui s'occupera d'afficher la scène
 function animate()
 {
-	resizeCanvasToDisplaySize();
     requestAnimationFrame(animate);
-    update();
-    room1.renderer.render(room1.scene, room1.camera);
+    room1.update();
+	boutton1.raycaste(room1);
+    room1.renderer.render(room1.getScene(), room1.getCamera());
 }
 
 requestAnimationFrame(animate);
@@ -125,60 +460,48 @@ requestAnimationFrame(animate);
 
 function MouseDown( event )
 {
-	//event.preventDefault();
-	//alert("coucou");
-	room1.clic = false;
-	room1.onMouseDownMouseX = event.clientX;
-	room1.onMouseDownMouseY = event.clientY;
-	//console.log(onMouseDownMouseX);
-	//console.log(onMouseDownMouseY);
-	//console.log(canvas.offsetLeft);
-	//console.log(canvas.offsetRight);
-	///console.log(canvas.clientHeight);
-	//console.log(canvas.clientWidth);
-	room1.onMouseDownLon = room1.lon;
-	room1.onMouseDownLat = room1.lat;
-	//console.log("x est :" + event.clientX);
-	//console.log("y est :" + event.clientY);
-	//console.log("width est :" + canvas.clientWidth);
-	//console.log("height est :" + canvas.clientHeight);
-	//console.log("fin canvas en x :" + (126 + canvas.clientWidth));
-	//console.log("fin canvas en y :" + (174 + canvas.clientHeight));
-	if ( rect.x < event.clientX && event.clientX < (rect.x+canvas.clientWidth) && rect.y < event.clientY && event.clientY < (rect.y+canvas.clientHeight))
+	room1.setClic(false);
+	room1.setOnMouseDownMouseX(event.clientX);
+	room1.setOnMouseDownMouseY(event.clientY);
+	room1.setOnMouseDownLon(room1.getLon());
+	room1.setOnMouseDownLat(room1.getLat());
+	
+	if ( 126 < event.clientX && event.clientX < (126+canvas.clientWidth) && 174 < event.clientY && event.clientY < (174+canvas.clientHeight))
 	{
-		isUserInteracting = true;
+		room1.setIsUserInteracting(true);
 	}
+	console.log(event.clientX);
+	console.log(event.clientY);
 }
 
 //Fonction qui déplace la caméra si le clic gauche
 function MouseMove( event )
 {
-	if (rect.x < event.clientX && event.clientX < (rect.x+canvas.clientWidth) && rect.y < event.clientY && event.clientY < (rect.y+canvas.clientHeight))
-	{
-	}
-	else{
-		isUserInteracting = false;
-	}
-	
-	room1.clic = false;
+	room1.setClic(false);
 	//Si clique de la souris enfonce
 	
-	if ( room1.isUserInteracting === true )
+	if ( room1.getIsUserInteracting() === true )
 	{
 		// Mises a jour des valeurs de la longitude et l latitude
-		room1.lon = ( room1.onMouseDownMouseX - event.clientX ) * 0.1 + room1.onMouseDownLon;
-		room1.lat = ( event.clientY - room1.onMouseDownMouseY ) * 0.1 + room1.onMouseDownLat;
-		
+		room1.setLon(( room1.getOnMouseDownMouseX() - event.clientX ) * 0.1 + room1.getOnMouseDownLon());
+		room1.setLat(( event.clientY - room1.getOnMouseDownMouseY() ) * 0.1 + room1.getOnMouseDownLat());
+		//room1.lon = ( room1.onMouseDownMouseX - event.clientX ) * 0.1 + room1.onMouseDownLon;
+		//room1.lat = ( event.clientY - room1.onMouseDownMouseY ) * 0.1 + room1.onMouseDownLat;
+		room1.scene.remove(boutton1.bouttonTest[iboutton]);
+		//boutton1.bouttonTest[iboutton].position.z =  10;
+		//boutton1.bouttonTest[iboutton].position.y =  10;
+		room1.scene.add(boutton1.bouttonTest[iboutton]);
+		//console.log(boutton1.bouttonTest[iboutton]);
 	}
-	room1.mouse.x = (( event.clientX / window.innerWidth ) * 2 - 1) ;
-	room1.mouse.y = - (( event.clientY / window.innerHeight ) * 2 + 1);
+	room1.setMouseX(( event.clientX / window.innerWidth ) * 2 - 1) ;
+	room1.setMouseY(( event.clientY / window.innerHeight ) * 2 + 1);
 }
 
 //Fonction quand on lâche le clique desactiver le mouvement de la camera
 function MouseUp ( event )
 {
-	room1.clic = true;
-	room1.isUserInteracting = false;
+	room1.setClic(true);
+	room1.setIsUserInteracting(false);
 }
 
 
@@ -186,7 +509,7 @@ function MouseUp ( event )
 //////////////////////////////////////////////////////////////////////
 function getXHR()
 {
-	var geometry2 = new THREE.BoxBufferGeometry(20, 20, 20);
+	var geometry2 = new THREE.BoxBufferGeometry(10, 10, 10);
     var xmlhttp = "";
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -200,112 +523,74 @@ function getXHR()
     var y = xmlDoc.getElementsByTagName("button");
     nombre = x.length;
 
+		var spriteMap = new THREE.TextureLoader().load( "http://localhost:8000/sprite.png" );
+		var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
+	
+	
     for (var i = 0; i < x.length; i++)
     {
 		
-        room1.rooms.set(
+        room1.getRooms().set(
             x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
-             new THREE.TextureLoader().load( "http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
+            new THREE.TextureLoader().load("http://localhost:8000/visit/" + visit.id + "/" + x[i].getElementsByTagName("url")[0].childNodes[0].nodeValue)
         );
-
-        var boutton = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
-        if (y.length === 0)
+		
+		var group = new THREE.Object3D();
+		var sprite = new THREE.Sprite( spriteMaterial );
+		
+				
+				
+				
+       	//var object = new THREE.Mesh( geometry2, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+        if (x.length === 1)
         {
 
-            testClicButton = false;
+            boutton1.setTestClicBoutton(false);
+			
         }
         else
         {
-            testClicButton = true;
+            boutton1.setTestClicBoutton(true);
+			//profondeur
+			object.position.x = 10;
+			//hauteur
+			object.position.y = 10;
+			
+			object.position.z = 10;
 
-            boutton1.positionx = x[i].getElementsByTagName("positionX")[0].childNodes[0].nodeValue;
-            boutton1.positiony = x[i].getElementsByTagName("positionY")[0].childNodes[0].nodeValue;
-            boutton1.positionz = x[i].getElementsByTagName("positionZ")[0].childNodes[0].nodeValue;
+			object.rotation.x = Math.random() * 2 * Math.PI;
+			object.rotation.y = Math.random() * 2 * Math.PI;
+			object.rotation.z = Math.random() * 2 * Math.PI;
 
-            boutton1.rotationx = Math.random() * 2 * Math.PI;
-            boutton1.rotationy = Math.random() * 2 * Math.PI;
-            boutton1.rotationz = Math.random() * 2 * Math.PI;
+			object.scale.x = Math.random() ;//Math.random() + 0.5;
+			object.scale.y = Math.random() ;//Math.random() + 0.5;
+			object.scale.z = Math.random() ;//Math.random() + 0.5;
+			object.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
+			//alert(object.path);
+			object.name = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
 
-            boutton1.scalex = Math.random() + 0.5;
-            boutton1.scaley = Math.random() + 0.5;
-            boutton1.scalez = Math.random() + 0.5;
-
-            boutton1.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
-            boutton1.name = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
-            //object.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
-
-            //scene.add(object);
-            boutton1.boutton.push(boutton);
+            //room1.scene.add(object);
+            boutton1.bouttonTest.push(object);
+			//console.log(boutton1.boutton.name);*/
+			
+			boutton1.setTestClicBoutton(true);
+			
+		
+		
+			/*sprite.scale.set(1, 1, 1);
+			sprite.position.set(20, 1, 1);
+			sprite.path = x[i].getElementsByTagName("next")[0].childNodes[0].nodeValue;
+			sprite.name = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+				
+			group.add(sprite);
+			boutton1.bouttonTest.push(group);
+				
+			
+			//room1.scene.add(group);*/
         }
+		
+		//console.log(group);
     }
+	
 }
 
-function initGui()
-{
-    var gui = new dat.gui.GUI();
-    var obj = { Room: 0 };
-
-    gui.add(obj, 'Room', Array.from(room1.rooms.keys())).onChange(
-        function(){
-            //text2.innerHTML = obj.Room;
-            room1.loadImg(room1.rooms.get(obj.Room),obj.Room);
-        }
-    );
-}
-
-function raycaste()
-{
-    if (testClicButton)
-    {
-        raycaster.setFromCamera( mouse, camera );
-
-        var intersects = raycaster.intersectObjects( scene.children );
-
-        if(clic)
-        {
-            clic = false;
-            if(intersects.length > 0)
-            {
-                if(intersects[ 0 ].object)
-                {
-                    if(INTERSECTED != intersects[ 0 ].object)
-                    {
-                        if(intersects[ 0 ].object.material.emissive)
-                        {
-                            INTERSECTED = intersects[ 0 ].object;
-                            text2.innerHTML = INTERSECTED.path;
-                            loadImg(rooms.get(INTERSECTED.path), INTERSECTED.path);
-
-                        }
-                        else
-                        {
-                            INTERSECTED = null;
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
-            if(INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-            INTERSECTED = null;
-        }
-    }
-}
-
-
-
-
-function resizeCanvasToDisplaySize(force)
-{
-    const width = room1.canvas.clientWidth;
-    const height = room1.canvas.clientHeight;
-
-    if (force || room1.canvas.width !== width ||room1.canvas.height !== height)
-    {
-        // you must pass false here or three.js sadly fights the browser
-        room1.renderer.setSize(width, height, false);
-        camera.aspect = width / height;
-        room1.camera.updateProjectionMatrix();
-    }
-}

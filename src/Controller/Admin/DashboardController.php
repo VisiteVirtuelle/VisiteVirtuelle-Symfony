@@ -32,61 +32,66 @@ class DashboardController
     }
     
     /**
-     * @Route("/{template}", defaults={"template"=""}, name="dashboard")
+     * @Route("/{template}", defaults={"template"=""}, name="dashboard")    //Route d'accès à la fonction
      */
-    public function dashboard($template, Environment $twig)
+    public function dashboard($template, Environment $twig) //Fonction de l'exploitation du fichier xml
     {
-        $xmlFile = $this->project_dir.'/config/dashboard_sidebar.xml';
-        if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }
-        $xml = simplexml_load_file($xmlFile);
+        $xmlFile = $this->project_dir.'/config/dashboard_sidebar.xml';  //Enregistre le fichier xml dans $xmlFile
+        if(!file_exists($xmlFile)) { throw new NotFoundHttpException($xmlFile." was not found"); }  //Affiche une erreur si le fichier n'est pas trouvé
+        $xml = simplexml_load_file($xmlFile);   //Convertit $xmlFile en objet
         
-        $path = 'User\\UserController::list';
+        //$path contient la route d'un Controller, au premier appel de la fonction $path est vide
+        $path = 'User\\UserController::list';   //Pour ne pas rien afficher, $path est initialiser avec la route du Controller User
+                                                //puis vers la fonction list qui liste les utilisateurs inscrits
         
-        $sidebarData = [
+        $sidebarData = [    //Contiendra le nom du groupe et de la route du lien
             'group' => '',
             'link' => ''
         ];
         
         $groups = [];
-        foreach ($xml->children() as $group)
+        foreach ($xml->children() as $group)    //Parcours du fichier
         {
-            $sidebarObj = new SidebarStruct();
-            $sidebarObj->name = $group['name'];
+            $sidebarObj = new SidebarStruct();  //Voir structure de la classe
+            $sidebarObj->name = $group['name']; //L'attribut name contient les noms de groupes
             
             $links = [];
-            foreach ($group->children() as $link)
+            foreach ($group->children() as $link)   //Parcours du groupe
             {
-                array_push($links, $link['name']);
+                array_push($links, $link['name']);  //$links[] contient les noms des liens
 
-                if ($template == strtolower($link['name']))
+                if ($template == strtolower($link['name'])) //$links[] contient les noms des liens
                 {
-                    $path = $link;
-                    $sidebarData['group'] = $group['name'];
-                    $sidebarData['link'] = $link['name'];
+                    $path = $link;  //$path contient la route du lien
+                    $sidebarData['group'] = $group['name']; //$sidebarData['group'] contient le nom de groupe du lien 
+                    $sidebarData['link'] = $link['name'];   //$sidebarData['link'] contient le nom de la route du lien
                 }
             }
 
-            $sidebarObj->links = $links;
-            array_push($groups, $sidebarObj);
+            $sidebarObj->links = $links;    //L'attribut links contient les noms des liens
+            array_push($groups, $sidebarObj);   //$groups contient les noms de groupes et les noms des liens
         }
         
-        return new Response($twig->render('Admin/dashboard.html.twig', [
+        return new Response($twig->render('Admin/dashboard.html.twig', [    //Permet d'envoyer les variables à la Vue dashboard.html.twig
             'path' => $path,
             'groups' => $groups,
             'sidebarData' => $sidebarData
         ]));
     }
     
+    
+    
+    
     /**
-     * @Route("/overview", name="overview")
+     * @Route("/overview", name="overview") //Route d'accès à la fonction
      */
-    public function overview(RegistryInterface $doctrine, Environment $twig)
+    public function overview(RegistryInterface $doctrine, Environment $twig)    //Fonction d'exploitation des données de la table user et visit
     {
-        $users = $doctrine->getRepository(User::class)->findAll();
-        $visits = $doctrine->getRepository(Visit::class)->findAll();
+        $users = $doctrine->getRepository(User::class)->findAll();  //$users contient toutes les données de la table user
+        $visits = $doctrine->getRepository(Visit::class)->findAll();    //$visits contient toutes les données de la table visit
         
         $visitOwnerList = [];
-        foreach ($visits as $visit)
+        foreach ($visits as $visit) //Stock tous les propriétaires dans $visitOwnerList[]
         {
             array_push($visitOwnerList, $visit->getOwner()->getUsername());
         }
@@ -96,9 +101,9 @@ class DashboardController
         $nbVisit = [];
         $nbVisit = array_fill(0, 6, 0);
         $visitOwnerPrev = '';
-        sort($visitOwnerList);
+        sort($visitOwnerList);  //Trie la liste par ordre alphabétique
         $i = 0; $j = 0; $k = 0;
-        foreach ($visitOwnerList as $owner)
+        foreach ($visitOwnerList as $owner) //Liste contenant les propriétaires
         {
             if ($k > 0)
             {
@@ -113,7 +118,7 @@ class DashboardController
             if ($owner == $visitOwnerPrev)
             {
                 $j++;
-                $nbVisit[$i] = $j;
+                $nbVisit[$i] = $j;  //$nbVisit contient le nombre de visites qu'a un propriétaire
             }
             else
             {
@@ -126,7 +131,7 @@ class DashboardController
             $k++;
         }
         
-        do {
+        do {    //Synchronise les liste $ownerVisit et $nbVisit pour que les visites correspondent à leur probriétaires
             $change = false;
             
             for ($i = 0; $i < count($ownerVisit) - 1; $i++)
@@ -146,7 +151,7 @@ class DashboardController
             }
         } while($change);
         
-        return new Response($twig->render('Admin/overview.html.twig', [
+        return new Response($twig->render('Admin/overview.html.twig', [ //Envoie les variables à la Vue overview.html.twig
             'users' => $users,
             'nbVisit' => $nbVisit,
             'ownerVisit' => $ownerVisit
