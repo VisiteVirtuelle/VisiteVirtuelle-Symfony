@@ -34,7 +34,7 @@ Les commandes ci-dessous sont à exécuter à la racine du projet:
 * Guillaume VIDAL - *(Développeur Symfony)*
 * Valentin PILLON - *(Développeur ThreeJS)*
 * Thomas DUDITLIEUX - *(Développeur ThreeJS)*
-* Malko CARRERAS - *(Concepteur Web)*
+* Malko CARRERAS - *(Designer Web)*
 
 ## Organisation du projet
 **Trello:** https://trello.com/b/lRY92q0W/organisation
